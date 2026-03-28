@@ -467,7 +467,7 @@
     transform: translateY(-50%);
     width: clamp(180px, 20vw, 280px);
     pointer-events: none;
-    z-index: 0;
+    z-index: 1;
     filter: drop-shadow(0 0 80px rgba(124,58,237,0.4)) drop-shadow(0 0 40px rgba(201,168,76,0.25));
     animation: heroLogoFadeIn 1.2s 0.5s ease forwards;
     opacity: 0;
@@ -1348,42 +1348,65 @@
   }
   .division-logo {
     position: absolute;
-    bottom: 28px;
-    right: 28px;
-    width: clamp(80px, 9vw, 120px);
-    height: clamp(80px, 9vw, 120px);
+    top: 20px;
+    right: 20px;
+    width: clamp(52px, 5.5vw, 72px);
+    height: clamp(52px, 5.5vw, 72px);
     object-fit: contain;
-    opacity: 0.35;
+    opacity: 0.55;
     mix-blend-mode: screen;
-    z-index: 0;
-    transition: opacity 0.4s, transform 0.5s cubic-bezier(0.34,1.56,0.64,1);
+    z-index: 2;
+    transition: opacity 0.35s, transform 0.45s cubic-bezier(0.34,1.56,0.64,1);
     pointer-events: none;
   }
   .division-card:hover .division-logo {
-    opacity: 0.75;
-    transform: scale(1.1) rotate(-5deg);
+    opacity: 0.9;
+    transform: scale(1.14) rotate(-6deg);
   }
 
-  /* logo next to hero giant title */
+  /* Division section title row (title only — logo is now a separate section-level element) */
   .div-title-row {
-    display: flex;
-    align-items: center;
-    gap: 20px;
     margin-bottom: 28px;
   }
-  .div-title-row .div-giant-title { margin-bottom: 0; }
+
+  /* Section logos — must be placed as DIRECT children of the section containers,
+     NOT inside content divs, so they position relative to the full section width */
   .div-section-logo {
     position: absolute;
-    right: clamp(40px, 5vw, 80px);
-    bottom: -10px;
-    width: clamp(12rem, 18vw, 22rem);
-    height: clamp(12rem, 18vw, 22rem);
+    right: clamp(48px, 6vw, 80px);
+    top: 50%;
+    transform: translateY(-50%);
+    width: clamp(140px, 16vw, 210px);
+    height: clamp(140px, 16vw, 210px);
     object-fit: contain;
     opacity: 0.65;
     mix-blend-mode: screen;
     pointer-events: none;
-    z-index: 0;
-    filter: drop-shadow(0 0 40px rgba(255,255,255,0.08));
+    z-index: 1;
+    filter: drop-shadow(0 0 50px rgba(255,255,255,0.1));
+  }
+
+  /* Iliteach: 2-column grid — logo sits inside the right visual panel (right 50%) */
+  .iliteach-hero .div-section-logo {
+    right: auto;
+    left: 75%;
+    transform: translate(-50%, -50%);
+    width: clamp(130px, 14vw, 190px);
+    height: clamp(130px, 14vw, 190px);
+    opacity: 0.6;
+    z-index: 1;
+  }
+
+  /* Ilitrade: opaque tier cards fill the right side, so use a small top-right badge instead */
+  .ilitrade-hero .div-section-logo {
+    width: clamp(68px, 7vw, 92px);
+    height: clamp(68px, 7vw, 92px);
+    right: 52px;
+    top: 36px;
+    transform: none;
+    z-index: 3;
+    opacity: 0.72;
+    filter: drop-shadow(0 0 20px rgba(52,211,153,0.3));
   }
   /* ===== SPECTACULAR DIVISION SECTIONS ===== */
 
@@ -2402,7 +2425,9 @@
     .service-tiles { grid-template-columns: 1fr; }
     .ilitech-side { display: none; }
     .ilitech-hero { padding: 80px 24px; }
-    .div-section-logo { width: clamp(8rem, 20vw, 12rem); height: clamp(8rem, 20vw, 12rem); right: 20px; }
+    .div-section-logo { width: clamp(100px, 18vw, 140px); height: clamp(100px, 18vw, 140px); right: 20px; }
+    .ilitrade-hero .div-section-logo { width: 56px; height: 56px; right: 24px; top: 24px; }
+    .iliteach-hero .div-section-logo { display: none; }
     .hero-logo-img { width: clamp(120px, 28vw, 180px); right: 20px; }
     .iliteach-hero { grid-template-columns: 1fr; }
     .iliteach-right { display: none; }
@@ -2728,11 +2753,11 @@
     <div class="div-eyebrow">Division 01</div>
     <div class="div-title-row">
       <h2 class="div-giant-title">Ili<em>Tech</em></h2>
-      <img src="images/ilitech.png" alt="" class="div-section-logo">
     </div>
     <p class="div-pitch">We turn ideas into reality — <strong>custom software, apps, websites, and hand-assembled computers</strong>, built with precision and priced with integrity. Every project is scoped honestly, delivered completely, and owned by you — no lock-in, no bloat, no middlemen.</p>
     <a id="btn-get-a-quote" href="#" class="btn-purple">Get a Quote</a>
   </div>
+  <img src="images/ilitech.png" alt="Ilitech" class="div-section-logo">
   <div class="ilitech-side">
     <div class="ilitech-side-item">PROGRAMS</div>
     <div class="ilitech-side-item">APPS</div>
@@ -2929,11 +2954,11 @@
 
 <!-- ILITEACH -->
 <div class="iliteach-hero" id="iliteach">
+  <img src="images/iliteach.png" alt="Iliteach" class="div-section-logo">
   <div class="iliteach-left reveal">
     <div class="div-eyebrow">Division 02</div>
     <div class="div-title-row">
       <h2 class="div-giant-title">Ili<em>Teach</em></h2>
-      <img src="images/iliteach.png" alt="" class="div-section-logo">
     </div>
     <p class="div-pitch">Knowledge shouldn't be locked behind paywalls. <strong>Iliteach puts expert resources, real tutoring, and a community-built database</strong> directly in your hands. The Work Database is <strong style="color:var(--navy-light)">free right now</strong> — contribute 30 completed assignments and you're in. Pricing only begins once the platform reaches a sufficient user base, and you'll always be notified before it does.</p>
     <a id="btn-start-learning" href="#" class="btn-navy">Start Learning</a>
@@ -3019,12 +3044,12 @@
 <!-- ILITRADE -->
 <div class="ilitrade-hero" id="ilitrade">
   <div class="ilitrade-hero-bg"></div>
+  <img src="images/ilitrade.png" alt="Ilitrade" class="div-section-logo">
   <div class="ilitrade-hero-text reveal">
     <div class="ilitrade-launch-badge">Currently in Market-Building Phase</div>
     <div class="div-eyebrow">Division 03</div>
     <div class="div-title-row">
       <h2 class="div-giant-title">Ili<em>Trade</em></h2>
-      <img src="images/ilitrade.png" alt="" class="div-section-logo">
     </div>
     <p class="div-pitch">A marketplace built from the ground up for <strong>resellers, service providers, and advertisers</strong>. We're growing the network first — so <strong style="color:var(--emerald-light)">accounts are completely free</strong> until the market is ready. No catch, no credit card, no expiry date. Get in early.</p>
     <a id="btn-join-free" href="#" class="btn-emerald">Join Free Now</a>

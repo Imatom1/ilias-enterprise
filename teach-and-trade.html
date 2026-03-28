@@ -58,7 +58,7 @@
     text-decoration: none;
     cursor: pointer;
   }
-  .nav-logo-img { height: 36px; width: 36px; object-fit: contain; }
+  .nav-logo-img { height: 44px; width: 44px; object-fit: contain; }
   .nav-logo {
     font-family: 'Bebas Neue', sans-serif;
     font-size: 1.3rem;
@@ -198,10 +198,11 @@
     margin-bottom: 28px;
   }
   .division-logo {
-    height: 80px;
-    width: 80px;
+    height: clamp(64px, 8vw, 96px);
+    width: clamp(64px, 8vw, 96px);
     object-fit: contain;
     mix-blend-mode: screen;
+    flex-shrink: 0;
   }
   .division-name {
     font-family: 'Bebas Neue', sans-serif;
@@ -689,6 +690,17 @@
     border-top: 1px solid var(--border);
     gap: 40px;
     flex-wrap: wrap;
+  }
+  .footer-logo-wrap {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .footer-logo-img {
+    height: 40px;
+    width: 40px;
+    object-fit: contain;
+    opacity: 0.85;
   }
   .footer-logo {
     font-family: 'Bebas Neue', sans-serif;
@@ -1193,7 +1205,10 @@
 <!-- FOOTER -->
 <footer>
   <div>
-    <div class="footer-logo">Ilias Enterprises</div>
+    <div class="footer-logo-wrap">
+      <img src="images/logo.png" alt="Ilias Enterprises" class="footer-logo-img">
+      <div class="footer-logo">Ilias Enterprises</div>
+    </div>
     <div class="footer-copy">© 2025 Ilias Enterprises. All rights reserved.</div>
   </div>
   <div class="footer-links">

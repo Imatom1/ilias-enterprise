@@ -581,12 +581,51 @@
     color: rgba(245,242,238,0.5);
   }
 
-  /* Role cards + form grid */
-  .join-layout {
+  /* Two-division split layout */
+  .join-split {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 80px;
-    align-items: start;
+    gap: 2px;
+    background: rgba(201,168,76,0.06);
+  }
+  .join-half {
+    background: var(--black);
+    padding: 48px 40px 56px;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+  .join-half.teach-half { border-top: 3px solid var(--navy-light); }
+  .join-half.trade-half { border-top: 3px solid var(--emerald-light); }
+  .join-half-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--border);
+  }
+  .join-half-logo {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+    opacity: 0.85;
+    mix-blend-mode: screen;
+    flex-shrink: 0;
+  }
+  .join-half-division {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.8rem;
+    letter-spacing: 0.06em;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .teach-half .join-half-division { color: var(--navy-light); }
+  .trade-half .join-half-division { color: var(--emerald-light); }
+  .join-half-sub {
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(245,242,238,0.32);
   }
   .join-roles { display: flex; flex-direction: column; gap: 2px; }
   .join-role {
@@ -647,21 +686,30 @@
   .join-role.teach-role .join-role-perk { color: rgba(96,165,250,0.7); border-color: rgba(96,165,250,0.18); }
   .join-role.trade-role .join-role-perk { color: rgba(52,211,153,0.7); border-color: rgba(52,211,153,0.18); }
 
-  /* Join form */
-  .join-form-wrap { position: sticky; top: 84px; }
+  /* Join forms — division colored */
+  .join-form-wrap {
+    border-top: 1px solid var(--border);
+    padding-top: 32px;
+    margin-top: 8px;
+  }
   .join-form-heading {
     font-family: 'Bebas Neue', sans-serif;
     font-size: 1.5rem;
     letter-spacing: 0.1em;
-    color: var(--white);
     margin-bottom: 8px;
   }
+  .teach-form .join-form-heading { color: var(--navy-light); }
+  .trade-form .join-form-heading { color: var(--emerald-light); }
   .join-form-sub {
     font-size: 0.85rem;
     color: rgba(245,242,238,0.45);
     line-height: 1.65;
     margin-bottom: 32px;
   }
+  .teach-form .cf-submit { background: rgba(30,58,138,0.8); border-color: rgba(96,165,250,0.45); }
+  .teach-form .cf-submit:hover { background: var(--navy); border-color: var(--navy-light); }
+  .trade-form .cf-submit { background: rgba(6,78,59,0.8); border-color: rgba(52,211,153,0.45); }
+  .trade-form .cf-submit:hover { background: var(--emerald-dim); border-color: var(--emerald-light); }
 
   /* ---- STAY IN THE LOOP (compact) ---- */
   .loop-section {
@@ -719,12 +767,12 @@
 
   @media (max-width: 900px) {
     .join-benefits { grid-template-columns: 1fr 1fr; }
-    .join-layout { grid-template-columns: 1fr; gap: 48px; }
+    .join-split { grid-template-columns: 1fr; }
     .loop-inner { grid-template-columns: 1fr; gap: 36px; }
   }
   @media (max-width: 768px) {
     .join-section { padding: 60px 24px; }
-    .join-form-wrap { position: static; }
+    .join-half { padding: 36px 24px 44px; }
     .loop-section { padding: 48px 24px; }
     .join-benefits { grid-template-columns: 1fr; }
   }
@@ -998,6 +1046,212 @@
 
 <div class="divider"></div>
 
+<!-- JOIN / CONTRIBUTE -->
+<section class="join-section" id="join">
+  <p class="section-label reveal">Help Build This</p>
+  <h2 class="section-title reveal">Get In Early.<br>Help Shape What<br>These Platforms Become.</h2>
+  <p class="section-body reveal">The people who show up before launch don't just use the platform — they define it. Your involvement right now determines the quality and reputation of what launches. This is the window where being early actually means something.</p>
+
+  <!-- Why-now benefits strip -->
+  <div class="join-benefits reveal">
+    <div class="join-benefit">
+      <div class="join-benefit-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+      </div>
+      <div class="join-benefit-title">Free During Build</div>
+      <div class="join-benefit-desc">Every role is completely free while both platforms are in development. No credit card, no trial clock.</div>
+    </div>
+    <div class="join-benefit">
+      <div class="join-benefit-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+      </div>
+      <div class="join-benefit-title">First-Mover Visibility</div>
+      <div class="join-benefit-desc">Early contributors and sellers get featured placement on launch day — a head start new signups can't replicate.</div>
+    </div>
+    <div class="join-benefit">
+      <div class="join-benefit-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+      </div>
+      <div class="join-benefit-title">Locked Rates</div>
+      <div class="join-benefit-desc">Your pricing tier is locked when billing activates. Early members are grandfathered — always.</div>
+    </div>
+    <div class="join-benefit">
+      <div class="join-benefit-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      </div>
+      <div class="join-benefit-title">Direct Feedback Line</div>
+      <div class="join-benefit-desc">Early members get direct access to flag issues, request features, and influence what gets built.</div>
+    </div>
+  </div>
+
+  <!-- Split: Iliteach | Ilitrade -->
+  <div class="join-split">
+
+    <!-- ILITEACH HALF -->
+    <div class="join-half teach-half reveal">
+      <div class="join-half-header">
+        <img src="images/iliteach.png" alt="Iliteach" class="join-half-logo">
+        <div>
+          <div class="join-half-division">Iliteach</div>
+          <div class="join-half-sub">Education &amp; Tutoring Platform</div>
+        </div>
+      </div>
+
+      <div class="join-roles">
+        <div class="join-role teach-role">
+          <div class="join-role-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <div>
+            <div class="join-role-title">Tutors</div>
+            <p class="join-role-desc">Control your schedule and rate — we handle bookings and structure. If you can break down a subject and meet someone at their level, there's a student looking for exactly that.</p>
+            <div class="join-role-perks">
+              <span class="join-role-perk">Set your own hours</span>
+              <span class="join-role-perk">You name your rate</span>
+              <span class="join-role-perk">All subjects welcome</span>
+            </div>
+          </div>
+        </div>
+        <div class="join-role teach-role">
+          <div class="join-role-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          </div>
+          <div>
+            <div class="join-role-title">Students with Completed Work</div>
+            <p class="join-role-desc">Old assignments, solved problems, essays — submit them to the Work Database and get free full library access. You're building something permanent that other students actually learn from.</p>
+            <div class="join-role-perks">
+              <span class="join-role-perk">Free contributor access</span>
+              <span class="join-role-perk">Any subject or level</span>
+              <span class="join-role-perk">Permanent credit</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="join-form-wrap teach-form">
+        <div class="join-form-heading">Join Iliteach</div>
+        <div class="join-form-sub">Takes 60 seconds. We'll reach out before launch with your specific details.</div>
+        <form id="joinTeachForm" action="https://formspree.io/f/xkopobkq" method="POST" onsubmit="handleJoinTeachSubmit(event)">
+          <input type="hidden" name="_subject" value="Iliteach Contributor Interest">
+          <input type="hidden" name="division" value="Iliteach">
+          <div class="cf-row">
+            <div class="cf-group">
+              <label class="cf-label" for="jt-name">Name</label>
+              <input class="cf-input" type="text" id="jt-name" name="name" placeholder="Your name" required>
+            </div>
+            <div class="cf-group">
+              <label class="cf-label" for="jt-email">Email</label>
+              <input class="cf-input" type="email" id="jt-email" name="email" placeholder="your@email.com" required>
+            </div>
+          </div>
+          <div class="cf-group">
+            <label class="cf-label" for="jt-role">I Want to Join As</label>
+            <select class="cf-select" id="jt-role" name="role" required>
+              <option value="" disabled selected>Select your role</option>
+              <option value="Tutor">Tutor</option>
+              <option value="Student / Work Contributor">Student with Completed Work</option>
+            </select>
+          </div>
+          <div class="cf-group">
+            <label class="cf-label" for="jt-message">Tell Us More (optional)</label>
+            <textarea class="cf-textarea" id="jt-message" name="message" placeholder="What subject do you tutor? What work do you have to contribute?"></textarea>
+          </div>
+          <input type="text" name="_gotcha" style="display:none">
+          <button type="submit" class="cf-submit" id="jt-submit">Secure My Spot on Iliteach</button>
+        </form>
+        <div class="cf-success" id="joinTeachSuccess">
+          <div class="cf-success-mark">✓</div>
+          <h3>You're In Early</h3>
+          <p>We'll reach out before Iliteach launches with everything you need. Thank you.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ILITRADE HALF -->
+    <div class="join-half trade-half reveal">
+      <div class="join-half-header">
+        <img src="images/ilitrade.png" alt="Ilitrade" class="join-half-logo">
+        <div>
+          <div class="join-half-division">Ilitrade</div>
+          <div class="join-half-sub">Commerce &amp; Marketplace Platform</div>
+        </div>
+      </div>
+
+      <div class="join-roles">
+        <div class="join-role trade-role">
+          <div class="join-role-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          </div>
+          <div>
+            <div class="join-role-title">Resellers &amp; Sellers</div>
+            <p class="join-role-desc">List your products on a marketplace with no transaction cuts. Join now and you're listed the moment the doors open, with an established profile while new sellers are still setting up.</p>
+            <div class="join-role-perks">
+              <span class="join-role-perk">No transaction fees ever</span>
+              <span class="join-role-perk">Day-one listing visibility</span>
+              <span class="join-role-perk">Locked subscription rate</span>
+            </div>
+          </div>
+        </div>
+        <div class="join-role trade-role">
+          <div class="join-role-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+          </div>
+          <div>
+            <div class="join-role-title">Service Providers</div>
+            <p class="join-role-desc">Trades, freelancers, independents — list what you do and get discovered without paying a percentage of every job. A flat subscription covers your spot in the marketplace and nothing more.</p>
+            <div class="join-role-perks">
+              <span class="join-role-perk">No commission on jobs</span>
+              <span class="join-role-perk">Flat monthly access</span>
+              <span class="join-role-perk">All service types</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="join-form-wrap trade-form">
+        <div class="join-form-heading">Join Ilitrade</div>
+        <div class="join-form-sub">Takes 60 seconds. We'll reach out before launch with your specific details.</div>
+        <form id="joinTradeForm" action="https://formspree.io/f/xkopobkq" method="POST" onsubmit="handleJoinTradeSubmit(event)">
+          <input type="hidden" name="_subject" value="Ilitrade Contributor Interest">
+          <input type="hidden" name="division" value="Ilitrade">
+          <div class="cf-row">
+            <div class="cf-group">
+              <label class="cf-label" for="jd-name">Name</label>
+              <input class="cf-input" type="text" id="jd-name" name="name" placeholder="Your name" required>
+            </div>
+            <div class="cf-group">
+              <label class="cf-label" for="jd-email">Email</label>
+              <input class="cf-input" type="email" id="jd-email" name="email" placeholder="your@email.com" required>
+            </div>
+          </div>
+          <div class="cf-group">
+            <label class="cf-label" for="jd-role">I Want to Join As</label>
+            <select class="cf-select" id="jd-role" name="role" required>
+              <option value="" disabled selected>Select your role</option>
+              <option value="Reseller / Seller">Reseller or Seller</option>
+              <option value="Service Provider">Service Provider</option>
+            </select>
+          </div>
+          <div class="cf-group">
+            <label class="cf-label" for="jd-message">Tell Us More (optional)</label>
+            <textarea class="cf-textarea" id="jd-message" name="message" placeholder="What do you sell or offer? Any questions?"></textarea>
+          </div>
+          <input type="text" name="_gotcha" style="display:none">
+          <button type="submit" class="cf-submit" id="jd-submit">Secure My Spot on Ilitrade</button>
+        </form>
+        <div class="cf-success" id="joinTradeSuccess">
+          <div class="cf-success-mark">✓</div>
+          <h3>You're In Early</h3>
+          <p>We'll reach out before Ilitrade launches with everything you need. Thank you.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
 <!-- BUILD PROGRESS -->
 <section class="progress-section">
   <p class="section-label reveal">Where Things Stand</p>
@@ -1148,160 +1402,7 @@
   </div>
 </section>
 
-<div class="divider"></div>
 
-<!-- JOIN / CONTRIBUTE -->
-<section class="join-section" id="join">
-  <p class="section-label reveal">Help Build This</p>
-  <h2 class="section-title reveal">Get In Early.<br>Help Shape What<br>These Platforms Become.</h2>
-  <p class="section-body reveal">The people who show up before launch don't just use the platform — they define it. Whether you teach, have coursework to contribute, sell products, or offer services, your involvement right now determines the quality and reputation of what launches. This is the window where being early actually means something.</p>
-
-  <!-- Benefits strip -->
-  <div class="join-benefits reveal">
-    <div class="join-benefit">
-      <div class="join-benefit-icon">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-      </div>
-      <div class="join-benefit-title">Free During Build</div>
-      <div class="join-benefit-desc">Every role — tutor, contributor, seller, service provider — is completely free while both platforms are in development. No credit card, no trial clock.</div>
-    </div>
-    <div class="join-benefit">
-      <div class="join-benefit-icon">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-      </div>
-      <div class="join-benefit-title">First-Mover Visibility</div>
-      <div class="join-benefit-desc">Early contributors and sellers get featured placement on launch day. You'll already have profile history, reviews in progress, and a head start that new signups can't replicate.</div>
-    </div>
-    <div class="join-benefit">
-      <div class="join-benefit-icon">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-      </div>
-      <div class="join-benefit-title">Locked Rates</div>
-      <div class="join-benefit-desc">Join now and your pricing tier is locked in when billing activates. You'll never pay the rate new users face. Early members are grandfathered — always.</div>
-    </div>
-    <div class="join-benefit">
-      <div class="join-benefit-icon">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-      </div>
-      <div class="join-benefit-title">Direct Feedback Line</div>
-      <div class="join-benefit-desc">Early members get direct access to flag issues, request features, and influence decisions. You're not a user report ticket — you're a voice that shapes what gets built.</div>
-    </div>
-  </div>
-
-  <div class="join-layout">
-
-    <!-- Role cards -->
-    <div class="join-roles">
-
-      <div class="join-role teach-role reveal">
-        <div class="join-role-icon">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-        </div>
-        <div>
-          <div class="join-role-tag">Iliteach</div>
-          <div class="join-role-title">Tutors</div>
-          <p class="join-role-desc">If you can break down a subject and meet someone at their level, there's a student looking for exactly that. You control your schedule, your subjects, and your rate — we provide the platform, the bookings, and the infrastructure so you can focus on actually teaching.</p>
-          <div class="join-role-perks">
-            <span class="join-role-perk">Set your own hours</span>
-            <span class="join-role-perk">You name your rate</span>
-            <span class="join-role-perk">All subjects welcome</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="join-role teach-role reveal">
-        <div class="join-role-icon">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-        </div>
-        <div>
-          <div class="join-role-tag">Iliteach</div>
-          <div class="join-role-title">Students with Completed Work</div>
-          <p class="join-role-desc">Old assignments, solved problem sets, worksheets, essays — that work is still useful. Submit it to the Work Database and it becomes a reference other students actually learn from. Contributors get full library access at no cost, and you're building something permanent.</p>
-          <div class="join-role-perks">
-            <span class="join-role-perk">Free contributor access</span>
-            <span class="join-role-perk">Any subject or level</span>
-            <span class="join-role-perk">Permanent credit</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="join-role trade-role reveal">
-        <div class="join-role-icon">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-        </div>
-        <div>
-          <div class="join-role-tag">Ilitrade</div>
-          <div class="join-role-title">Resellers &amp; Sellers</div>
-          <p class="join-role-desc">List your products on a marketplace that charges a flat monthly fee — no percentage taken on every sale. Join now and you're listed the moment the doors open, with an established profile while new sellers are still setting up. Zero fees, zero transaction cuts during the build phase.</p>
-          <div class="join-role-perks">
-            <span class="join-role-perk">No transaction fees ever</span>
-            <span class="join-role-perk">Day-one listing visibility</span>
-            <span class="join-role-perk">Locked subscription rate</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="join-role trade-role reveal">
-        <div class="join-role-icon">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
-        </div>
-        <div>
-          <div class="join-role-tag">Ilitrade</div>
-          <div class="join-role-title">Service Providers</div>
-          <p class="join-role-desc">Trades, freelancers, independent service businesses — list what you do and get discovered by buyers actively looking for it. No bidding wars, no per-job commission, no platform taking 20% of every close. A flat subscription covers your spot in the marketplace and nothing more.</p>
-          <div class="join-role-perks">
-            <span class="join-role-perk">No commission on jobs</span>
-            <span class="join-role-perk">Flat monthly access</span>
-            <span class="join-role-perk">All service types</span>
-          </div>
-        </div>
-      </div>
-
-    </div>
-
-    <!-- Form -->
-    <div class="join-form-wrap reveal">
-      <div class="join-form-heading">Get In Early</div>
-      <div class="join-form-sub">Takes 60 seconds. We'll reach out before launch with your specific details.</div>
-      <form id="joinForm" action="https://formspree.io/f/xkopobkq" method="POST" onsubmit="handleJoinSubmit(event)">
-        <input type="hidden" name="_subject" value="Platform Contributor Interest">
-        <div class="cf-row">
-          <div class="cf-group">
-            <label class="cf-label" for="j-name">Name</label>
-            <input class="cf-input" type="text" id="j-name" name="name" placeholder="Your name" required>
-          </div>
-          <div class="cf-group">
-            <label class="cf-label" for="j-email">Email</label>
-            <input class="cf-input" type="email" id="j-email" name="email" placeholder="your@email.com" required>
-          </div>
-        </div>
-        <div class="cf-group">
-          <label class="cf-label" for="j-role">I Want to Join As</label>
-          <select class="cf-select" id="j-role" name="role" required>
-            <option value="" disabled selected>Select your role</option>
-            <option value="Tutor">Tutor — Iliteach</option>
-            <option value="Student / Work Contributor">Student with Completed Work — Iliteach</option>
-            <option value="Reseller / Seller">Reseller or Seller — Ilitrade</option>
-            <option value="Service Provider">Service Provider — Ilitrade</option>
-            <option value="Multiple roles">Multiple of the above</option>
-          </select>
-        </div>
-        <div class="cf-group">
-          <label class="cf-label" for="j-message">Tell Us More (optional)</label>
-          <textarea class="cf-textarea" id="j-message" name="message" placeholder="What subject do you tutor? What do you sell? Any questions?"></textarea>
-        </div>
-        <input type="text" name="_gotcha" style="display:none">
-        <button type="submit" class="cf-submit" id="join-submit">Secure My Spot</button>
-      </form>
-      <div class="cf-success" id="joinSuccess">
-        <div class="cf-success-mark">✓</div>
-        <h3>You're In Early</h3>
-        <p>We'll reach out directly before launch with everything you need. Thank you for being part of this from the start.</p>
-      </div>
-    </div>
-
-  </div>
-</section>
 
 <!-- STAY IN THE LOOP -->
 <section class="loop-section" id="contact">
@@ -1362,10 +1463,11 @@
     if (!isOpen) btn.classList.add('open');
   }
 
-  async function handleJoinSubmit(e) {
+  async function handleJoinTeachSubmit(e) {
     e.preventDefault();
-    const form = document.getElementById('joinForm');
-    const btn  = document.getElementById('join-submit');
+    const form = document.getElementById('joinTeachForm');
+    const btn  = document.getElementById('jt-submit');
+    const orig = btn.textContent;
     btn.disabled = true;
     btn.textContent = 'Sending…';
     try {
@@ -1376,15 +1478,43 @@
       });
       if (res.ok) {
         form.style.display = 'none';
-        document.getElementById('joinSuccess').style.display = 'block';
+        document.getElementById('joinTeachSuccess').style.display = 'block';
       } else {
         btn.disabled = false;
-        btn.textContent = 'Submit Interest';
+        btn.textContent = orig;
         alert('Something went wrong — please email directly or try again.');
       }
     } catch {
       btn.disabled = false;
-      btn.textContent = 'Submit Interest';
+      btn.textContent = orig;
+      alert('Could not send — please check your connection and try again.');
+    }
+  }
+
+  async function handleJoinTradeSubmit(e) {
+    e.preventDefault();
+    const form = document.getElementById('joinTradeForm');
+    const btn  = document.getElementById('jd-submit');
+    const orig = btn.textContent;
+    btn.disabled = true;
+    btn.textContent = 'Sending…';
+    try {
+      const res = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      });
+      if (res.ok) {
+        form.style.display = 'none';
+        document.getElementById('joinTradeSuccess').style.display = 'block';
+      } else {
+        btn.disabled = false;
+        btn.textContent = orig;
+        alert('Something went wrong — please email directly or try again.');
+      }
+    } catch {
+      btn.disabled = false;
+      btn.textContent = orig;
       alert('Could not send — please check your connection and try again.');
     }
   }

@@ -1,0 +1,3425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ilias Enterprises</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0a0a0a;
+    --white: #f5f2ee;
+    --gold: #c9a84c;
+    --gold-light: #e8c97a;
+    --gold-dim: #7a6330;
+    --rust: #c44b2b;
+    --panel: #111111;
+    --border: rgba(201,168,76,0.18);
+    --text-muted: #888;
+
+    /* Division Colors */
+    --purple: #7c3aed;
+    --purple-light: #a78bfa;
+    --purple-dim: #4c1d95;
+    --purple-glow: rgba(124,58,237,0.15);
+    --purple-faint: rgba(124,58,237,0.06);
+
+    --navy: #1e3a8a;
+    --navy-light: #60a5fa;
+    --navy-dim: #1e2d6b;
+    --navy-glow: rgba(30,58,138,0.2);
+    --navy-faint: rgba(96,165,250,0.06);
+
+    --emerald: #059669;
+    --emerald-light: #34d399;
+    --emerald-dim: #064e3b;
+    --emerald-glow: rgba(5,150,105,0.15);
+    --emerald-faint: rgba(52,211,153,0.06);
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* ---- LOGO MARK ---- */
+
+  .nav-logo-img {
+    height: 44px;
+    width: 44px;
+    object-fit: contain;
+    flex-shrink: 0;
+  }
+  .nav-logo-wrap {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+  }
+  .logo-mark {
+    width: 34px;
+    height: 34px;
+    flex-shrink: 0;
+  }
+
+  /* ---- PARALLAX ---- */
+  .parallax-layer {
+    will-change: transform;
+    transition: transform 0.05s linear;
+  }
+
+  /* ---- SECTION FADE TRANSITIONS ---- */
+  .fade-in-section {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.9s cubic-bezier(0.22,1,0.36,1), transform 0.9s cubic-bezier(0.22,1,0.36,1);
+  }
+  .fade-in-section.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .fade-in-section:nth-child(2) { transition-delay: 0.1s; }
+  .fade-in-section:nth-child(3) { transition-delay: 0.2s; }
+  .fade-in-section:nth-child(4) { transition-delay: 0.3s; }
+
+  /* ---- ANIMATED COUNTERS ---- */
+  .about-stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    color: var(--gold);
+    letter-spacing: 0.04em;
+    line-height: 1;
+    tabular-nums: nums;
+  }
+
+  /* ---- TESTIMONIALS ---- */
+  .testimonials-section {
+    background: var(--panel);
+    padding: 100px 48px;
+    overflow: hidden;
+  }
+  .testimonials-track-wrap {
+    overflow: hidden;
+    position: relative;
+    margin-top: 48px;
+  }
+  .testimonials-track-wrap::before,
+  .testimonials-track-wrap::after {
+    content: '';
+    position: absolute;
+    top: 0; bottom: 0;
+    width: 120px;
+    z-index: 2;
+    pointer-events: none;
+  }
+  .testimonials-track-wrap::before {
+    left: 0;
+    background: linear-gradient(to right, var(--panel), transparent);
+  }
+  .testimonials-track-wrap::after {
+    right: 0;
+    background: linear-gradient(to left, var(--panel), transparent);
+  }
+  .testimonials-track {
+    display: flex;
+    gap: 20px;
+    animation: scrollTrack 38s linear infinite;
+    width: max-content;
+  }
+  .testimonials-track:hover { animation-play-state: paused; }
+  @keyframes scrollTrack {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+  .tcard {
+    background: var(--black);
+    border: 1px solid var(--border);
+    padding: 32px 28px;
+    width: 340px;
+    flex-shrink: 0;
+    position: relative;
+    transition: border-color 0.3s;
+  }
+  .tcard:hover { border-color: var(--gold-dim); }
+  .tcard-quote {
+    font-size: 2.5rem;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 12px;
+    font-family: Georgia, serif;
+    opacity: 0.5;
+  }
+  .tcard-text {
+    font-size: 0.88rem;
+    line-height: 1.7;
+    color: var(--text-muted);
+    margin-bottom: 24px;
+  }
+  .tcard-author {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .tcard-avatar {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 0.85rem;
+    color: var(--gold);
+    flex-shrink: 0;
+  }
+  .tcard-name {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--white);
+  }
+  .tcard-role {
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-top: 2px;
+  }
+  .tcard-div {
+    position: absolute;
+    top: 20px; right: 20px;
+    font-size: 0.6rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border: 1px solid;
+  }
+  .tcard-div.tech  { color: var(--purple-light); border-color: rgba(167,139,250,0.3); }
+  .tcard-div.teach { color: var(--navy-light);   border-color: rgba(96,165,250,0.3); }
+  .tcard-div.trade { color: var(--emerald-light); border-color: rgba(52,211,153,0.3); }
+
+  /* ---- FAQ ---- */
+  .faq-section {
+    background: var(--black);
+    padding: 80px 48px;
+  }
+  .faq-section.tech-faq  { background: #0d0a14; }
+  .faq-section.teach-faq { background: #080d1a; }
+  .faq-section.trade-faq { background: #060f0d; }
+
+  .faq-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    margin-top: 24px;
+  }
+  .faq-section.tech-faq  .faq-grid { background: rgba(124,58,237,0.12); border-color: rgba(124,58,237,0.25); }
+  .faq-section.teach-faq .faq-grid { background: rgba(96,165,250,0.1);  border-color: rgba(96,165,250,0.25); }
+  .faq-section.trade-faq .faq-grid { background: rgba(52,211,153,0.1);  border-color: rgba(52,211,153,0.25); }
+
+  .faq-item {
+    background: var(--panel);
+    padding: 0;
+    cursor: pointer;
+    transition: background 0.25s;
+    border: none;
+    text-align: left;
+    width: 100%;
+  }
+  .faq-item:hover { background: #1a1a1a; }
+
+  .faq-section.tech-faq  .faq-item { background: #110d1c; }
+  .faq-section.teach-faq .faq-item { background: #0a1020; }
+  .faq-section.trade-faq .faq-item { background: #091410; }
+  .faq-section.tech-faq  .faq-item:hover { background: #1a1228; }
+  .faq-section.teach-faq .faq-item:hover { background: #0f182e; }
+  .faq-section.trade-faq .faq-item:hover { background: #0d1f18; }
+
+  .faq-icon {
+    width: 28px; height: 28px;
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 1rem;
+    color: var(--gold);
+    transition: transform 0.3s, background 0.25s;
+  }
+  .faq-section.tech-faq  .faq-icon { color: var(--purple-light); border-color: rgba(124,58,237,0.35); }
+  .faq-section.teach-faq .faq-icon { color: var(--navy-light);   border-color: rgba(96,165,250,0.35); }
+  .faq-section.trade-faq .faq-icon { color: var(--emerald-light); border-color: rgba(52,211,153,0.35); }
+
+  .faq-item.open .faq-icon {
+    transform: rotate(45deg);
+    background: var(--gold);
+    color: var(--black);
+    border-color: var(--gold);
+  }
+  .faq-section.tech-faq  .faq-item.open .faq-icon { background: var(--purple-light); border-color: var(--purple-light); color: var(--black); }
+  .faq-section.teach-faq .faq-item.open .faq-icon { background: var(--navy-light);   border-color: var(--navy-light);   color: var(--black); }
+  .faq-section.trade-faq .faq-item.open .faq-icon { background: var(--emerald-light); border-color: var(--emerald-light); color: var(--black); }
+  .faq-q {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 28px 32px;
+    gap: 20px;
+  }
+  .faq-q-text {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--white);
+    letter-spacing: 0.01em;
+    line-height: 1.4;
+  }
+  .faq-icon {
+    width: 28px; height: 28px;
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 1rem;
+    color: var(--gold);
+    transition: transform 0.3s, background 0.25s;
+  }
+  .faq-item.open .faq-icon {
+    transform: rotate(45deg);
+    background: var(--gold);
+    color: var(--black);
+    border-color: var(--gold);
+  }
+  .faq-a {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(0.22,1,0.36,1), padding 0.3s;
+    padding: 0 32px;
+    font-size: 1.05rem;
+    color: var(--text-muted);
+    line-height: 1.75;
+  }
+  .faq-item.open .faq-a {
+    max-height: 300px;
+    padding: 0 32px 28px;
+  }
+  .faq-tag {
+    font-size: 0.62rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    display: block;
+  }
+  .faq-tag.tech  { color: var(--purple-light); }
+  .faq-tag.teach { color: var(--navy-light); }
+  .faq-tag.trade { color: var(--emerald-light); }
+  .faq-tag.general { color: var(--gold); }
+
+  /* ---- FAQ GROUPS ---- */
+  .faq-group {
+    margin-bottom: 56px;
+  }
+  .faq-group:last-child { margin-bottom: 0; }
+
+  .faq-group-header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 16px;
+  }
+
+  .faq-group-label {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.3rem;
+    letter-spacing: 0.08em;
+    white-space: nowrap;
+  }
+
+  .faq-group-header.general .faq-group-label { color: var(--gold); }
+  .faq-group-header.tech    .faq-group-label { color: var(--purple-light); }
+  .faq-group-header.teach   .faq-group-label { color: var(--navy-light); }
+  .faq-group-header.trade   .faq-group-label { color: var(--emerald-light); }
+
+  .faq-group-line {
+    flex: 1;
+    height: 1px;
+  }
+
+  .faq-group-header.general .faq-group-line { background: linear-gradient(to right, var(--gold-dim), transparent); }
+  .faq-group-header.tech    .faq-group-line { background: linear-gradient(to right, rgba(124,58,237,0.4), transparent); }
+  .faq-group-header.teach   .faq-group-line { background: linear-gradient(to right, rgba(30,58,138,0.5), transparent); }
+  .faq-group-header.trade   .faq-group-line { background: linear-gradient(to right, rgba(5,150,105,0.4), transparent); }
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("images/noise_01.svg");
+    opacity: 0.025;
+    pointer-events: none;
+    z-index: 1000;
+  }
+
+  /* ---- NAV ---- */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 48px;
+    height: 68px;
+    background: rgba(10,10,10,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.6rem;
+    letter-spacing: 0.12em;
+    color: var(--gold);
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 36px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    color: var(--text-muted);
+    font-size: 0.82rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--gold); }
+
+  /* ---- HAMBURGER ---- */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 4px;
+    background: none;
+    border: none;
+  }
+
+  .hamburger span {
+    display: block;
+    width: 24px;
+    height: 1.5px;
+    background: var(--white);
+    transition: transform 0.3s, opacity 0.3s;
+  }
+
+  .hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+  .mobile-menu {
+    display: none;
+    position: fixed;
+    top: 68px; left: 0; right: 0;
+    background: rgba(10,10,10,0.98);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+    z-index: 99;
+    padding: 24px;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .mobile-menu.open { display: flex; }
+
+  .mobile-menu a {
+    text-decoration: none;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--border);
+    transition: color 0.2s;
+  }
+
+  .mobile-menu a:last-child { border-bottom: none; }
+  .mobile-menu a:hover { color: var(--gold); }
+
+
+  .hero-logo-img {
+    position: absolute;
+    right: clamp(40px, 6vw, 100px);
+    top: 50%;
+    transform: translateY(-50%);
+    width: clamp(180px, 20vw, 280px);
+    pointer-events: none;
+    z-index: 1;
+    filter: drop-shadow(0 0 80px rgba(124,58,237,0.4)) drop-shadow(0 0 40px rgba(201,168,76,0.25));
+    animation: heroLogoFadeIn 1.2s 0.5s ease forwards;
+    opacity: 0;
+  }
+  @keyframes heroLogoFadeIn {
+    from { opacity: 0; transform: translateY(-50%) translateX(20px) scale(0.92); }
+    to   { opacity: 0.9; transform: translateY(-50%) translateX(0) scale(1); }
+  }
+
+  /* ---- HERO ---- */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 0 0 0;
+    position: relative;
+    overflow: hidden;
+    background: var(--black);
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 70% 60% at 80% 30%, rgba(124,58,237,0.08) 0%, transparent 55%),
+      radial-gradient(ellipse 50% 50% at 20% 70%, rgba(30,58,138,0.07) 0%, transparent 55%),
+      radial-gradient(ellipse 40% 40% at 60% 80%, rgba(5,150,105,0.05) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  /* Animated grid */
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(201,168,76,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(201,168,76,0.03) 1px, transparent 1px);
+    background-size: 80px 80px;
+    pointer-events: none;
+  }
+
+  /* Giant ghost wordmark behind everything */
+  .hero-wordmark {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(8rem, 22vw, 22rem);
+    letter-spacing: 0.04em;
+    color: rgba(201,168,76,0.035);
+    white-space: nowrap;
+    pointer-events: none;
+    user-select: none;
+    line-height: 1;
+    z-index: 0;
+  }
+
+  .hero-inner {
+    position: relative;
+    z-index: 2;
+    padding: 0 64px 80px;
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .hero-top-bar { display: none !important; } .hero-top-bar-x {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    padding: 120px 64px 0;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-end;
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  .hero-division-tags {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-end;
+    opacity: 0;
+    animation: fadeUp 1s 0.9s ease forwards;
+  }
+
+  .hero-div-tag {
+    font-size: 0.68rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border: 1px solid;
+    white-space: nowrap;
+  }
+
+  .hero-div-tag.tech  { color: var(--purple-light); border-color: rgba(167,139,250,0.3); background: rgba(124,58,237,0.06); }
+  .hero-div-tag.teach { color: var(--navy-light);   border-color: rgba(96,165,250,0.3);  background: rgba(30,58,138,0.06); }
+  .hero-div-tag.trade { color: var(--emerald-light); border-color: rgba(52,211,153,0.3); background: rgba(5,150,105,0.06); }
+
+  .hero-eyebrow {
+    font-size: 0.72rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 24px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.2s ease forwards;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .hero-eyebrow::before {
+    content: '';
+    display: block;
+    width: 48px;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  .hero h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(5rem, 12vw, 13rem);
+    line-height: 0.88;
+    letter-spacing: 0.01em;
+    color: var(--white);
+    opacity: 0;
+    animation: fadeUp 1s 0.35s ease forwards;
+    margin-bottom: 0;
+  }
+
+  .hero h1 .gold { color: var(--gold); }
+  .hero h1 .outline {
+    -webkit-text-stroke: 2px rgba(245,242,238,0.25);
+    color: transparent;
+  }
+
+  .hero-bottom {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 48px;
+    margin-top: 48px;
+    padding-top: 32px;
+    border-top: 1px solid rgba(201,168,76,0.12);
+    opacity: 0;
+    animation: fadeUp 0.9s 0.65s ease forwards;
+  }
+
+  .hero-sub {
+    max-width: 520px;
+    font-size: 1.05rem;
+    line-height: 1.75;
+    color: var(--text-muted);
+    margin-top: 0;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 12px;
+    flex-shrink: 0;
+    align-items: center;
+  }
+
+  .hero-scroll-hint {
+    position: absolute;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    z-index: 2;
+    opacity: 0;
+    animation: fadeUp 1s 1.2s ease forwards;
+  }
+
+  .hero-scroll-line {
+    width: 1px;
+    height: 48px;
+    background: linear-gradient(to bottom, var(--gold-dim), transparent);
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+
+  .hero-scroll-label {
+    font-size: 0.6rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.4; transform: scaleY(1); }
+    50% { opacity: 1; transform: scaleY(1.1); }
+  }
+
+  @media (max-width: 900px) {
+    .hero-inner { padding: 0 24px 64px; }
+    .hero-top-bar { display: none !important; } .hero-top-bar-x { padding: 100px 24px 0; }
+    .hero-bottom { flex-direction: column; align-items: flex-start; gap: 28px; }
+    .hero h1 { font-size: clamp(4rem, 16vw, 7rem); }
+    .hero-wordmark { font-size: 40vw; }
+    .hero-scroll-hint { display: none; }
+  }
+
+  .btn-primary {
+    background: var(--gold);
+    color: var(--black);
+    padding: 14px 32px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: background 0.2s, transform 0.2s;
+  }
+
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--white);
+    padding: 14px 32px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 400;
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border: 1px solid rgba(245,242,238,0.25);
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: border-color 0.2s, color 0.2s, transform 0.2s;
+  }
+
+  .btn-outline:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
+
+  .btn-primary, .btn-outline, .btn-purple, .btn-navy, .btn-emerald {
+    position: relative;
+    overflow: visible;
+  }
+
+  #about, #how, #ilitech, #iliteach, #ilitrade, #faq, #contact,
+  #testimonials, #ilitech-faq, #iliteach-faq, #ilitrade-faq {
+    scroll-margin-top: 68px;
+  }
+
+  /* ---- SECTION SCAFFOLDING ---- */
+  section { padding: 100px 48px; position: relative; }
+
+  .section-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    letter-spacing: 0.04em;
+    line-height: 1;
+    margin-bottom: 48px;
+  }
+
+  /* ---- DIVIDER ---- */
+  .divider {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--border), transparent);
+  }
+
+  /* ---- ABOUT ---- */
+  .about-section {
+    background: var(--panel);
+  }
+
+  .about-inner {
+    display: grid;
+    grid-template-columns: 1fr;
+    max-width: 780px;
+    gap: 48px;
+    align-items: center;
+  }
+
+  .about-portrait {
+    aspect-ratio: 4/5;
+    background: linear-gradient(135deg, #1a1a1a 0%, #141414 100%);
+    border: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .about-portrait-placeholder {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 6rem;
+    color: rgba(201,168,76,0.15);
+    letter-spacing: 0.1em;
+    user-select: none;
+  }
+
+  .about-portrait::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 40%;
+    background: linear-gradient(to top, var(--panel), transparent);
+  }
+
+  .about-corner {
+    position: absolute;
+    top: 16px; left: 16px;
+    width: 32px; height: 32px;
+    border-top: 1px solid var(--gold-dim);
+    border-left: 1px solid var(--gold-dim);
+  }
+
+  .about-corner-br {
+    position: absolute;
+    bottom: 16px; right: 16px;
+    width: 32px; height: 32px;
+    border-bottom: 1px solid var(--gold-dim);
+    border-right: 1px solid var(--gold-dim);
+  }
+
+  .about-text h2 { margin-bottom: 24px; }
+
+  .about-bio {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: var(--text-muted);
+    margin-bottom: 20px;
+  }
+
+  .about-bio strong { color: var(--white); font-weight: 500; }
+
+  .about-stats {
+    display: flex;
+    gap: 40px;
+    margin-top: 36px;
+    padding-top: 36px;
+    border-top: 1px solid var(--border);
+  }
+
+  .about-stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    color: var(--gold);
+    letter-spacing: 0.04em;
+    line-height: 1;
+  }
+
+  .about-stat-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-top: 4px;
+  }
+
+  /* ---- HOW IT WORKS ---- */
+  .how-section { background: var(--black); }
+
+  .steps-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    position: relative;
+  }
+
+  /* Remove the old single line */
+  .steps-row::before { display: none; }
+
+  .step {
+    padding: 0 24px 0;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Line extends right from every box including the last */
+  .step::after {
+    content: '';
+    position: absolute;
+    top: 27px;
+    left: calc(24px + 56px);
+    right: 0;
+    height: 2px;
+    background: linear-gradient(to right, var(--gold-dim) 0%, rgba(201,168,76,0.15) 100%);
+    z-index: 0;
+  }
+
+  /* Also draw the incoming line segment to the left of each box (except step 1) */
+  .step:not(:first-child)::before {
+    content: '';
+    position: absolute;
+    top: 27px;
+    left: 0;
+    width: 24px;
+    height: 2px;
+    background: var(--gold-dim);
+    z-index: 0;
+  }
+
+  .step-num {
+    width: 56px; height: 56px;
+    background: var(--black);
+    border: 1px solid var(--gold-dim);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.5rem;
+    color: var(--gold);
+    letter-spacing: 0.06em;
+    margin-bottom: 24px;
+    transition: background 0.25s, border-color 0.25s;
+    position: relative;
+    z-index: 2; /* sits on top of the line */
+    background: var(--black);
+  }
+
+  .step:hover .step-num {
+    background: var(--gold);
+    color: var(--black);
+    border-color: var(--gold);
+  }
+
+  .step-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4rem;
+    letter-spacing: 0.06em;
+    color: var(--white);
+    margin-bottom: 10px;
+  }
+
+  .step-desc {
+    font-size: 1rem;
+    color: var(--text-muted);
+    line-height: 1.65;
+  }
+
+  /* ---- CONTACT ---- */
+  .contact-section { background: #0d0d0d; padding: 0; }
+  .contact-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 540px;
+  }
+  .contact-info {
+    padding: 80px 60px;
+    border-right: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .contact-big-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3.5rem, 7vw, 6rem);
+    letter-spacing: 0.02em;
+    line-height: 0.92;
+    color: var(--white);
+    margin-bottom: 28px;
+  }
+  .contact-big-title span { color: var(--gold); }
+  .contact-tagline {
+    font-size: 0.95rem;
+    color: rgba(245,242,238,0.55);
+    line-height: 1.8;
+    max-width: 380px;
+    margin-bottom: 48px;
+  }
+  .contact-detail { display: flex; flex-direction: column; gap: 2px; }
+  .contact-detail-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    padding: 18px 22px;
+  }
+  .contact-detail-icon { color: var(--gold); flex-shrink: 0; }
+  .contact-detail-body {}
+  .contact-detail-label {
+    font-size: 0.62rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 3px;
+  }
+  .contact-detail-value { font-size: 0.9rem; color: var(--white); }
+  .contact-detail-value a { color: var(--white); text-decoration: none; transition: color 0.2s; }
+  .contact-detail-value a:hover { color: var(--gold); }
+  /* Form side */
+  .contact-form-side { padding: 80px 60px; background: var(--panel); }
+  .contact-form-heading {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.5rem;
+    letter-spacing: 0.1em;
+    color: var(--white);
+    margin-bottom: 32px;
+  }
+  .cf-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  .cf-group {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    margin-bottom: 22px;
+  }
+  .cf-label {
+    font-size: 0.62rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+  .cf-input, .cf-select, .cf-textarea {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(245,242,238,0.14);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 300;
+    padding: 10px 0;
+    outline: none;
+    transition: border-color 0.25s;
+    width: 100%;
+  }
+  .cf-input:focus, .cf-select:focus, .cf-textarea:focus { border-color: var(--gold-dim); }
+  .cf-input::placeholder, .cf-textarea::placeholder { color: #383838; }
+  .cf-select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg width='10' height='6' viewBox='0 0 10 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L5 5L9 1' stroke='%23888' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 4px center;
+    cursor: pointer;
+  }
+  .cf-select option { background: var(--panel); color: var(--white); }
+  .cf-textarea { resize: none; min-height: 108px; line-height: 1.6; padding-top: 10px; }
+  .cf-submit {
+    width: 100%;
+    background: var(--gold);
+    color: #000;
+    border: none;
+    padding: 16px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    cursor: pointer;
+    margin-top: 4px;
+    transition: background 0.2s;
+  }
+  .cf-submit:hover { background: var(--gold-light); }
+  .cf-submit:disabled { opacity: 0.4; cursor: not-allowed; }
+  .cf-success {
+    display: none;
+    text-align: center;
+    padding: 56px 0;
+  }
+  .cf-success-mark {
+    width: 52px; height: 52px;
+    border: 2px solid var(--gold);
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 20px;
+    color: var(--gold);
+    font-size: 1.4rem;
+  }
+  .cf-success h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    letter-spacing: 0.06em;
+    margin-bottom: 8px;
+  }
+  .cf-success p { font-size: 0.88rem; color: var(--text-muted); line-height: 1.7; }
+
+  /* ---- DIVISION GRID ---- */
+  .divisions-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    min-height: 100vh;
+  }
+
+  .division-card {
+    padding: 64px 52px 56px;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: filter 0.35s;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid rgba(255,255,255,0.05);
+  }
+  .division-card:last-child { border-right: none; }
+  .division-card:hover { filter: brightness(1.1); }
+
+  .division-card.tech  { background: linear-gradient(160deg, #0c0916 0%, #110b20 40%, #17102b 100%); }
+  .division-card.teach { background: linear-gradient(160deg, #070d1b 0%, #0b1228 40%, #0e1935 100%); }
+  .division-card.trade { background: linear-gradient(160deg, #060e0b 0%, #081309 40%, #0a1a10 100%); }
+
+  /* Grid pattern background */
+  .division-card-grid {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .division-card.tech  .division-card-grid { background-image: linear-gradient(rgba(124,58,237,0.06) 1px,transparent 1px),linear-gradient(90deg,rgba(124,58,237,0.06) 1px,transparent 1px); background-size: 48px 48px; }
+  .division-card.teach .division-card-grid { background-image: linear-gradient(rgba(96,165,250,0.05) 1px,transparent 1px),linear-gradient(90deg,rgba(96,165,250,0.05) 1px,transparent 1px); background-size: 48px 48px; }
+  .division-card.trade .division-card-grid { background-image: linear-gradient(rgba(52,211,153,0.05) 1px,transparent 1px),linear-gradient(90deg,rgba(52,211,153,0.05) 1px,transparent 1px); background-size: 48px 48px; }
+
+  /* Ghost division name bottom-right */
+  .division-ghost-text {
+    position: absolute;
+    bottom: -10px;
+    right: -10px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 10rem;
+    line-height: 1;
+    letter-spacing: -0.03em;
+    pointer-events: none;
+    z-index: 0;
+    transition: opacity 0.4s, transform 0.4s;
+  }
+  .division-card.tech  .division-ghost-text { color: rgba(124,58,237,0.07); }
+  .division-card.teach .division-ghost-text { color: rgba(96,165,250,0.07); }
+  .division-card.trade .division-ghost-text { color: rgba(52,211,153,0.07); }
+  .division-card:hover .division-ghost-text { opacity: 0.55; transform: scale(1.05); }
+
+  /* Corner brackets */
+  .division-corner-tl, .division-corner-br {
+    position: absolute;
+    width: 24px; height: 24px;
+    z-index: 1;
+    transition: width 0.35s, height 0.35s;
+  }
+  .division-corner-tl { top: 20px; left: 20px; }
+  .division-corner-br { bottom: 20px; right: 20px; }
+  .division-card:hover .division-corner-tl,
+  .division-card:hover .division-corner-br { width: 38px; height: 38px; }
+  .division-corner-tl::before { content:''; position:absolute; top:0; left:0; width:100%; height:1px; background:currentColor; }
+  .division-corner-tl::after  { content:''; position:absolute; top:0; left:0; width:1px; height:100%; background:currentColor; }
+  .division-corner-br::before { content:''; position:absolute; bottom:0; right:0; width:100%; height:1px; background:currentColor; }
+  .division-corner-br::after  { content:''; position:absolute; bottom:0; right:0; width:1px; height:100%; background:currentColor; }
+  .division-card.tech  .division-corner-tl,
+  .division-card.tech  .division-corner-br { color: rgba(167,139,250,0.35); }
+  .division-card.teach .division-corner-tl,
+  .division-card.teach .division-corner-br { color: rgba(96,165,250,0.35); }
+  .division-card.trade .division-corner-tl,
+  .division-card.trade .division-corner-br { color: rgba(52,211,153,0.35); }
+
+  /* Top accent bar */
+  .division-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.5s ease;
+    z-index: 2;
+  }
+  .division-card.tech::before  { background: linear-gradient(to right, var(--purple), var(--purple-light)); }
+  .division-card.teach::before { background: linear-gradient(to right, var(--navy), var(--navy-light)); }
+  .division-card.trade::before { background: linear-gradient(to right, var(--emerald), var(--emerald-light)); }
+  .division-card:hover::before { transform: scaleX(1); }
+
+  /* Glow blob */
+  .division-card::after {
+    content: '';
+    position: absolute;
+    width: 500px; height: 500px;
+    border-radius: 50%;
+    bottom: -150px; right: -150px;
+    opacity: 0;
+    transition: opacity 0.6s;
+    pointer-events: none;
+    filter: blur(90px);
+    z-index: 0;
+  }
+  .division-card.tech::after  { background: rgba(124,58,237,0.22); }
+  .division-card.teach::after { background: rgba(30,58,138,0.28); }
+  .division-card.trade::after { background: rgba(5,150,105,0.22); }
+  .division-card:hover::after { opacity: 1; }
+
+  .division-number {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 5rem;
+    line-height: 1;
+    margin-bottom: 0;
+    letter-spacing: -0.02em;
+    position: relative;
+    z-index: 1;
+  }
+  .division-card.tech  .division-number { color: rgba(167,139,250,0.18); }
+  .division-card.teach .division-number { color: rgba(96,165,250,0.18); }
+  .division-card.trade .division-number { color: rgba(52,211,153,0.18); }
+
+  .division-icon { font-size: 2.2rem; margin-bottom: 16px; position: relative; z-index: 1; }
+
+  .division-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3.8rem;
+    letter-spacing: 0.04em;
+    line-height: 1;
+    margin-bottom: 8px;
+    position: relative;
+    z-index: 1;
+  }
+  .division-card.tech  .division-name { color: var(--purple-light); }
+  .division-card.teach .division-name { color: var(--navy-light); }
+  .division-card.trade .division-name { color: var(--emerald-light); }
+
+  .division-tagline {
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 28px;
+    position: relative;
+    z-index: 1;
+    padding-bottom: 24px;
+  }
+  .division-tagline::after { content:''; position:absolute; bottom:0; left:0; width:40px; height:1px; }
+  .division-card.tech  .division-tagline { color: rgba(167,139,250,0.4); }
+  .division-card.teach .division-tagline { color: rgba(96,165,250,0.4); }
+  .division-card.trade .division-tagline { color: rgba(52,211,153,0.4); }
+  .division-card.tech  .division-tagline::after { background: var(--purple-light); }
+  .division-card.teach .division-tagline::after { background: var(--navy-light); }
+  .division-card.trade .division-tagline::after { background: var(--emerald-light); }
+
+  .division-desc {
+    font-size: 0.95rem;
+    color: rgba(245,242,238,0.5);
+    line-height: 1.78;
+    margin-bottom: 32px;
+    flex: 1;
+    position: relative;
+    z-index: 1;
+  }
+
+  .division-highlights {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 32px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .division-highlight-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 11px 16px;
+    font-size: 0.83rem;
+    border: 1px solid;
+    transition: background 0.25s;
+  }
+  .division-card.tech  .division-highlight-item { border-color: rgba(167,139,250,0.14); background: rgba(124,58,237,0.05); }
+  .division-card.teach .division-highlight-item { border-color: rgba(96,165,250,0.14);  background: rgba(30,58,138,0.05); }
+  .division-card.trade .division-highlight-item { border-color: rgba(52,211,153,0.14);  background: rgba(5,150,105,0.05); }
+  .division-card.tech  .division-highlight-item:hover { background: rgba(124,58,237,0.12); }
+  .division-card.teach .division-highlight-item:hover { background: rgba(30,58,138,0.12); }
+  .division-card.trade .division-highlight-item:hover { background: rgba(5,150,105,0.12); }
+
+  .div-hi-name { color: rgba(245,242,238,0.65); }
+  .div-hi-price { font-family:'Bebas Neue',sans-serif; font-size:1rem; letter-spacing:0.08em; }
+  .division-card.tech  .div-hi-price { color: var(--purple-light); }
+  .division-card.teach .div-hi-price { color: var(--navy-light); }
+  .division-card.trade .div-hi-price { color: var(--emerald-light); }
+
+  .division-scroll-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.82rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-weight: 500;
+    padding: 18px 24px;
+    border: none;
+    transition: transform 0.25s, box-shadow 0.25s, gap 0.25s;
+    position: relative;
+    z-index: 1;
+    cursor: pointer;
+    width: 100%;
+    justify-content: space-between;
+    font-family: 'DM Sans', sans-serif;
+    margin-top: auto;
+  }
+  .division-card.tech  .division-scroll-cta { background: var(--purple); color: var(--white); box-shadow: 0 4px 28px rgba(124,58,237,0.4); }
+  .division-card.teach .division-scroll-cta { background: var(--navy);   color: var(--white); box-shadow: 0 4px 28px rgba(30,58,138,0.5); }
+  .division-card.trade .division-scroll-cta { background: var(--emerald); color: var(--white); box-shadow: 0 4px 28px rgba(5,150,105,0.4); }
+  .division-card.tech  .division-scroll-cta:hover { background: var(--purple-light); color: var(--black); transform: translateY(-2px); box-shadow: 0 8px 36px rgba(124,58,237,0.55); gap: 20px; }
+  .division-card.teach .division-scroll-cta:hover { background: var(--navy-light);   color: var(--black); transform: translateY(-2px); box-shadow: 0 8px 36px rgba(30,58,138,0.65); gap: 20px; }
+  .division-card.trade .division-scroll-cta:hover { background: var(--emerald-light); color: var(--black); transform: translateY(-2px); box-shadow: 0 8px 36px rgba(5,150,105,0.55); gap: 20px; }
+  .division-scroll-cta .cta-arrow { font-size: 1.1rem; transition: transform 0.25s; }
+  .division-scroll-cta:hover .cta-arrow { transform: translateX(5px); }
+
+
+  /* Division bullet list */
+  .division-bullets {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-bottom: 28px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .division-bullet {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 9px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    font-size: 0.85rem;
+    line-height: 1.4;
+  }
+  .division-bullet:first-child { border-top: 1px solid rgba(255,255,255,0.04); }
+
+  .division-bullet-dot {
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 5px;
+  }
+  .division-card.tech  .division-bullet-dot { background: var(--purple-light); }
+  .division-card.teach .division-bullet-dot { background: var(--navy-light); }
+  .division-card.trade .division-bullet-dot { background: var(--emerald-light); }
+
+  .division-bullet-text { color: rgba(245,242,238,0.6); }
+  .division-bullet-text strong { font-weight: 500; }
+  .division-card.tech  .division-bullet-text strong { color: var(--purple-light); }
+  .division-card.teach .division-bullet-text strong { color: var(--navy-light); }
+  .division-card.trade .division-bullet-text strong { color: var(--emerald-light); }
+
+  /* Section divider label inside card */
+  .division-section-label {
+    font-size: 0.6rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    margin-top: 4px;
+    position: relative;
+    z-index: 1;
+  }
+  .division-card.tech  .division-section-label { color: rgba(167,139,250,0.4); }
+  .division-card.teach .division-section-label { color: rgba(96,165,250,0.4); }
+  .division-card.trade .division-section-label { color: rgba(52,211,153,0.4); }
+
+
+  /* Division card logos */
+  .division-name-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 8px;
+    position: relative;
+    z-index: 1;
+  }
+  .division-logo {
+    width: clamp(40px, 4vw, 52px);
+    height: clamp(40px, 4vw, 52px);
+    object-fit: contain;
+    opacity: 0.85;
+    mix-blend-mode: screen;
+    flex-shrink: 0;
+    transition: opacity 0.3s, transform 0.45s cubic-bezier(0.34,1.56,0.64,1);
+  }
+  .division-card:hover .division-logo {
+    opacity: 1;
+    transform: scale(1.12) rotate(-5deg);
+  }
+
+  /* Division section title row — flex so logo sits right beside the title */
+  .div-title-row {
+    display: flex;
+    align-items: center;
+    gap: clamp(16px, 2.5vw, 32px);
+    margin-bottom: 28px;
+  }
+
+  /* Logo inline beside the division giant title */
+  .div-section-logo {
+    width: clamp(72px, 9vw, 110px);
+    height: clamp(72px, 9vw, 110px);
+    object-fit: contain;
+    opacity: 0.88;
+    mix-blend-mode: screen;
+    flex-shrink: 0;
+    filter: drop-shadow(0 0 24px rgba(255,255,255,0.12));
+  }
+  /* ===== SPECTACULAR DIVISION SECTIONS ===== */
+
+  /* ILITECH */
+  .ilitech-hero {
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    background: #0d0a14;
+    padding: 100px 48px;
+  }
+
+  .ilitech-hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 100% 50%, var(--purple-glow) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 80% at 0% 100%, rgba(124,58,237,0.04) 0%, transparent 50%);
+  }
+
+  .ilitech-grid-lines {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(124,58,237,0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(124,58,237,0.05) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+
+  .ilitech-hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 600px;
+  }
+
+  .div-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    margin-bottom: 28px;
+  }
+
+  .div-eyebrow::before {
+    content: '';
+    width: 32px;
+    height: 1px;
+  }
+
+  .ilitech-hero .div-eyebrow,
+  .service-showcase .div-eyebrow { color: var(--purple-light); }
+  .ilitech-hero .div-eyebrow::before,
+  .service-showcase .div-eyebrow::before { background: var(--purple-light); }
+
+  .iliteach-hero .div-eyebrow { color: var(--navy-light); }
+  .iliteach-hero .div-eyebrow::before { background: var(--navy-light); }
+
+  .ilitrade-hero .div-eyebrow { color: var(--emerald-light); }
+  .ilitrade-hero .div-eyebrow::before { background: var(--emerald-light); }
+
+  .div-giant-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.8rem, 6vw, 6rem);
+    line-height: 0.88;
+    letter-spacing: 0.03em;
+    color: var(--white);
+    margin-bottom: 28px;
+  }
+
+  .div-giant-title em {
+    font-style: normal;
+    display: block;
+  }
+
+  .ilitech-hero .div-giant-title em,
+  .service-showcase .div-giant-title em { color: var(--purple-light); }
+  .iliteach-hero .div-giant-title em { color: var(--navy-light); }
+  .ilitrade-hero .div-giant-title em { color: var(--emerald-light); }
+
+  .div-pitch {
+    font-size: 1.05rem;
+    line-height: 1.75;
+    color: var(--text-muted);
+    max-width: 500px;
+    margin-bottom: 32px;
+  }
+
+  .div-pitch strong { color: var(--white); font-weight: 500; }
+
+  .ilitech-side {
+    position: absolute;
+    right: 48px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    z-index: 2;
+  }
+
+  .ilitech-side-item {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3rem;
+    line-height: 1;
+    letter-spacing: 0.04em;
+    color: rgba(124,58,237,0.07);
+    transition: color 0.4s;
+    cursor: default;
+    user-select: none;
+  }
+
+  .ilitech-side-item:hover { color: rgba(124,58,237,0.2); }
+
+  /* SERVICE SHOWCASE BLOCKS */
+  .service-showcase {
+    background: #0d0a14;
+    padding: 80px 48px;
+    border-top: 1px solid rgba(124,58,237,0.15);
+  }
+
+  .showcase-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 48px;
+    padding-bottom: 28px;
+    border-bottom: 1px solid rgba(124,58,237,0.15);
+  }
+
+  .showcase-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(1.8rem, 3vw, 3rem);
+    letter-spacing: 0.06em;
+    line-height: 1;
+    color: var(--white);
+  }
+
+  .showcase-title span { color: var(--purple-light); }
+
+  .showcase-count {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3rem;
+    color: rgba(124,58,237,0.1);
+    line-height: 1;
+    letter-spacing: 0.02em;
+  }
+
+  .service-tiles {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: rgba(124,58,237,0.08);
+  }
+
+  .service-tile {
+    background: #0d0a14;
+    padding: 36px 32px;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.3s;
+    cursor: default;
+  }
+
+  .service-tile::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px;
+    height: 100%;
+    background: linear-gradient(to bottom, var(--purple-light), transparent);
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform 0.4s ease;
+  }
+
+  .service-tile:hover { background: #110d1a; }
+  .service-tile:hover::after { transform: scaleY(1); }
+
+  .tile-tag {
+    font-size: 0.65rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--purple-light);
+    opacity: 0.6;
+    margin-bottom: 12px;
+  }
+
+  .tile-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.3rem;
+    letter-spacing: 0.05em;
+    color: var(--white);
+    margin-bottom: 12px;
+    line-height: 1.1;
+  }
+
+  .tile-desc {
+    font-size: 1.05rem;
+    color: var(--text-muted);
+    line-height: 1.65;
+    margin-bottom: 20px;
+  }
+
+  .tile-prices {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .tile-price-pill {
+    background: rgba(124,58,237,0.1);
+    border: 1px solid rgba(167,139,250,0.25);
+    color: var(--purple-light);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1rem;
+    letter-spacing: 0.06em;
+    padding: 5px 14px;
+  }
+
+  
+
+  .service-tiles-2x2 { grid-template-columns: repeat(2, 1fr); }
+  .tile-price-sub {
+    font-size: 0.82rem;
+    font-family: 'DM Sans', sans-serif;
+    color: var(--text-muted);
+    letter-spacing: 0.08em;
+  }
+
+  /* Ilitech button variant */
+  .btn-purple {
+    background: var(--purple-light);
+    color: #000;
+    padding: 14px 32px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .btn-purple:hover { background: #c4b5fd; color: #000; transform: translateY(-2px); }
+
+  .btn-navy {
+    background: var(--navy);
+    color: var(--white);
+    padding: 14px 32px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .btn-navy:hover { background: var(--navy-light); color: var(--black); transform: translateY(-2px); }
+
+  .btn-emerald {
+    background: var(--emerald);
+    color: var(--white);
+    padding: 14px 32px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .btn-emerald:hover { background: var(--emerald-light); color: var(--black); transform: translateY(-2px); }
+
+  /* ILITEACH */
+  .iliteach-hero {
+    min-height: 55vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: stretch;
+    background: #080d1a;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .iliteach-left {
+    padding: 100px 48px;
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .iliteach-right {
+    position: relative;
+    overflow: hidden;
+    background: #060b17;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .iliteach-right-pattern {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(8, 1fr);
+    gap: 0;
+    opacity: 0.5;
+  }
+
+  .iliteach-cell {
+    border: 1px solid rgba(96,165,250,0.06);
+    transition: background 1s ease;
+  }
+
+  .iliteach-cell.lit {
+    background: rgba(96,165,250,0.1);
+  }
+
+  .iliteach-right-text {
+    position: relative;
+    z-index: 2;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 5rem;
+    color: rgba(96,165,250,0.1);
+    letter-spacing: 0.08em;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    user-select: none;
+  }
+
+  .teach-feature-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: rgba(96,165,250,0.07);
+    margin-top: 2px;
+  }
+
+  .teach-feature {
+    background: #080d1a;
+    padding: 48px 36px;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.3s;
+  }
+
+  .teach-feature:hover { background: #0d1525; }
+
+  .teach-feature-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 4rem;
+    line-height: 1;
+    color: rgba(96,165,250,0.05);
+    position: absolute;
+    top: 16px; right: 24px;
+    pointer-events: none;
+  }
+
+  .teach-feature-icon {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--navy-light);
+    border: 1px solid rgba(96,165,250,0.2);
+    padding: 10px;
+    flex-shrink: 0;
+  }
+  .teach-feature-icon svg { width: 100%; height: 100%; }
+
+  .teach-feature-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.5rem;
+    letter-spacing: 0.06em;
+    color: var(--navy-light);
+    margin-bottom: 16px;
+    line-height: 1;
+  }
+
+  .teach-feature-desc {
+    font-size: 1.05rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+    margin-bottom: 20px;
+  }
+
+  .teach-feature-detail {
+    font-size: 0.9rem;
+    color: rgba(136,136,136,0.7);
+    line-height: 1.6;
+    padding-top: 16px;
+    border-top: 1px solid rgba(96,165,250,0.12);
+  }
+
+  .teach-feature-detail strong { color: var(--navy-light); font-weight: 400; }
+
+  /* ---- ILITRADE FREE BANNER ---- */
+  .ilitrade-free-banner {
+    background: linear-gradient(135deg, rgba(52,211,153,0.15) 0%, rgba(5,150,105,0.08) 100%);
+    border: 1px solid var(--emerald);
+    padding: 28px 80px;
+    margin-bottom: 0;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    position: relative;
+    overflow: hidden;
+  }
+  .ilitrade-free-banner::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 4px; height: 100%;
+    background: var(--emerald-light);
+  }
+  .free-banner-badge {
+    background: var(--emerald);
+    color: var(--black);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4rem;
+    letter-spacing: 0.12em;
+    padding: 8px 18px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .free-banner-text {
+    font-size: 1rem;
+    color: var(--white);
+    line-height: 1.6;
+  }
+  .free-banner-text strong { color: var(--emerald-light); font-weight: 500; }
+
+  .trade-tier-now-free {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--emerald);
+    color: var(--black);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.1rem;
+    letter-spacing: 0.1em;
+    padding: 4px 14px;
+    margin-top: 4px;
+  }
+
+  .trade-tier-price-strike {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.1rem;
+    color: rgba(255,255,255,0.25);
+    letter-spacing: 0.04em;
+    text-decoration: line-through;
+    margin-bottom: 2px;
+  }
+
+  .ilitrade-hero {
+    background: #060f0d;
+    padding: 100px 80px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    gap: 80px;
+  }
+
+  .ilitrade-hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 50% 60% at 50% 50%, var(--emerald-glow) 0%, transparent 60%);
+  }
+
+  .ilitrade-hero-text {
+    flex: 1;
+    position: relative;
+    z-index: 2;
+  }
+
+  .ilitrade-launch-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(5,150,105,0.1);
+    border: 1px solid var(--emerald-dim);
+    padding: 8px 20px;
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--emerald-light);
+    margin-bottom: 32px;
+  }
+
+  .ilitrade-launch-badge::before {
+    content: '';
+    width: 6px; height: 6px;
+    background: var(--emerald-light);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.7); }
+  }
+
+  .ilitrade-hero-visual {
+    flex: 1;
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .trade-tier {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background: rgba(6,15,13,0.9);
+    border: 1px solid rgba(5,150,105,0.2);
+    padding: 24px 28px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.3s, background 0.3s;
+    cursor: default;
+  }
+
+  .trade-tier:hover {
+    border-color: var(--emerald-dim);
+    background: #0a1a15;
+  }
+
+  .trade-tier.highlight {
+    border-color: var(--emerald);
+    background: rgba(5,150,105,0.06);
+  }
+
+  .trade-tier-label {
+    font-size: 0.68rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    width: 90px;
+    flex-shrink: 0;
+  }
+
+  .trade-tier-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.5rem;
+    letter-spacing: 0.06em;
+    color: var(--white);
+    flex: 1;
+  }
+
+  .trade-tier.highlight .trade-tier-name { color: var(--emerald-light); }
+
+  .trade-tier-price {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4rem;
+    color: var(--emerald-light);
+    letter-spacing: 0.04em;
+    text-align: right;
+    flex-shrink: 0;
+  }
+
+  .trade-tier-free {
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--emerald-dim);
+    text-align: right;
+  }
+
+  .trade-feature-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: rgba(52,211,153,0.06);
+    margin-top: 2px;
+  }
+
+  .trade-feature {
+    background: #060f0d;
+    padding: 48px 48px;
+    transition: background 0.3s;
+  }
+
+  .trade-feature:hover { background: #0a1a15; }
+
+  .trade-feature-icon {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--emerald-light);
+    border: 1px solid rgba(52,211,153,0.2);
+    padding: 10px;
+    flex-shrink: 0;
+  }
+  .trade-feature-icon svg { width: 100%; height: 100%; }
+
+  .trade-feature-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.3rem;
+    color: var(--emerald-light);
+    letter-spacing: 0.05em;
+    margin-bottom: 10px;
+  }
+
+  .trade-feature-desc {
+    font-size: 1.05rem;
+    color: var(--text-muted);
+    line-height: 1.65;
+  }
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+
+  .division-card {
+    background: var(--panel);
+    padding: 48px 36px;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+
+  .division-card::before {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--gold);
+    transform: scaleX(0);
+    transition: transform 0.35s ease;
+    transform-origin: left;
+  }
+
+  .division-card:hover { background: #161616; }
+  .division-card:hover::before { transform: scaleX(1); }
+
+  .division-number {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.5rem;
+    color: rgba(201,168,76,0.1);
+    line-height: 1;
+    margin-bottom: 12px;
+  }
+
+  .division-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.6rem;
+    letter-spacing: 0.06em;
+    color: var(--gold);
+    margin-bottom: 12px;
+  }
+
+  .division-desc {
+    font-size: 1rem;
+    color: var(--text-muted);
+    line-height: 1.65;
+  }
+
+  /* ---- SERVICES SECTIONS ---- */
+  .services-section { background: #0d0d0d; }
+
+  .service-block {
+    margin-bottom: 64px;
+  }
+
+  .service-block:last-child { margin-bottom: 0; }
+
+  .service-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.6rem;
+    letter-spacing: 0.08em;
+    color: var(--white);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .service-name::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 12px;
+  }
+
+  .price-card {
+    background: var(--black);
+    border: 1px solid var(--border);
+    padding: 24px;
+    position: relative;
+    transition: border-color 0.25s, transform 0.25s;
+  }
+
+  .price-card:hover {
+    border-color: var(--gold-dim);
+    transform: translateY(-3px);
+  }
+
+  .price-label {
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+  }
+
+  .price-name {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--white);
+    margin-bottom: 12px;
+    line-height: 1.35;
+  }
+
+  .price-value {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.5rem;
+    color: var(--gold);
+    letter-spacing: 0.04em;
+  }
+
+  .price-note {
+    margin-top: 8px;
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+
+  .update-badge {
+    display: inline-block;
+    background: rgba(201,168,76,0.1);
+    border: 1px solid var(--gold-dim);
+    color: var(--gold);
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    margin-top: 12px;
+  }
+
+  /* ---- ILITEACH ---- */
+  .iliteach-section { background: var(--black); }
+
+  .teach-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+
+  .teach-card {
+    border: 1px solid var(--border);
+    padding: 36px 28px;
+    background: var(--panel);
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.25s;
+  }
+
+  .teach-card:hover { border-color: var(--gold-dim); }
+
+  .teach-icon {
+    font-size: 2rem;
+    margin-bottom: 16px;
+  }
+
+  .teach-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.5rem;
+    letter-spacing: 0.06em;
+    color: var(--gold);
+    margin-bottom: 12px;
+  }
+
+  .teach-desc {
+    font-size: 0.87rem;
+    color: var(--text-muted);
+    line-height: 1.65;
+  }
+
+  .teach-price {
+    margin-top: 20px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.6rem;
+    color: var(--white);
+  }
+
+  /* ---- ILITRADE ---- */
+  .ilitrade-section { background: #0d0d0d; }
+
+  .trade-banner {
+    background: rgba(201,168,76,0.06);
+    border: 1px solid var(--gold-dim);
+    padding: 20px 28px;
+    margin-bottom: 40px;
+    font-size: 0.88rem;
+    color: var(--gold);
+    letter-spacing: 0.04em;
+  }
+
+  .trade-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+
+  .trade-card {
+    background: var(--black);
+    border: 1px solid var(--border);
+    padding: 32px 24px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.25s, transform 0.2s;
+  }
+
+  .trade-card:hover {
+    border-color: var(--gold-dim);
+    transform: translateY(-3px);
+  }
+
+  .trade-card.featured {
+    border-color: var(--gold-dim);
+  }
+
+  .trade-card.featured::before {
+    content: 'POPULAR';
+    position: absolute;
+    top: 0; right: 0;
+    background: var(--gold);
+    color: var(--black);
+    font-size: 0.62rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    padding: 4px 10px;
+  }
+
+  .trade-type {
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+  }
+
+  .trade-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4rem;
+    color: var(--gold);
+    letter-spacing: 0.05em;
+    margin-bottom: 16px;
+  }
+
+  .trade-price {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.7rem;
+    color: var(--white);
+    margin-bottom: 4px;
+  }
+
+  .trade-sub {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    margin-bottom: 16px;
+  }
+
+  .free-month {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(201,168,76,0.1);
+    border: 1px solid var(--gold-dim);
+    color: var(--gold);
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    padding: 5px 12px;
+  }
+
+  /* ---- CTA ---- */
+  .cta-section {
+    background: var(--gold);
+    color: var(--black);
+    text-align: center;
+    padding: 100px 48px;
+  }
+
+  .cta-section .section-label { color: rgba(10,10,10,0.5); }
+
+  .cta-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3rem, 8vw, 7rem);
+    letter-spacing: 0.04em;
+    line-height: 1;
+    color: var(--black);
+    margin-bottom: 32px;
+  }
+
+  .cta-section .btn-primary {
+    background: var(--black);
+    color: var(--gold);
+  }
+
+  .cta-section .btn-primary:hover { background: #1a1a1a; }
+
+  /* ---- FOOTER ---- */
+  footer {
+    background: #080808;
+    border-top: 1px solid var(--border);
+    padding: 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+
+  .footer-logo-wrap {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 4px;
+  }
+  .footer-logo-img {
+    height: 40px;
+    width: 40px;
+    object-fit: contain;
+    opacity: 0.85;
+  }
+  .footer-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4rem;
+    letter-spacing: 0.1em;
+    color: var(--gold);
+  }
+
+  .footer-divisions {
+    display: flex;
+    gap: 32px;
+  }
+
+  .footer-div-name {
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    transition: color 0.2s;
+    cursor: pointer;
+  }
+
+  .footer-div-name:hover { color: var(--gold); }
+
+  .footer-copy {
+    font-size: 0.75rem;
+    color: rgba(136,136,136,0.5);
+    margin-top: 16px;
+  }
+  .footer-contact { margin-top: 12px; font-size: 0.82rem; line-height: 1.8; }
+  .footer-contact-link { color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
+  .footer-contact-link:hover { color: var(--gold); }
+
+  /* ---- ANIMATIONS ---- */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* ---- RESPONSIVE ---- */
+  @media (max-width: 900px) {
+    nav { padding: 0 24px; }
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+    section { padding: 70px 24px; }
+    .hero { padding: 100px 24px 60px; }
+    .divisions-grid { grid-template-columns: 1fr; }
+    .division-card { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.05); }
+    .division-card:last-child { border-bottom: none; }
+    .service-tiles { grid-template-columns: 1fr; }
+    .ilitech-side { display: none; }
+    .ilitech-hero { padding: 80px 24px; }
+    .div-section-logo { width: clamp(56px, 10vw, 80px); height: clamp(56px, 10vw, 80px); }
+    .hero-logo-img { width: clamp(120px, 28vw, 180px); right: 20px; }
+    .iliteach-hero { grid-template-columns: 1fr; }
+    .iliteach-right { display: none; }
+    .teach-feature-row { grid-template-columns: 1fr; }
+    .ilitrade-hero { flex-direction: column; padding: 80px 24px; gap: 40px; }
+    .trade-feature-row { grid-template-columns: 1fr; }
+    .about-inner { grid-template-columns: 1fr; gap: 40px; }
+    .about-portrait { aspect-ratio: 3/2; max-height: 260px; }
+    .steps-row { grid-template-columns: 1fr 1fr; gap: 40px; }
+    .steps-row::before { display: none; }
+    .contact-inner { grid-template-columns: 1fr; }
+    .contact-info { padding: 48px 24px; border-right: none; border-bottom: 1px solid var(--border); }
+    .contact-form-side { padding: 48px 24px; }
+    .cf-row { grid-template-columns: 1fr; }
+    .contact-cta-row { flex-direction: column; align-items: center; }
+    footer { flex-direction: column; gap: 32px; align-items: flex-start; }
+    .showcase-header { flex-direction: column; align-items: flex-start; gap: 8px; }
+  }
+
+  @media (max-width: 560px) {
+    .pricing-grid { grid-template-columns: 1fr; }
+    .hero-logo-img { display: none; }
+    .div-section-logo { width: clamp(48px, 12vw, 64px); height: clamp(48px, 12vw, 64px); }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo-wrap" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="cursor:pointer;">
+    <img src="images/logo.png" alt="Ilias Enterprises" class="nav-logo-img">
+    <div class="nav-logo">Ilias Enterprises</div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="javascript:void(0)" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})">About</a></li>
+    <li><a href="javascript:void(0)" onclick="document.getElementById('how').scrollIntoView({behavior:'smooth'})">How It Works</a></li>
+    <li><a href="javascript:void(0)" onclick="document.getElementById('ilitech').scrollIntoView({behavior:'smooth'})">Ilitech</a></li>
+    <li><a href="javascript:void(0)" onclick="document.getElementById('iliteach').scrollIntoView({behavior:'smooth'})">Iliteach</a></li>
+    <li><a href="javascript:void(0)" onclick="document.getElementById('ilitrade').scrollIntoView({behavior:'smooth'})">Ilitrade</a></li>
+    <li><a href="javascript:void(0)" onclick="document.getElementById('faq').scrollIntoView({behavior:'smooth'})">FAQ</a></li>
+    <li><a href="javascript:void(0)" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Contact</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="javascript:void(0)" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'});closeMenu()">About</a>
+  <a href="javascript:void(0)" onclick="document.getElementById('how').scrollIntoView({behavior:'smooth'});closeMenu()">How It Works</a>
+  <a href="javascript:void(0)" onclick="document.getElementById('ilitech').scrollIntoView({behavior:'smooth'});closeMenu()">Ilitech</a>
+  <a href="javascript:void(0)" onclick="document.getElementById('iliteach').scrollIntoView({behavior:'smooth'});closeMenu()">Iliteach</a>
+  <a href="javascript:void(0)" onclick="document.getElementById('ilitrade').scrollIntoView({behavior:'smooth'});closeMenu()">Ilitrade</a>
+  <a href="javascript:void(0)" onclick="document.getElementById('faq').scrollIntoView({behavior:'smooth'});closeMenu()">FAQ</a>
+  <a href="javascript:void(0)" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'});closeMenu()">Contact</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-wordmark">IE</div>
+  <img src="images/logo.png" alt="IE Logo" class="hero-logo-img">
+
+  <!-- Division tags top-right -->
+  <div class="hero-top-bar">
+    <div class="hero-division-tags">
+      <span class="hero-div-tag tech">Ilitech · Technology</span>
+      <span class="hero-div-tag teach">Iliteach · Education</span>
+      <span class="hero-div-tag trade">Ilitrade · Commerce</span>
+    </div>
+  </div>
+
+  <!-- Main content anchored to bottom -->
+  <div class="hero-inner">
+    <p class="hero-eyebrow">Ilias Enterprises</p>
+    <h1>
+      Built<br>
+      <span class="gold">Different.</span><br>
+      <span class="outline">Priced Fair.</span>
+    </h1>
+    <div class="hero-bottom">
+      <p class="hero-sub">Three divisions. One vision. We build software, grow knowledge, and power commerce — directly, personally, and without the corporate markup.</p>
+      <div class="hero-cta">
+        <a id="btn-our-story" href="#" class="btn-primary">Our Story</a>
+        <a href="javascript:void(0)" onclick="document.getElementById('divisions').scrollIntoView({behavior:'smooth'})" class="btn-outline">Explore Services</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-scroll-hint">
+    <span class="hero-scroll-label">Scroll</span>
+    <div class="hero-scroll-line"></div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about-section" id="about">
+  <div class="about-inner">
+    <div class="about-text">
+      <p class="section-label reveal">Who We Are</p>
+      <h2 class="section-title reveal">Built by <span style="color:var(--gold)">Ilias.</span><br>Built for You.</h2>
+      <p class="about-bio reveal">My name is Ilias, and I started this company with one conviction: <strong>you shouldn't need a big budget or a corporate connection to get great work done.</strong> I've seen too many people get overcharged for mediocre software, locked out of proper tech support, or priced out of real tutoring.</p>
+      <p class="about-bio reveal"><strong>Ilias Enterprises</strong> is my answer to that. Three divisions — Ilitech, Iliteach, and Ilitrade — built from the ground up to give individuals, students, and small businesses access to the same quality that used to be reserved for people with much deeper pockets.</p>
+      <p class="about-bio reveal">Every project I take on is scoped honestly, priced fairly, and delivered personally. No account managers, no handoffs, no surprises. Just direct work from someone who cares about the outcome as much as you do.</p>
+      <div class="about-stats reveal">
+        <div>
+          <div class="about-stat-num" data-target="3" data-suffix="">0</div>
+          <div class="about-stat-label">Divisions</div>
+        </div>
+        <div>
+          <div class="about-stat-num" data-target="10" data-suffix="+">0</div>
+          <div class="about-stat-label">Service Types</div>
+        </div>
+        <div>
+          <div class="about-stat-num" data-target="0" data-suffix="">0</div>
+          <div class="about-stat-label">Hidden Fees</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- HOW IT WORKS -->
+<section class="how-section" id="how">
+  <p class="section-label reveal">The Process</p>
+  <h2 class="section-title reveal">How It Works</h2>
+  <div class="steps-row reveal">
+    <div class="step">
+      <div class="step-num">01</div>
+      <div class="step-title">Reach Out</div>
+      <p class="step-desc">Contact us with your idea, project, or question. No form is too big or too small — we respond to everything.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">02</div>
+      <div class="step-title">Get a Quote</div>
+      <p class="step-desc">We'll scope the project honestly and give you a clear price within the ranges listed. No surprises.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">03</div>
+      <div class="step-title">We Build</div>
+      <p class="step-desc">Work begins. You stay in the loop. We communicate progress and check in before any major decision.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">04</div>
+      <div class="step-title">You Own It</div>
+      <p class="step-desc">Final delivery is yours completely. Source code, domain, app — it belongs to you. Ongoing support available.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- DIVISIONS OVERVIEW -->
+<section id="divisions" style="padding: 80px 48px 0;">
+  <p class="section-label reveal">Our Divisions</p>
+  <h2 class="section-title reveal">Three Pillars</h2>
+  <div class="divisions-grid reveal">
+
+    <!-- ILITECH -->
+    <div class="division-card tech" onclick="document.getElementById('ilitech').scrollIntoView({behavior:'smooth'})">
+      <div class="division-card-grid"></div>
+      <div class="division-ghost-text">ILI</div>
+      <div class="division-corner-tl"></div>
+      <div class="division-corner-br"></div>
+      <div class="division-number">01</div>
+      <div class="division-name-row">
+        <img class="division-logo" src="images/ilitech.png" alt="">
+        <div class="division-name">Ilitech</div>
+      </div>
+      <div class="division-tagline">Software · Apps · Websites · Computers</div>
+      <p class="division-desc">The engine room of Ilias Enterprises. Custom-built software, App Store deployments, high-performance websites, and hand-assembled computers — without agency markups or lock-in. You own everything we make.</p>
+
+      <div class="division-section-label">What We Build</div>
+      <div class="division-bullets">
+        <div class="division-bullet"><div class="division-bullet-dot"></div><div class="division-bullet-text"><strong>Scripts & Programs</strong> — simple automations to full multi-feature software</div></div>
+        <div class="division-bullet"><div class="division-bullet-dot"></div><div class="division-bullet-text"><strong>Mobile Apps</strong> — iOS & Android, raw code or live App Store release</div></div>
+        <div class="division-bullet"><div class="division-bullet-dot"></div><div class="division-bullet-text"><strong>Websites</strong> — custom-coded sites, shops, and service platforms</div></div>
+        <div class="division-bullet"><div class="division-bullet-dot"></div><div class="division-bullet-text"><strong>Web Domains</strong> — unbranded, unblocked, or fully branded</div></div>
+        <div class="division-bullet"><div class="division-bullet-dot"></div><div class="division-bullet-text"><strong>Custom PC Builds</strong> — tower, mini, or full waterloop</div></div>
+        <div class="division-bullet"><div class="division-bullet-dot"></div><div class="division-bullet-text"><strong>Diagnostics & Repairs</strong> — flat $40 session, no surprise charges</div></div>
+        <div class="division-bullet"><div class="division-bullet-dot"></div><div class="division-bullet-text"><strong>Google Ads Management</strong> — strategy, copy, and reporting</div></div>
+        <div class="division-bullet"><div class="division-bullet-dot"></div><div class="division-bullet-text"><strong>Ongoing Maintenance</strong> — subscription or per-update options</div></div>
+      </div>
+
+      <div class="division-section-label">Starting Prices</div>
+      <div class="division-highlights">
+        <div class="division-highlight-item">
+          <span class="div-hi-name">Scripts & Simple Programs</span>
+          <span class="div-hi-price">$20 – $200</span>
+        </div>
+        <div class="division-highlight-item">
+          <span class="div-hi-name">Apps & Complex Programs</span>
+          <span class="div-hi-price">$200 – $1,500+</span>
+        </div>
+        <div class="division-highlight-item">
+          <span class="div-hi-name">Websites</span>
+          <span class="div-hi-price">$800 – $3,000+</span>
+        </div>
+        <div class="division-highlight-item">
+          <span class="div-hi-name">Custom Builds & Repairs</span>
+          <span class="div-hi-price">Parts + % / From $40</span>
+        </div>
+      </div>
+      <button class="division-scroll-cta" onclick="event.stopPropagation();document.getElementById('ilitech').scrollIntoView({behavior:'smooth'})">
+        <span>Explore Ilitech</span>
+        <span class="cta-arrow">›</span>
+      </button>
+    </div>
+
+    <!-- ILITEACH -->
+    <div class="division-card teach" onclick="document.getElementById('iliteach').scrollIntoView({behavior:'smooth'})">
+      <div class="division-card-grid"></div>
+      <div class="division-ghost-text">ILI</div>
+      <div class="division-corner-tl"></div>
+      <div class="division-corner-br"></div>
+      <div class="division-number">02</div>
+      <div class="division-name-row">
+        <img class="division-logo" src="images/iliteach.png" alt="">
+        <div class="division-name">Iliteach</div>
+      </div>
+      <div class="division-tagline">Cheat Sheets · Tutoring · Work Database</div>
+      <p class="division-desc">Education built around you — not a rigid curriculum. Expert cheat sheets, one-on-one tutoring at your pace, and a community-driven library of real academic work. <strong style="color:var(--navy-light)">The database is free right now</strong> — contribute 30 assignments to unlock it.</p>
+
+      <div class="division-section-label">What's Included</div>
+      <div class="division-bullets">
+        <div class="division-bullet"><div class="division-bullet-dot"></div><div class="division-bullet-text"><strong>Cheat Sheets</strong> — dense, subject-specific reference materials ($5–10)</div></div>
+        <div class="division-bullet"><div class="division-bullet-dot"></div><div class="division-bullet-text"><strong>Custom Cheat Sheets</strong> — built around your exact exam or curriculum</div></div>
+        <div class="division-bullet"><div class="division-bullet-dot"></div><div class="division-bullet-text"><strong>1-on-1 Tutoring</strong> — in-person or online, tailored to your level and pace</div></div>
+        <div class="division-bullet"><div class="division-bullet-dot"></div><div class="division-bullet-text"><strong>Flexible Scheduling</strong> — no cap on sessions, book as needed</div></div>
+        <div class="division-bullet"><div class="division-bullet-dot"></div><div class="division-bullet-text"><strong>Work Database</strong> — completed worksheets, homework, and assignments by subject</div></div>
+        <div class="division-bullet"><div class="division-bullet-dot"></div><div class="division-bullet-text"><strong>Contributor Access</strong> — submit 30 assignments, unlock the database free</div></div>
+        <div class="division-bullet"><div class="division-bullet-dot"></div><div class="division-bullet-text"><strong>Middle school through college</strong> — and adult learners welcome</div></div>
+      </div>
+
+      <div class="division-section-label">Pricing</div>
+      <div class="division-highlights">
+        <div class="division-highlight-item">
+          <span class="div-hi-name">Cheat Sheets</span>
+          <span class="div-hi-price">$5 – $10</span>
+        </div>
+        <div class="division-highlight-item">
+          <span class="div-hi-name">1-on-1 Tutoring</span>
+          <span class="div-hi-price">Ask for Rate</span>
+        </div>
+        <div class="division-highlight-item">
+          <span class="div-hi-name">Work Database</span>
+          <span class="div-hi-price">FREE Now</span>
+        </div>
+        <div class="division-highlight-item">
+          <span class="div-hi-name">Future Rate (after launch)</span>
+          <span class="div-hi-price">$10 – $20 / mo</span>
+        </div>
+      </div>
+      <button class="division-scroll-cta" onclick="event.stopPropagation();document.getElementById('iliteach').scrollIntoView({behavior:'smooth'})">
+        <span>Explore Iliteach</span>
+        <span class="cta-arrow">›</span>
+      </button>
+    </div>
+
+    <!-- ILITRADE -->
+    <div class="division-card trade" onclick="document.getElementById('ilitrade').scrollIntoView({behavior:'smooth'})">
+      <div class="division-card-grid"></div>
+      <div class="division-ghost-text">ILI</div>
+      <div class="division-corner-tl"></div>
+      <div class="division-corner-br"></div>
+      <div class="division-number">03</div>
+      <div class="division-name-row">
+        <img class="division-logo" src="images/ilitrade.png" alt="">
+        <div class="division-name">Ilitrade</div>
+      </div>
+      <div class="division-tagline">Resellers · Services · Advertising</div>
+      <p class="division-desc">A marketplace built without platform taxes or hidden cuts. Resellers, service providers, and advertisers all under one roof. We're growing the network first — so <strong style="color:var(--emerald-light)">accounts are completely free right now</strong>.</p>
+
+      <div class="division-section-label">What You Can Do</div>
+      <div class="division-bullets">
+        <div class="division-bullet"><div class="division-bullet-dot"></div><div class="division-bullet-text"><strong>Resell Products</strong> — list physical or digital goods, keep everything you earn</div></div>
+        <div class="division-bullet"><div class="division-bullet-dot"></div><div class="division-bullet-text"><strong>Offer Services</strong> — list skills and get discovered by clients in the network</div></div>
+        <div class="division-bullet"><div class="division-bullet-dot"></div><div class="division-bullet-text"><strong>Advertise</strong> — flat $50/mo puts your ads across all Ilias properties</div></div>
+        <div class="division-bullet"><div class="division-bullet-dot"></div><div class="division-bullet-text"><strong>No transaction fees</strong> — ever. Your sales are your sales, period</div></div>
+        <div class="division-bullet"><div class="division-bullet-dot"></div><div class="division-bullet-text"><strong>No platform tax</strong> — we charge a flat account fee, nothing on top of your revenue</div></div>
+        <div class="division-bullet"><div class="division-bullet-dot"></div><div class="division-bullet-text"><strong>Unlimited listings</strong> — no cap on products or services during launch phase</div></div>
+        <div class="division-bullet"><div class="division-bullet-dot"></div><div class="division-bullet-text"><strong>First month free</strong> — when regular pricing activates, your first paid month is always free</div></div>
+      </div>
+
+      <div class="division-section-label">Account Pricing</div>
+      <div class="division-highlights">
+        <div class="division-highlight-item">
+          <span class="div-hi-name">Reselling Account</span>
+          <span class="div-hi-price">FREE Now</span>
+        </div>
+        <div class="division-highlight-item">
+          <span class="div-hi-name">Services Account</span>
+          <span class="div-hi-price">FREE Now</span>
+        </div>
+        <div class="division-highlight-item">
+          <span class="div-hi-name">Advertising</span>
+          <span class="div-hi-price">$50 / mo</span>
+        </div>
+        <div class="division-highlight-item">
+          <span class="div-hi-name">No Transaction Fees</span>
+          <span class="div-hi-price">Ever</span>
+        </div>
+      </div>
+      <button class="division-scroll-cta" onclick="event.stopPropagation();document.getElementById('ilitrade').scrollIntoView({behavior:'smooth'})">
+        <span>Explore Ilitrade</span>
+        <span class="cta-arrow">›</span>
+      </button>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ILITECH -->
+<div class="ilitech-hero" id="ilitech">
+  <div class="ilitech-hero-bg"></div>
+  <div class="ilitech-grid-lines"></div>
+  <div class="ilitech-hero-content reveal">
+    <div class="div-eyebrow">Division 01</div>
+    <div class="div-title-row">
+      <h2 class="div-giant-title">Ili<em>Tech</em></h2>
+      <img src="images/ilitech.png" alt="Ilitech" class="div-section-logo">
+    </div>
+    <p class="div-pitch">We turn ideas into reality — <strong>custom software, apps, websites, and hand-assembled computers</strong>, built with precision and priced with integrity. Every project is scoped honestly, delivered completely, and owned by you — no lock-in, no bloat, no middlemen.</p>
+    <a id="btn-get-a-quote" href="#" class="btn-purple">Get a Quote</a>
+  </div>
+  <div class="ilitech-side">
+    <div class="ilitech-side-item">PROGRAMS</div>
+    <div class="ilitech-side-item">APPS</div>
+    <div class="ilitech-side-item">WEBSITES</div>
+    <div class="ilitech-side-item">COMPUTERS</div>
+  </div>
+</div>
+
+<div class="service-showcase reveal">
+  <div class="showcase-header">
+    <div class="showcase-title">Programs &<br><span>Domains</span></div>
+    <div class="showcase-count">01</div>
+  </div>
+  <div class="service-tiles">
+    <div class="service-tile">
+      <div class="tile-tag">Entry Level</div>
+      <div class="tile-name">Snippets & Simple Scripts</div>
+      <p class="tile-desc">Small, self-contained code — automations, one-off tools, single-purpose logic. Scoped fast, built clean, delivered ready to use.</p>
+      <div class="tile-prices"><span class="tile-price-pill">$20 – $40 <span class="tile-price-sub">flat rate</span></span></div>
+    </div>
+    <div class="service-tile">
+      <div class="tile-tag">Full Build</div>
+      <div class="tile-name">Complete Programs</div>
+      <p class="tile-desc">Full custom software built from scratch around your workflow. No templates, no off-the-shelf shortcuts. Simpler tools start at $100 — complex multi-feature software runs up to $400.</p>
+      <div class="tile-prices">
+        <span class="tile-price-pill">$100 – $200 <span class="tile-price-sub">Simple programs</span></span>
+        <span class="tile-price-pill">$200 – $400 <span class="tile-price-sub">Complex programs</span></span>
+      </div>
+    </div>
+    <div class="service-tile">
+      <div class="tile-tag">Domains</div>
+      <div class="tile-name">Web Domains</div>
+      <p class="tile-desc">Unbranded, unblocked, or fully branded — we set up and manage your domain with zero friction so you can focus on building.</p>
+      <div class="tile-prices">
+        <span class="tile-price-pill">$10 <span class="tile-price-sub">Unbranded</span></span>
+        <span class="tile-price-pill">$20 <span class="tile-price-sub">Unblocked</span></span>
+        <span class="tile-price-pill">$40–60 <span class="tile-price-sub">Branded</span></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="service-showcase reveal">
+  <div class="showcase-header">
+    <div class="showcase-title">Apps Built to<br><span>Last</span></div>
+    <div class="showcase-count">02</div>
+  </div>
+  <div class="service-tiles">
+    <div class="service-tile">
+      <div class="tile-tag">Raw Source</div>
+      <div class="tile-name">App Source Code</div>
+      <p class="tile-desc">Complete, commented source code handed over to you. Deploy it yourself, host it anywhere, modify it freely — no licensing, no lock-in. You own it outright from day one.</p>
+      <div class="tile-prices"><span class="tile-price-pill">$800 – $1,500 <span class="tile-price-sub">starting rate</span></span></div>
+    </div>
+    <div class="service-tile">
+      <div class="tile-tag">Published</div>
+      <div class="tile-name">Live App Store Release</div>
+      <p class="tile-desc">Your app live on the App Store, under your name and developer account. We handle the build, Apple review submission, and approval process from start to finish. 100% ownership transferred to you — we just do the work.</p>
+      <div class="tile-prices"><span class="tile-price-pill">$1,500+ <span class="tile-price-sub">scope-dependent</span></span></div>
+    </div>
+    <div class="service-tile">
+      <div class="tile-tag">Ongoing</div>
+      <div class="tile-name">App Updates & Support</div>
+      <p class="tile-desc">Keep your app running as iOS/Android evolve. Per-update pricing works best for occasional changes — the monthly plan is cheaper if you expect ongoing work. Both options include bug fixes, feature additions, and OS compatibility updates.</p>
+      <div class="tile-prices">
+        <span class="tile-price-pill">10–25% <span class="tile-price-sub">of original cost, per update</span></span>
+        <span class="tile-price-pill">$50–150 <span class="tile-price-sub">flat monthly plan</span></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="service-showcase reveal">
+  <div class="showcase-header">
+    <div class="showcase-title">Websites That<br><span>Convert</span></div>
+    <div class="showcase-count">03</div>
+  </div>
+  <div class="service-tiles">
+    <div class="service-tile">
+      <div class="tile-tag">Raw Source</div>
+      <div class="tile-name">Website Source Code</div>
+      <p class="tile-desc">Fully custom, handcrafted code — no page builders, no WordPress, no templates. Host it wherever you want, modify it freely. The $800 floor reflects real custom work, not a theme with your logo swapped in.</p>
+      <div class="tile-prices"><span class="tile-price-pill">$800 – $1,500 <span class="tile-price-sub">starting rate</span></span></div>
+    </div>
+    <div class="service-tile">
+      <div class="tile-tag">Commerce</div>
+      <div class="tile-name">Online Shop & Service Sites</div>
+      <p class="tile-desc">Full e-commerce and service platforms built to actually drive revenue — product listings, checkout, booking, and client management. Price depends on number of products, payment integrations, and custom features required.</p>
+      <div class="tile-prices"><span class="tile-price-pill">$1,500 – $3,000 <span class="tile-price-sub">scope-dependent</span></span></div>
+    </div>
+    <div class="service-tile">
+      <div class="tile-tag">Growth</div>
+      <div class="tile-name">Google Ads Management</div>
+      <p class="tile-desc">We handle campaign strategy, ad copy, keyword targeting, and monthly performance reporting. You pay Google directly for ad spend — our fee covers the management only, so there's no markup on what you're actually spending.</p>
+      <div class="tile-prices">
+        <span class="tile-price-pill">$150–300 <span class="tile-price-sub">/mo management fee</span></span>
+        <span class="tile-price-pill">$30–100 <span class="tile-price-sub">/mo site maintenance</span></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="service-showcase reveal">
+  <div class="showcase-header">
+    <div class="showcase-title">Custom<br><span>Computers</span></div>
+    <div class="showcase-count">04</div>
+  </div>
+  <div class="service-tiles service-tiles-2x2">
+    <div class="service-tile">
+      <div class="tile-tag">Ready Now</div>
+      <div class="tile-name">Prebuilt Systems</div>
+      <p class="tile-desc">Tested, tuned, and ready to ship. Priced based on the components — what you see is what you pay with no assembly fee added on top. Configurations vary so reach out for current availability and pricing.</p>
+      <div class="tile-prices"><span class="tile-price-pill">Listed price <span class="tile-price-sub">no assembly fee</span></span></div>
+    </div>
+    <div class="service-tile">
+      <div class="tile-tag">Standard & Mini Builds</div>
+      <div class="tile-name">Custom Tower & Mini PC</div>
+      <p class="tile-desc">You choose the parts, we build it right. A standard tower adds 10% over parts cost — a compact mini build adds 20% because smaller cases require more precision work and tighter cable routing. Parts are sourced at cost with no markup.</p>
+      <div class="tile-prices">
+        <span class="tile-price-pill">Parts + 10% <span class="tile-price-sub">Standard tower</span></span>
+        <span class="tile-price-pill">Parts + 20% <span class="tile-price-sub">Mini build</span></span>
+      </div>
+    </div>
+    <div class="service-tile">
+      <div class="tile-tag">Premium Build</div>
+      <div class="tile-name">Custom Waterloop Build</div>
+      <p class="tile-desc">A full custom liquid cooling loop — reservoir, pump, radiator, tubing, fittings, and CPU/GPU blocks. The most labour-intensive build we offer. The 30–35% premium reflects the complexity, leak-testing, and stress-testing before delivery.</p>
+      <div class="tile-prices">
+        <span class="tile-price-pill">Parts + 30–35% <span class="tile-price-sub">scope-dependent</span></span>
+      </div>
+    </div>
+    <div class="service-tile">
+      <div class="tile-tag">Support</div>
+      <div class="tile-name">Troubleshooting & Repair</div>
+      <p class="tile-desc">A flat $40 diagnostic session pinpoints exactly what's wrong before anything else happens — no guessing, no surprise charges. If a repair is needed, parts are billed at cost and labour reflects the actual complexity of the fix.</p>
+      <div class="tile-prices">
+        <span class="tile-price-pill">$40 <span class="tile-price-sub">flat diagnostic fee</span></span>
+        <span class="tile-price-pill">Parts + $40–120 <span class="tile-price-sub">repair labour</span></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div style="height:1px;background:linear-gradient(to right,transparent,rgba(124,58,237,0.3),transparent)"></div>
+
+<!-- ILITECH FAQ -->
+<div class="faq-section tech-faq" id="ilitech-faq">
+  <div class="faq-group reveal">
+    <div class="faq-group-header tech"><span class="faq-group-label">Ilitech — Frequently Asked</span><span class="faq-group-line"></span></div>
+    <div class="faq-grid">
+      <button class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><div><span class="faq-tag tech">Ilitech</span><span class="faq-q-text">Do I own the code, app, or website after delivery?</span></div><div class="faq-icon">+</div></div>
+        <div class="faq-a">Yes — completely. Once paid for, the source code, domain, and all assets belong to you. No licensing fees, no lock-in. You own it outright and can take it anywhere.</div>
+      </button>
+      <button class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><div><span class="faq-tag tech">Ilitech</span><span class="faq-q-text">What's the difference between raw code and a live deployment?</span></div><div class="faq-icon">+</div></div>
+        <div class="faq-a">Raw code means you receive the full source files to deploy yourself. A live deployment means we handle the entire process — App Store submission, domain setup, hosting — so your product goes live without you needing to touch anything.</div>
+      </button>
+      <button class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><div><span class="faq-tag tech">Ilitech</span><span class="faq-q-text">What platforms do you build apps for?</span></div><div class="faq-icon">+</div></div>
+        <div class="faq-a">Primarily iOS and Android, with cross-platform development available. Web apps and desktop applications are also within scope. Describe what you need and which platform your audience uses — we'll recommend the best approach.</div>
+      </button>
+      <button class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><div><span class="faq-tag tech">Ilitech</span><span class="faq-q-text">Can I bring my own parts for a custom PC build?</span></div><div class="faq-icon">+</div></div>
+        <div class="faq-a">Absolutely. Our fee covers assembly, tuning, and testing — we'll build it right regardless of where the parts came from. Reach out first so we can confirm compatibility before you commit to anything.</div>
+      </button>
+      <button class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><div><span class="faq-tag tech">Ilitech</span><span class="faq-q-text">What does a website update or maintenance subscription cover?</span></div><div class="faq-icon">+</div></div>
+        <div class="faq-a">Content changes, bug fixes, feature additions, and browser compatibility. The subscription ($30–100/mo) is ideal for regular changes — cheaper than per-update fees each time and gives you priority access.</div>
+      </button>
+      <button class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><div><span class="faq-tag tech">Ilitech</span><span class="faq-q-text">What does the $20 troubleshooting session include?</span></div><div class="faq-icon">+</div></div>
+        <div class="faq-a">A flat $40 diagnostic session — in person or remote — to pinpoint exactly what's wrong before anything else happens. The $40 covers that session entirely, with no hidden charges. Any repair needed afterward is quoted separately: parts at cost, labour at $40–120 depending on complexity.</div>
+      </button>
+      <button class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><div><span class="faq-tag tech">Ilitech</span><span class="faq-q-text">What's included in a waterloop custom build?</span></div><div class="faq-icon">+</div></div>
+        <div class="faq-a">A full custom liquid cooling loop — reservoir, pump, radiator, tubing, fittings, and CPU/GPU blocks. The 30–35% labour premium reflects the complexity. Every loop is leak-tested and stress-tested before delivery.</div>
+      </button>
+      <button class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><div><span class="faq-tag tech">Ilitech</span><span class="faq-q-text">Can you manage my Google Ads campaign long-term?</span></div><div class="faq-icon">+</div></div>
+        <div class="faq-a">Yes. The $150–300/mo fee covers strategy, ad copy, keyword optimization, and performance reporting. Google's ad spend is billed directly by Google to your account — we never hold your budget. Full transparency every month.</div>
+      </button>
+      <button class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><div><span class="faq-tag tech">Ilitech</span><span class="faq-q-text">What's the difference between a snippet and a full program?</span></div><div class="faq-icon">+</div></div>
+        <div class="faq-a">Snippets are small, self-contained pieces of code — a function, a script, a single-purpose automation. Full programs are complete, multi-feature software built around a specific use case. If you're unsure which yours is, describe it and we'll tell you.</div>
+      </button>
+      <button class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><div><span class="faq-tag tech">Ilitech</span><span class="faq-q-text">Do you build e-commerce sites from scratch or use platforms like Shopify?</span></div><div class="faq-icon">+</div></div>
+        <div class="faq-a">Both. Custom-built stores give complete control with zero platform fees — ideal for unique requirements. Platform-based builds are faster to launch and easier to self-manage. We'll recommend whichever fits your budget and long-term needs better.</div>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ILITEACH -->
+<div class="iliteach-hero" id="iliteach">
+  <div class="iliteach-left reveal">
+    <div class="div-eyebrow">Division 02</div>
+    <div class="div-title-row">
+      <h2 class="div-giant-title">Ili<em>Teach</em></h2>
+      <img src="images/iliteach.png" alt="Iliteach" class="div-section-logo">
+    </div>
+    <p class="div-pitch">Knowledge shouldn't be locked behind paywalls. <strong>Iliteach puts expert resources, real tutoring, and a community-built database</strong> directly in your hands. The Work Database is <strong style="color:var(--navy-light)">free right now</strong> — contribute 30 completed assignments and you're in. Pricing only begins once the platform reaches a sufficient user base, and you'll always be notified before it does.</p>
+    <a id="btn-start-learning" href="#" class="btn-navy">Start Learning</a>
+  </div>
+  <div class="iliteach-right">
+    <div class="iliteach-right-pattern" id="teachGrid"></div>
+    <div class="iliteach-right-text">ILITEACH</div>
+  </div>
+</div>
+<div class="teach-feature-row reveal">
+  <div class="teach-feature">
+    <div class="teach-feature-num">01</div>
+    <span class="teach-feature-icon"><svg width="36" height="36" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="4" width="24" height="28" rx="2"/><line x1="11" y1="12" x2="25" y2="12"/><line x1="11" y1="17" x2="25" y2="17"/><line x1="11" y1="22" x2="19" y2="22"/></svg></span>
+    <div class="teach-feature-title">Cheat Sheets</div>
+    <p class="teach-feature-desc">Dense, beautifully organized reference materials built around what actually shows up on tests, projects, and real-world work. No fluff, no filler — pure signal.</p>
+    <p class="teach-feature-detail">Available across multiple subjects. Perfect for last-minute review or quick on-the-job lookup. <strong style="color:var(--navy-light)">$5–10 per sheet depending on complexity</strong> — straightforward single-topic sheets at $5, dense multi-concept or custom sheets built around your specific exam or curriculum at $10.</p>
+  </div>
+  <div class="teach-feature">
+    <div class="teach-feature-num">02</div>
+    <span class="teach-feature-icon"><svg width="36" height="36" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="18,6 34,14 18,22 2,14"/><polyline points="8,17.5 8,26 18,30 28,26 28,17.5"/><line x1="34" y1="14" x2="34" y2="22"/></svg></span>
+    <div class="teach-feature-title">Tutoring</div>
+    <p class="teach-feature-desc">One-on-one sessions shaped around your pace, your weak spots, and your goals — not a rigid curriculum. Real explanations from someone who actually knows the material.</p>
+    <p class="teach-feature-detail">Flexible scheduling. Sessions tailored to your level. Ask anything, get honest answers.</p>
+  </div>
+  <div class="teach-feature">
+    <div class="teach-feature-num">03</div>
+    <span class="teach-feature-icon"><svg width="36" height="36" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="18" cy="10" rx="12" ry="4"/><path d="M6 10v6c0 2.2 5.4 4 12 4s12-1.8 12-4v-6"/><path d="M6 16v6c0 2.2 5.4 4 12 4s12-1.8 12-4v-6"/></svg></span>
+    <div class="teach-feature-title">Work Database</div>
+    <p class="teach-feature-desc">A growing, community-driven library of real completed worksheets, assignments, and homework. Browse by subject, use as a study reference, or submit your own work to earn your way in.</p>
+    <p class="teach-feature-detail">
+      <strong style="color:var(--navy-light)">Free Right Now</strong> — contribute 30 completed assignments and get full access at no cost. This is the rate for everyone during the platform-building phase.<br><br>
+      Once enough users are on the platform, regular pricing activates: <strong>$20/mo</strong> standard access · <strong>$10/mo</strong> if you submit 20+ pieces per month.<br><br>
+      You'll be notified well in advance before any charge begins — same promise as Ilitrade.
+    </p>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ILITEACH FAQ -->
+<div class="faq-section teach-faq" id="iliteach-faq">
+  <div class="faq-group reveal">
+    <div class="faq-group-header teach"><span class="faq-group-label">Iliteach — Frequently Asked</span><span class="faq-group-line"></span></div>
+    <div class="faq-grid">
+      <button class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><div><span class="faq-tag teach">Iliteach</span><span class="faq-q-text">What subjects does Iliteach cover?</span></div><div class="faq-icon">+</div></div>
+        <div class="faq-a">The database and cheat sheets span math, science, English, history, and more — growing as the community contributes. Tutoring is more flexible: reach out with your subject and level and we'll let you know upfront if we can help.</div>
+      </button>
+      <button class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><div><span class="faq-tag teach">Iliteach</span><span class="faq-q-text">How does the Work Database contributor discount work?</span></div><div class="faq-icon">+</div></div>
+        <div class="faq-a">Right now the Work Database is free — contribute 30 completed assignments and you get full access at no cost. This applies to everyone during the platform-building phase, no time limit. Once the platform has enough users, regular pricing activates: $20/mo for standard access, or $10/mo if you submit 20+ pieces per month. You'll always be notified well in advance before any charge begins — no surprises.</div>
+      </button>
+      <button class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><div><span class="faq-tag teach">Iliteach</span><span class="faq-q-text">How are tutoring sessions conducted?</span></div><div class="faq-icon">+</div></div>
+        <div class="faq-a">In-person or online via video call. We work around your schedule — sessions are typically 1 hour but flexible. No rigid curriculum — every session is shaped around what you actually need that day.</div>
+      </button>
+      <button class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><div><span class="faq-tag teach">Iliteach</span><span class="faq-q-text">Are the cheat sheets pre-made or can I request custom ones?</span></div><div class="faq-icon">+</div></div>
+        <div class="faq-a">Both. Pre-made sheets covering common subjects are $5 each — straightforward, single-topic reference material. Custom cheat sheets built around your specific exam, course, or curriculum are $10 and typically delivered within 48–72 hours. Price reflects complexity — a simple formula sheet sits at $5, a dense multi-concept guide for a specific course sits at $10.</div>
+      </button>
+      <button class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><div><span class="faq-tag teach">Iliteach</span><span class="faq-q-text">What counts as a valid Work Database submission?</span></div><div class="faq-icon">+</div></div>
+        <div class="faq-a">Any completed worksheet, homework, or problem set that is legible, reasonably complete, and useful to another student. Submissions are reviewed before being added. Low-effort or duplicate submissions don't count toward the discount threshold.</div>
+      </button>
+      <button class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><div><span class="faq-tag teach">Iliteach</span><span class="faq-q-text">Is Iliteach for high school, college, or both?</span></div><div class="faq-icon">+</div></div>
+        <div class="faq-a">Both — and beyond. Content covers middle school through college. Tutoring is available at any level. Adult learners returning to education are just as welcome as students cramming for exams.</div>
+      </button>
+      <button class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><div><span class="faq-tag teach">Iliteach</span><span class="faq-q-text">Can I cancel my Work Database subscription anytime?</span></div><div class="faq-icon">+</div></div>
+        <div class="faq-a">Yes — no long-term contracts. Cancel anytime and your access continues until the end of the billing period. No cancellation fees, no awkward process. We'd rather earn your subscription each month than trap you in one.</div>
+      </button>
+      <button class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><div><span class="faq-tag teach">Iliteach</span><span class="faq-q-text">How many tutoring sessions can I book per week?</span></div><div class="faq-icon">+</div></div>
+        <div class="faq-a">As many as availability allows — no cap on bookings. If you need daily sessions before an exam, we'll accommodate that. Reach out with your schedule and we'll work out a rhythm that fits.</div>
+      </button>
+    </div>
+  </div>
+</div>
+
+<div style="height:1px;background:linear-gradient(to right,transparent,rgba(96,165,250,0.3),transparent)"></div>
+
+<!-- ILITRADE -->
+<div class="ilitrade-hero" id="ilitrade">
+  <div class="ilitrade-hero-bg"></div>
+  <div class="ilitrade-hero-text reveal">
+    <div class="ilitrade-launch-badge">Currently in Market-Building Phase</div>
+    <div class="div-eyebrow">Division 03</div>
+    <div class="div-title-row">
+      <h2 class="div-giant-title">Ili<em>Trade</em></h2>
+      <img src="images/ilitrade.png" alt="Ilitrade" class="div-section-logo">
+    </div>
+    <p class="div-pitch">A marketplace built from the ground up for <strong>resellers, service providers, and advertisers</strong>. We're growing the network first — so <strong style="color:var(--emerald-light)">accounts are completely free</strong> until the market is ready. No catch, no credit card, no expiry date. Get in early.</p>
+    <a id="btn-join-free" href="#" class="btn-emerald">Join Free Now</a>
+  </div>
+  <div class="ilitrade-hero-visual reveal">
+    <div class="trade-tier">
+      <div class="trade-tier-label">Reseller</div>
+      <div class="trade-tier-name">Reselling Account</div>
+      <div>
+        <div class="trade-tier-price-strike">$15–20/mo</div>
+        <div class="trade-tier-now-free"><svg width="11" height="11" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-right:5px"><polyline points="2,6 5,10 10,2"/></svg>FREE Right Now</div>
+        <div class="trade-tier-free">First month free when pricing begins</div>
+      </div>
+    </div>
+    <div class="trade-tier">
+      <div class="trade-tier-label">Provider</div>
+      <div class="trade-tier-name">Services Account</div>
+      <div>
+        <div class="trade-tier-price-strike">$10–15/mo</div>
+        <div class="trade-tier-now-free"><svg width="11" height="11" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-right:5px"><polyline points="2,6 5,10 10,2"/></svg>FREE Right Now</div>
+        <div class="trade-tier-free">First month free when pricing begins</div>
+      </div>
+    </div>
+    <div class="trade-tier highlight">
+      <div class="trade-tier-label">Advertiser</div>
+      <div class="trade-tier-name">Advertising</div>
+      <div>
+        <div class="trade-tier-price">$50/mo</div>
+        <div class="trade-tier-free">Only paid account · Network-wide reach</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="ilitrade-free-banner reveal" style="margin:2px 0 0;">
+  <div class="free-banner-badge"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;margin-right:6px"><polyline points="3,9 7,13 15,5"/></svg>Currently Free</div>
+  <div class="free-banner-text">
+    <strong>Reselling and Services accounts are free right now</strong> — no time limit, no credit card required. We're building the marketplace and want early members in at zero cost. Pricing only activates once the market is established, and you'll always be notified in advance.
+  </div>
+</div>
+
+<div class="trade-feature-row reveal">
+  <div class="trade-feature">
+    <span class="trade-feature-icon"><svg width="36" height="36" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h4l3.6 16h16.4l3-12H10"/><circle cx="14" cy="28" r="2"/><circle cx="26" cy="28" r="2"/></svg></span>
+    <div class="trade-feature-title">Resell Anything</div>
+    <p class="trade-feature-desc">List products, move inventory, and reach buyers across the Ilias network. The reselling account is built for people who want a lean, low-cost storefront with real traffic behind it — no fulfillment headaches, no bloated fees. Sell what you source, keep what you earn.</p>
+  </div>
+  <div class="trade-feature">
+    <span class="trade-feature-icon"><svg width="36" height="36" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M28 8a8 8 0 0 0-11.3 11.3L6 30a2.8 2.8 0 0 0 4 4l10.7-10.7A8 8 0 0 0 28 8z"/><line x1="22" y1="8" x2="28" y2="14"/></svg></span>
+    <div class="trade-feature-title">Offer Services</div>
+    <p class="trade-feature-desc">Got skills? Put them to work. The services account lets you list what you do and get discovered by clients inside the marketplace — whether you're a designer, tutor, handyman, or anything in between. No agency cut, no platform tax. You set the price, you keep the profit.</p>
+  </div>
+  <div class="trade-feature">
+    <span class="trade-feature-icon"><svg width="36" height="36" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M30 6L14 16H8a2 2 0 0 0-2 2v2a2 2 0 0 0 2 2h2l2 6h4l-1-6h-1l16 10V6z"/></svg></span>
+    <div class="trade-feature-title">Advertise Everywhere</div>
+    <p class="trade-feature-desc">A flat $50/month puts your ads across every Ilias Enterprises property — Ilitech, Iliteach, and Ilitrade. Maximum visibility across the entire network, reaching buyers, students, sellers, and service seekers all at once. The only paid account during the market-building phase — and the most powerful one.</p>
+  </div>
+</div>
+
+<!-- ILITRADE FAQ -->
+<div class="faq-section trade-faq" id="ilitrade-faq">
+  <div class="faq-group reveal">
+    <div class="faq-group-header trade"><span class="faq-group-label">Ilitrade — Frequently Asked</span><span class="faq-group-line"></span></div>
+    <div class="faq-grid">
+      <button class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><div><span class="faq-tag trade">Ilitrade</span><span class="faq-q-text">When do Ilitrade accounts start charging?</span></div><div class="faq-icon">+</div></div>
+        <div class="faq-a">All accounts (except Advertising) are free during the market-building phase. Once the marketplace reaches sufficient activity, pricing rolls out — but you'll always get your first paid month free and receive advance notice before any charge begins.</div>
+      </button>
+      <button class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><div><span class="faq-tag trade">Ilitrade</span><span class="faq-q-text">What's the difference between a Reselling and Services account?</span></div><div class="faq-icon">+</div></div>
+        <div class="faq-a">A Reselling account is for listing products you source and sell. A Services account is for listing things you do — skills, labour, time. You can hold both, each billed independently at its own rate.</div>
+      </button>
+      <button class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><div><span class="faq-tag trade">Ilitrade</span><span class="faq-q-text">What can I sell on Ilitrade?</span></div><div class="faq-icon">+</div></div>
+        <div class="faq-a">Most legal products and services — physical goods, digital products, freelance work, creative services, and more. What you can't list: anything illegal, counterfeit, or in violation of intellectual property rights. Clear guidelines provided on signup.</div>
+      </button>
+      <button class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><div><span class="faq-tag trade">Ilitrade</span><span class="faq-q-text">Does Ilitrade take a cut of my sales?</span></div><div class="faq-icon">+</div></div>
+        <div class="faq-a">No transaction fees beyond the monthly account cost. The subscription covers your platform access — we don't take a percentage of what you earn. Your sales are your sales. This is one of the core ways Ilitrade is built differently from traditional marketplaces.</div>
+      </button>
+      <button class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><div><span class="faq-tag trade">Ilitrade</span><span class="faq-q-text">How does Ilitrade advertising work?</span></div><div class="faq-icon">+</div></div>
+        <div class="faq-a">The $50/mo advertising account places your ads across all Ilias Enterprises properties. You submit your ad creative, we handle placement. Flat-rate — no bidding, no auction volatility. Same price every month, full network reach.</div>
+      </button>
+      <button class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><div><span class="faq-tag trade">Ilitrade</span><span class="faq-q-text">Can I have both a Reselling and Services account?</span></div><div class="faq-icon">+</div></div>
+        <div class="faq-a">Yes. Both can be active under the same profile, each billed independently. If you resell products and also offer related services, having both is the right move.</div>
+      </button>
+      <button class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><div><span class="faq-tag trade">Ilitrade</span><span class="faq-q-text">How do buyers find my listings?</span></div><div class="faq-icon">+</div></div>
+        <div class="faq-a">Through the Ilitrade marketplace directory, internal search, and advertising placements. As the network grows, organic discovery improves — another reason getting in early matters.</div>
+      </button>
+      <button class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><div><span class="faq-tag trade">Ilitrade</span><span class="faq-q-text">Is there a limit to how many products or services I can list?</span></div><div class="faq-icon">+</div></div>
+        <div class="faq-a">No hard cap during the current phase. List as many products or services as you offer. As the platform scales, listing tiers may be introduced — but existing members will be grandfathered in at fair terms. We won't penalize early adopters.</div>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- GENERAL FAQ -->
+<section class="faq-section" id="faq">
+  <p class="section-label reveal">General Questions</p>
+  <h2 class="section-title reveal">Frequently Asked</h2>
+  <div class="faq-group reveal">
+    <div class="faq-group-header general"><span class="faq-group-label">General</span><span class="faq-group-line"></span></div>
+    <div class="faq-grid">
+      <button class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><div><span class="faq-tag general">General</span><span class="faq-q-text">How do I get a quote?</span></div><div class="faq-icon">+</div></div>
+        <div class="faq-a">Just reach out via email or phone with a description of what you need. We'll scope it out, ask any clarifying questions, and come back with a transparent price — no pressure, no commitment required to get a number.</div>
+      </button>
+      <button class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><div><span class="faq-tag general">General</span><span class="faq-q-text">How long does a typical project take?</span></div><div class="faq-icon">+</div></div>
+        <div class="faq-a">It depends on scope. Snippets and simple scripts: 1–3 days. Full programs and websites: 1–4 weeks. App Store deployments: 2–6 weeks. Custom PC builds: 3–7 days after parts arrive. We always give you an honest timeline upfront — and we stick to it.</div>
+      </button>
+      <button class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><div><span class="faq-tag general">General</span><span class="faq-q-text">Do I need to pay upfront?</span></div><div class="faq-icon">+</div></div>
+        <div class="faq-a">Typically a 50% deposit is required to start, with the remainder due on delivery. For projects under $100, full payment upfront may be requested. For larger projects, we can discuss milestone-based payment — just ask.</div>
+      </button>
+      <button class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><div><span class="faq-tag general">General</span><span class="faq-q-text">Can I use multiple divisions at once?</span></div><div class="faq-icon">+</div></div>
+        <div class="faq-a">Absolutely — and it's encouraged. Many clients use Ilitech to build a product, Iliteach to learn to manage it, and Ilitrade to sell or advertise it. The three divisions are designed to complement each other with no restrictions on combining them.</div>
+      </button>
+      <button class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><div><span class="faq-tag general">General</span><span class="faq-q-text">Do you work with clients outside your local area?</span></div><div class="faq-icon">+</div></div>
+        <div class="faq-a">Yes — most work is done fully remotely. Computer builds and repairs are typically in-person or require shipping, but we can discuss options depending on your location.</div>
+      </button>
+      <button class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><div><span class="faq-tag general">General</span><span class="faq-q-text">What if I'm not happy with the result?</span></div><div class="faq-icon">+</div></div>
+        <div class="faq-a">We work with you until it's right. Every project includes a review phase where you can request changes before it closes. We'd rather spend extra time getting it where you want it than leave you with something that doesn't fit.</div>
+      </button>
+      <button class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><div><span class="faq-tag general">General</span><span class="faq-q-text">How do I contact you?</span></div><div class="faq-icon">+</div></div>
+        <div class="faq-a">Email or phone — both listed in the Contact section. Email is best for detailed project inquiries. Phone or text works great for quick questions. We respond to everything, typically within 24 hours.</div>
+      </button>
+      <button class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><div><span class="faq-tag general">General</span><span class="faq-q-text">Is Ilias Enterprises a team or a single person?</span></div><div class="faq-icon">+</div></div>
+        <div class="faq-a">Currently run by Ilias directly — every project gets personal attention from someone fully invested in the outcome. As the business grows, collaborators may be brought in for specific work, but you'll always know exactly who's working on your project.</div>
+      </button>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <div class="contact-inner">
+
+    <!-- Info side -->
+    <div class="contact-info reveal">
+      <div>
+        <p class="section-label" style="margin-bottom:20px">Get in Touch</p>
+        <h2 class="contact-big-title">Let's<br>Build<br><span>Something.</span></h2>
+        <p class="contact-tagline">No automated responses, no runaround — just a real person. Reach out with a project, a question, or a rough idea and I'll come back to you within 24 hours.</p>
+      </div>
+      <div class="contact-detail">
+        <div class="contact-detail-item">
+          <div class="contact-detail-icon">
+            <svg width="18" height="18" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="18" height="14" rx="2"/><polyline points="2,4 11,13 20,4"/></svg>
+          </div>
+          <div class="contact-detail-body">
+            <div class="contact-detail-label">Email</div>
+            <div class="contact-detail-value"><a href="mailto:imatom85@gmail.com">&#105;&#109;&#97;&#116;&#111;&#109;&#56;&#53;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;</a></div>
+          </div>
+        </div>
+        <div class="contact-detail-item">
+          <div class="contact-detail-icon">
+            <svg width="18" height="18" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="9"/><polyline points="11,6 11,11 15,13"/></svg>
+          </div>
+          <div class="contact-detail-body">
+            <div class="contact-detail-label">Response Time</div>
+            <div class="contact-detail-value">Within 24 hours</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Form side -->
+    <div class="contact-form-side reveal">
+      <div class="contact-form-heading">Send a Message</div>
+      <form id="contactForm" action="https://formspree.io/f/xzdkdgvg" method="POST" onsubmit="handleContactSubmit(event)">
+        <input type="hidden" name="_subject" value="New message — Ilias Enterprises">
+        <div class="cf-row">
+          <div class="cf-group">
+            <label class="cf-label" for="cf-name">Name</label>
+            <input class="cf-input" type="text" id="cf-name" name="name" placeholder="Your name" required>
+          </div>
+          <div class="cf-group">
+            <label class="cf-label" for="cf-email">Email</label>
+            <input class="cf-input" type="email" id="cf-email" name="email" placeholder="your@email.com" required>
+          </div>
+        </div>
+        <div class="cf-group">
+          <label class="cf-label" for="cf-division">Regarding</label>
+          <select class="cf-select" id="cf-division" name="division" required>
+            <option value="" disabled selected>Select a division</option>
+            <option value="Ilitech">Ilitech — Software / Apps / Websites / Computers</option>
+            <option value="Iliteach">Iliteach — Tutoring / Cheat Sheets / Work Database</option>
+            <option value="Ilitrade">Ilitrade — Marketplace / Reselling / Advertising</option>
+            <option value="General">General Inquiry</option>
+          </select>
+        </div>
+        <div class="cf-group">
+          <label class="cf-label" for="cf-message">Message</label>
+          <textarea class="cf-textarea" id="cf-message" name="message" placeholder="Tell me what you're looking for — rough ideas welcome." required></textarea>
+        </div>
+        <input type="text" name="_gotcha" style="display:none">
+        <button type="submit" class="cf-submit" id="cf-submit">Send Message</button>
+      </form>
+      <div class="cf-success" id="formSuccess">
+        <div class="cf-success-mark">✓</div>
+        <h3>Message Sent</h3>
+        <p>Got it — I'll get back to you within 24 hours.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="footer-logo-wrap">
+      <img src="images/logo.png" alt="Ilias Enterprises" class="footer-logo-img">
+      <div class="footer-logo">Ilias Enterprises</div>
+    </div>
+    <div class="footer-contact">
+      <a href="mailto:imatom85@gmail.com" class="footer-contact-link">&#105;&#109;&#97;&#116;&#111;&#109;&#56;&#53;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;</a>
+    </div>
+    <div class="footer-copy">© 2025 Ilias Enterprises. All rights reserved.</div>
+  </div>
+  <div>
+    <div class="footer-divisions">
+      <span class="footer-div-name" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})">About</span>
+      <span class="footer-div-name" onclick="document.getElementById('ilitech').scrollIntoView({behavior:'smooth'})">Ilitech</span>
+      <span class="footer-div-name" onclick="document.getElementById('iliteach').scrollIntoView({behavior:'smooth'})">Iliteach</span>
+      <span class="footer-div-name" onclick="document.getElementById('ilitrade').scrollIntoView({behavior:'smooth'})">Ilitrade</span>
+      <span class="footer-div-name" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Contact</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  /* ---- CONTACT FORM ---- */
+  async function handleContactSubmit(e) {
+    e.preventDefault();
+    const form = document.getElementById('contactForm');
+    const btn  = document.getElementById('cf-submit');
+    btn.disabled = true;
+    btn.textContent = 'Sending…';
+    try {
+      const res = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      });
+      if (res.ok) {
+        form.style.display = 'none';
+        document.getElementById('formSuccess').style.display = 'block';
+      } else {
+        btn.disabled = false;
+        btn.textContent = 'Send Message';
+        alert('Something went wrong — please email directly or try again.');
+      }
+    } catch {
+      btn.disabled = false;
+      btn.textContent = 'Send Message';
+      alert('Could not send — please check your connection and try again.');
+    }
+  }
+
+  /* ================================================================
+     BUTTON REDIRECT LINKS
+     Update the URLs below to change where each CTA button points.
+     ================================================================ */
+  const BUTTON_LINKS = {
+    'btn-our-story':      'about.html',   // Hero — Our Story
+    'btn-get-a-quote':    'ilitech.html',          // Ilitech — Get a Quote
+    'btn-start-learning': 'teach-and-trade.html', // Iliteach — Start Learning
+    'btn-join-free':      'teach-and-trade.html', // Ilitrade — Join Free Now
+  };
+
+  Object.entries(BUTTON_LINKS).forEach(([id, url]) => {
+    const el = document.getElementById(id);
+    if (el) el.href = url;
+  });
+  /* ================================================================ */
+
+  /* ---- SMOOTH SCROLL NAV ---- */
+  document.querySelectorAll('a[href^="#"]').forEach(link => {
+    link.addEventListener('click', function(e) {
+      const id = this.getAttribute('href').slice(1);
+      if (!id) return;
+      const target = document.getElementById(id);
+      if (target) {
+        e.preventDefault();
+        const top = target.getBoundingClientRect().top + window.scrollY - 68;
+        window.scrollTo({ top, behavior: 'smooth' });
+      }
+    });
+  });
+
+  /* ---- SCROLL REVEAL ---- */
+  const revealEls = document.querySelectorAll('.reveal');
+  const revealObs = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 70);
+      }
+    });
+  }, { threshold: 0.07 });
+  revealEls.forEach(el => revealObs.observe(el));
+
+  /* ---- ANIMATED COUNTERS ---- */
+  function animateCounter(el) {
+    const target = parseInt(el.dataset.target);
+    const suffix = el.dataset.suffix || '';
+    if (target === 0) { el.textContent = '0' + suffix; return; }
+    const duration = 1400;
+    const start = performance.now();
+    function tick(now) {
+      const elapsed = now - start;
+      const progress = Math.min(elapsed / duration, 1);
+      const ease = 1 - Math.pow(1 - progress, 3);
+      el.textContent = Math.floor(ease * target) + suffix;
+      if (progress < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+
+  const counterObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting && e.target.dataset.target !== undefined) {
+        animateCounter(e.target);
+        counterObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.5 });
+  document.querySelectorAll('.about-stat-num[data-target]').forEach(el => counterObs.observe(el));
+
+  /* ---- PARALLAX ---- */
+  const parallaxEls = document.querySelectorAll('.parallax-layer');
+  let ticking = false;
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      requestAnimationFrame(() => {
+        const scrollY = window.scrollY;
+        parallaxEls.forEach(el => {
+          const speed = parseFloat(el.dataset.speed) || 0.05;
+          const rect = el.getBoundingClientRect();
+          const offset = (rect.top + scrollY) - scrollY;
+          el.style.transform = `translateY(${scrollY * speed}px)`;
+        });
+        ticking = false;
+      });
+      ticking = true;
+    }
+  });
+
+  /* ---- HERO PARALLAX BG ---- */
+  const heroBg = document.querySelector('.hero-bg');
+  if (heroBg) {
+    window.addEventListener('scroll', () => {
+      const s = window.scrollY;
+      heroBg.style.transform = `translateY(${s * 0.25}px)`;
+      const wordmark = document.querySelector('.hero-wordmark');
+      if (wordmark) wordmark.style.transform = `translate(-50%, calc(-50% + ${s * 0.15}px))`;
+    }, { passive: true });
+  }
+
+  /* ---- HAMBURGER ---- */
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    mobileMenu.classList.toggle('open');
+  });
+  function closeMenu() {
+    hamburger.classList.remove('open');
+    mobileMenu.classList.remove('open');
+  }
+
+  /* ---- ILITEACH GRID ---- */
+  const grid = document.getElementById('teachGrid');
+  if (grid) {
+    for (let i = 0; i < 64; i++) {
+      const cell = document.createElement('div');
+      cell.className = 'iliteach-cell';
+      grid.appendChild(cell);
+    }
+    setInterval(() => {
+      const cells = grid.querySelectorAll('.iliteach-cell');      cells[Math.floor(Math.random() * cells.length)].classList.toggle('lit');
+    }, 120);
+  }
+
+  /* ---- FAQ ACCORDION ---- */
+  function toggleFaq(btn) {
+    const isOpen = btn.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
+    if (!isOpen) btn.classList.add('open');
+  }
+</script>
+</body>
+</html>

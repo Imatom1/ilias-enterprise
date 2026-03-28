@@ -1,0 +1,1078 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ilitech — Ilias Enterprises</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0a0a0a;
+    --white: #f5f2ee;
+    --gold: #c9a84c;
+    --gold-light: #e8c97a;
+    --gold-dim: #7a6330;
+    --panel: #111111;
+    --border: rgba(201,168,76,0.18);
+    --text-muted: #888;
+    --purple: #7c3aed;
+    --purple-light: #a78bfa;
+    --purple-dim: #4c1d95;
+    --purple-glow: rgba(124,58,237,0.15);
+    --purple-faint: rgba(124,58,237,0.06);
+    --purple-border: rgba(124,58,237,0.28);
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* ---- NAV ---- */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 40px;
+    background: rgba(10,10,10,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    z-index: 100;
+  }
+  .nav-logo-wrap {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+  }
+  .nav-logo-img { height: 36px; width: 36px; object-fit: contain; }
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.3rem;
+    letter-spacing: 0.12em;
+    color: var(--white);
+  }
+  .nav-back {
+    font-size: 0.8rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: opacity 0.2s;
+  }
+  .nav-back:hover { opacity: 0.7; }
+
+  /* ---- PAGE HEADER ---- */
+  .page-header {
+    padding: 140px 48px 80px;
+    max-width: 1000px;
+    margin: 0 auto;
+    position: relative;
+  }
+  .page-eyebrow {
+    font-size: 0.7rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+  }
+  .page-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3.5rem, 9vw, 7rem);
+    line-height: 0.92;
+    letter-spacing: 0.02em;
+    margin-bottom: 32px;
+  }
+  .page-title em { color: var(--purple-light); font-style: normal; }
+  .page-subtitle {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: rgba(245,242,238,0.7);
+    max-width: 600px;
+    margin-bottom: 40px;
+  }
+  .header-logo {
+    height: clamp(340px, 38vw, 560px);
+    width: clamp(340px, 38vw, 560px);
+    object-fit: contain;
+    position: absolute;
+    top: 80px;
+    right: 48px;
+    opacity: 0.9;
+    mix-blend-mode: screen;
+  }
+
+  /* ---- DIVIDER ---- */
+  .divider {
+    height: 1px;
+    background: var(--border);
+    margin: 0 48px;
+  }
+  .divider-purple {
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(124,58,237,0.4), transparent);
+    margin: 0;
+  }
+
+  /* ---- SECTION ---- */
+  section { padding: 80px 48px; }
+  .section-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    letter-spacing: 0.04em;
+    line-height: 1.05;
+    margin-bottom: 32px;
+  }
+  .section-title em { color: var(--purple-light); font-style: normal; }
+
+  /* ---- DIVISION PITCH ---- */
+  .pitch-block {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--purple-light);
+    padding: 56px 48px;
+    position: relative;
+    overflow: hidden;
+  }
+  .pitch-block::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--purple-faint);
+    pointer-events: none;
+  }
+  .pitch-logo-row {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 24px;
+  }
+  .pitch-logo { height: 240px; width: 240px; object-fit: contain; mix-blend-mode: screen; }
+  .pitch-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3rem;
+    letter-spacing: 0.06em;
+    color: var(--purple-light);
+    line-height: 1;
+  }
+  .pitch-tag {
+    font-size: 0.7rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 20px;
+  }
+  .pitch-text {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: rgba(245,242,238,0.78);
+    max-width: 760px;
+    margin-bottom: 36px;
+  }
+  .pitch-text strong { color: var(--white); font-weight: 500; }
+
+  /* ---- PILLS ROW ---- */
+  .pills-row {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+  }
+  .pill {
+    padding: 6px 16px;
+    border: 1px solid var(--purple-border);
+    font-size: 0.75rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--purple-light);
+    background: rgba(124,58,237,0.08);
+  }
+
+  /* ---- SERVICE SHOWCASES ---- */
+  .showcase {
+    border: 1px solid var(--border);
+    margin-bottom: 2px;
+  }
+  .showcase-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 32px 40px;
+    border-bottom: 1px solid var(--border);
+    background: var(--panel);
+  }
+  .showcase-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    letter-spacing: 0.06em;
+    line-height: 1.1;
+  }
+  .showcase-title span { color: var(--purple-light); }
+  .showcase-count {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 4rem;
+    color: rgba(124,58,237,0.15);
+    letter-spacing: 0.04em;
+    line-height: 1;
+  }
+  .service-tiles {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: rgba(201,168,76,0.06);
+  }
+  .service-tiles-2x2 { grid-template-columns: repeat(2, 1fr); }
+  .service-tile {
+    background: var(--black);
+    padding: 36px 32px;
+  }
+  .tile-tag {
+    font-size: 0.68rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--purple-light);
+    margin-bottom: 12px;
+    font-weight: 500;
+  }
+  .tile-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4rem;
+    letter-spacing: 0.06em;
+    color: var(--white);
+    margin-bottom: 12px;
+    line-height: 1.1;
+  }
+  .tile-desc {
+    font-size: 0.88rem;
+    line-height: 1.7;
+    color: rgba(245,242,238,0.6);
+    margin-bottom: 20px;
+  }
+  .tile-prices { display: flex; flex-wrap: wrap; gap: 8px; }
+  .tile-price-pill {
+    padding: 5px 12px;
+    background: rgba(124,58,237,0.1);
+    border: 1px solid var(--purple-border);
+    font-size: 0.82rem;
+    color: var(--purple-light);
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+  }
+  .tile-price-sub {
+    font-size: 0.68rem;
+    color: rgba(167,139,250,0.6);
+    margin-left: 4px;
+  }
+
+  /* ---- TRUST STRIP ---- */
+  .trust-strip {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+    border: 1px solid var(--border);
+    margin-top: 64px;
+  }
+  .trust-block {
+    background: var(--panel);
+    padding: 36px 28px;
+    text-align: center;
+  }
+  .trust-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.8rem;
+    color: var(--purple-light);
+    letter-spacing: 0.04em;
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .trust-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  /* ---- PROCESS ---- */
+  .process-steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+    margin-top: 48px;
+  }
+  .process-step {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    padding: 36px 28px;
+    position: relative;
+  }
+  .step-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3.5rem;
+    color: rgba(124,58,237,0.18);
+    letter-spacing: 0.04em;
+    line-height: 1;
+    margin-bottom: 12px;
+  }
+  .step-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.3rem;
+    letter-spacing: 0.06em;
+    color: var(--white);
+    margin-bottom: 10px;
+  }
+  .step-desc {
+    font-size: 0.86rem;
+    line-height: 1.7;
+    color: rgba(245,242,238,0.58);
+  }
+
+  /* ---- CTA ---- */
+  .cta-block {
+    background: var(--panel);
+    border: 1px solid var(--purple-border);
+    border-top: 3px solid var(--purple-light);
+    padding: 64px 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+    flex-wrap: wrap;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-block::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--purple-faint);
+    pointer-events: none;
+  }
+  .cta-block-text h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.6rem;
+    letter-spacing: 0.04em;
+    margin-bottom: 10px;
+    line-height: 1.05;
+  }
+  .cta-block-text p {
+    font-size: 0.95rem;
+    color: rgba(245,242,238,0.6);
+    max-width: 460px;
+    line-height: 1.65;
+  }
+  .btn-purple {
+    background: var(--purple-light);
+    color: #000;
+    border: none;
+    padding: 14px 32px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: background 0.2s, transform 0.2s;
+    white-space: nowrap;
+  }
+  .btn-purple:hover { background: #c4b5fd; transform: translateY(-2px); }
+  .btn-outline {
+    background: transparent;
+    color: var(--white);
+    border: 1px solid rgba(245,242,238,0.25);
+    padding: 16px 32px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: border-color 0.2s, color 0.2s, transform 0.2s;
+    white-space: nowrap;
+  }
+  .btn-outline:hover { border-color: var(--purple-light); color: var(--purple-light); transform: translateY(-2px); }
+
+  /* ---- FOOTER ---- */
+  footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 40px 48px;
+    border-top: 1px solid var(--border);
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+  .footer-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4rem;
+    letter-spacing: 0.14em;
+    color: var(--white);
+  }
+  .footer-copy { font-size: 0.78rem; color: var(--text-muted); margin-top: 8px; }
+  .footer-links { display: flex; gap: 24px; flex-wrap: wrap; align-items: center; }
+  .footer-links a {
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--gold); }
+
+  /* ---- REVEAL ---- */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s cubic-bezier(0.22,1,0.36,1), transform 0.7s cubic-bezier(0.22,1,0.36,1);
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 900px) {
+    .service-tiles { grid-template-columns: 1fr; }
+    .service-tiles-2x2 { grid-template-columns: 1fr; }
+    .process-steps { grid-template-columns: repeat(2, 1fr); }
+    .trust-strip { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 768px) {
+    .page-header { padding: 120px 24px 60px; }
+    section { padding: 60px 24px; }
+    .divider { margin: 0 24px; }
+    footer { padding: 32px 24px; flex-direction: column; gap: 24px; }
+    nav { padding: 0 24px; }
+    .pitch-block { padding: 40px 28px; }
+    .showcase-header { padding: 24px 28px; }
+    .service-tile { padding: 28px 24px; }
+    .cta-block { padding: 44px 28px; flex-direction: column; }
+    .header-logo { display: none; }
+    .process-steps { grid-template-columns: 1fr; }
+    .trust-strip { grid-template-columns: 1fr 1fr; }
+  }
+
+  /* ---- CONTACT SECTION ---- */
+  .contact-section { background: #0d0d0d; padding: 0; }
+  .contact-inner { display: grid; grid-template-columns: 1fr 1fr; min-height: 520px; }
+  .contact-info {
+    padding: 80px 60px;
+    border-right: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .contact-big-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    letter-spacing: 0.02em;
+    line-height: 0.92;
+    color: var(--white);
+    margin-bottom: 24px;
+  }
+  .contact-big-title span { color: var(--purple-light); }
+  .contact-tagline {
+    font-size: 0.95rem;
+    color: rgba(245,242,238,0.55);
+    line-height: 1.8;
+    max-width: 380px;
+    margin-bottom: 48px;
+  }
+  .contact-detail { display: flex; flex-direction: column; gap: 2px; }
+  .contact-detail-item {
+    display: flex; align-items: center; gap: 16px;
+    background: var(--panel); border: 1px solid var(--border); padding: 18px 22px;
+  }
+  .contact-detail-icon { color: var(--purple-light); flex-shrink: 0; }
+  .contact-detail-label { font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 3px; }
+  .contact-detail-value { font-size: 0.9rem; color: var(--white); }
+  .contact-detail-value a { color: var(--white); text-decoration: none; transition: color 0.2s; }
+  .contact-detail-value a:hover { color: var(--purple-light); }
+  .contact-form-side { padding: 80px 60px; background: var(--panel); }
+  .contact-form-heading { font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; letter-spacing: 0.1em; color: var(--white); margin-bottom: 32px; }
+  .cf-row { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .cf-group { display: flex; flex-direction: column; gap: 7px; margin-bottom: 22px; }
+  .cf-label { font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-muted); }
+  .cf-input, .cf-select, .cf-textarea {
+    background: transparent; border: none; border-bottom: 1px solid rgba(245,242,238,0.14);
+    color: var(--white); font-family: 'DM Sans', sans-serif; font-size: 0.9rem; font-weight: 300;
+    padding: 10px 0; outline: none; transition: border-color 0.25s; width: 100%;
+  }
+  .cf-input:focus, .cf-select:focus, .cf-textarea:focus { border-color: var(--purple-dim); }
+  .cf-input::placeholder, .cf-textarea::placeholder { color: #383838; }
+  .cf-select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg width='10' height='6' viewBox='0 0 10 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L5 5L9 1' stroke='%23888' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat; background-position: right 4px center; cursor: pointer;
+  }
+  .cf-select option { background: var(--panel); color: var(--white); }
+  .cf-textarea { resize: none; min-height: 108px; line-height: 1.6; padding-top: 10px; }
+  .cf-submit {
+    width: 100%; background: var(--purple-light); color: #000; border: none; padding: 16px;
+    font-family: 'DM Sans', sans-serif; font-size: 0.82rem; font-weight: 500;
+    letter-spacing: 0.14em; text-transform: uppercase; cursor: pointer; margin-top: 4px; transition: background 0.2s;
+  }
+  .cf-submit:hover { background: #c4b5fd; }
+  .cf-submit:disabled { opacity: 0.4; cursor: not-allowed; }
+  .cf-success { display: none; text-align: center; padding: 56px 0; }
+  .cf-success-mark {
+    width: 52px; height: 52px; border: 2px solid var(--purple-light);
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 20px; color: var(--purple-light); font-size: 1.4rem;
+  }
+  .cf-success h3 { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; letter-spacing: 0.06em; margin-bottom: 8px; }
+  .cf-success p { font-size: 0.88rem; color: var(--text-muted); line-height: 1.7; }
+  @media (max-width: 768px) {
+    .contact-inner { grid-template-columns: 1fr; }
+    .contact-info { padding: 48px 24px; border-right: none; border-bottom: 1px solid var(--border); }
+    .contact-form-side { padding: 48px 24px; }
+    .cf-row { grid-template-columns: 1fr; }
+  }
+
+  /* ---- FAQ ---- */
+  .faq-section { padding: 80px 48px; background: var(--black); }
+  .faq-section-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+  .faq-section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2rem, 5vw, 3rem);
+    letter-spacing: 0.04em;
+    margin-bottom: 40px;
+    line-height: 1.05;
+  }
+  .faq-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+  }
+  .faq-item {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    padding: 0;
+    text-align: left;
+    cursor: pointer;
+    width: 100%;
+    transition: border-color 0.2s;
+  }
+  .faq-item:hover { border-color: var(--purple-dim); }
+  .faq-item.open { border-color: var(--purple-dim); }
+  .faq-q {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 24px;
+    gap: 12px;
+  }
+  .faq-q-text {
+    font-size: 0.88rem;
+    color: var(--white);
+    font-weight: 400;
+    line-height: 1.5;
+  }
+  .faq-tag {
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border: 1px solid var(--purple-border);
+    color: var(--purple-light);
+    margin-right: 10px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .faq-icon {
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    flex-shrink: 0;
+    transition: transform 0.2s;
+    font-weight: 300;
+  }
+  .faq-item.open .faq-icon { transform: rotate(45deg); color: var(--purple-light); }
+  .faq-a {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease, padding 0.2s;
+    font-size: 0.88rem;
+    line-height: 1.75;
+    color: rgba(245,242,238,0.65);
+    padding: 0 24px;
+    border-top: 0px solid var(--border);
+  }
+  .faq-item.open .faq-a {
+    max-height: 400px;
+    padding: 16px 24px 22px;
+    border-top: 1px solid var(--border);
+  }
+  @media (max-width: 768px) {
+    .faq-section { padding: 60px 24px; }
+    .faq-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="ilias-enterprises.html" class="nav-logo-wrap">
+    <img src="images/logo.png" alt="Ilias Enterprises" class="nav-logo-img">
+    <div class="nav-logo">Ilias Enterprises</div>
+  </a>
+  <a href="ilias-enterprises.html" class="nav-back">
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9,2 4,7 9,12"/></svg>
+    Back to Home
+  </a>
+</nav>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <p class="page-eyebrow reveal">Ilias Enterprises — Division 01</p>
+  <h1 class="page-title reveal">Ili<em>Tech.</em></h1>
+  <p class="page-subtitle reveal">Custom software, apps, websites, and hand-assembled computers — built with precision, priced with integrity. No lock-in. No handoffs. No middlemen.</p>
+  <img src="images/ilitech.png" alt="Ilitech" class="header-logo reveal">
+</div>
+
+<div class="divider"></div>
+
+<!-- PITCH -->
+<section>
+  <div class="pitch-block reveal">
+    <div class="pitch-logo-row">
+      <img src="images/ilitech.png" alt="Ilitech" class="pitch-logo">
+      <div class="pitch-name">Ilitech</div>
+    </div>
+    <div class="pitch-tag">Software · Apps · Websites · Computers</div>
+    <p class="pitch-text">
+      Ilitech is the technology division of Ilias Enterprises. Every project — from a single script to a full App Store release — is <strong>scoped honestly, delivered completely, and owned entirely by you</strong>. You won't deal with an account manager, a junior sub-contractor, or a surprise invoice. You work directly with the person who builds it.
+      <br><br>
+      The pricing you see is the pricing you pay. The code you receive is yours to keep, modify, and deploy wherever you want. No platform lock-in, no licensing games, no dependency on us once the work is done.
+    </p>
+    <div class="pills-row">
+      <span class="pill">Programs</span>
+      <span class="pill">Apps</span>
+      <span class="pill">Websites</span>
+      <span class="pill">Computers</span>
+      <span class="pill">Google Ads</span>
+      <span class="pill">Troubleshooting</span>
+    </div>
+    <a href="ilias-enterprises.html#contact" class="btn-purple">Get a Quote</a>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SERVICES -->
+<section>
+  <p class="section-label reveal">Services &amp; Pricing</p>
+  <h2 class="section-title reveal">Everything <em>Ilitech</em> Builds</h2>
+
+  <!-- Programs & Domains -->
+  <div class="showcase reveal">
+    <div class="showcase-header">
+      <div class="showcase-title">Programs &amp;<br><span>Domains</span></div>
+      <div class="showcase-count">01</div>
+    </div>
+    <div class="service-tiles">
+      <div class="service-tile">
+        <div class="tile-tag">Entry Level</div>
+        <div class="tile-name">Snippets &amp; Simple Scripts</div>
+        <p class="tile-desc">Small, self-contained code — automations, one-off tools, single-purpose logic. Scoped fast, built clean, delivered ready to use.</p>
+        <div class="tile-prices"><span class="tile-price-pill">$20 – $40 <span class="tile-price-sub">flat rate</span></span></div>
+      </div>
+      <div class="service-tile">
+        <div class="tile-tag">Full Build</div>
+        <div class="tile-name">Complete Programs</div>
+        <p class="tile-desc">Full custom software built from scratch around your workflow. No templates, no off-the-shelf shortcuts. Simpler tools start at $100 — complex multi-feature software runs up to $400.</p>
+        <div class="tile-prices">
+          <span class="tile-price-pill">$100 – $200 <span class="tile-price-sub">Simple programs</span></span>
+          <span class="tile-price-pill">$200 – $400 <span class="tile-price-sub">Complex programs</span></span>
+        </div>
+      </div>
+      <div class="service-tile">
+        <div class="tile-tag">Domains</div>
+        <div class="tile-name">Web Domains</div>
+        <p class="tile-desc">Unbranded, unblocked, or fully branded — we set up and manage your domain with zero friction so you can focus on building.</p>
+        <div class="tile-prices">
+          <span class="tile-price-pill">$10 <span class="tile-price-sub">Unbranded</span></span>
+          <span class="tile-price-pill">$20 <span class="tile-price-sub">Unblocked</span></span>
+          <span class="tile-price-pill">$40–60 <span class="tile-price-sub">Branded</span></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Apps -->
+  <div class="showcase reveal">
+    <div class="showcase-header">
+      <div class="showcase-title">Apps Built to<br><span>Last</span></div>
+      <div class="showcase-count">02</div>
+    </div>
+    <div class="service-tiles">
+      <div class="service-tile">
+        <div class="tile-tag">Raw Source</div>
+        <div class="tile-name">App Source Code</div>
+        <p class="tile-desc">Complete, commented source code handed over to you. Deploy it yourself, host it anywhere, modify it freely — no licensing, no lock-in. You own it outright from day one.</p>
+        <div class="tile-prices"><span class="tile-price-pill">$800 – $1,500 <span class="tile-price-sub">starting rate</span></span></div>
+      </div>
+      <div class="service-tile">
+        <div class="tile-tag">Published</div>
+        <div class="tile-name">Live App Store Release</div>
+        <p class="tile-desc">Your app live on the App Store, under your name and developer account. We handle the build, Apple review submission, and approval process from start to finish. 100% ownership transferred to you.</p>
+        <div class="tile-prices"><span class="tile-price-pill">$1,500+ <span class="tile-price-sub">scope-dependent</span></span></div>
+      </div>
+      <div class="service-tile">
+        <div class="tile-tag">Ongoing</div>
+        <div class="tile-name">App Updates &amp; Support</div>
+        <p class="tile-desc">Keep your app running as iOS/Android evolve. Per-update pricing works best for occasional changes — the monthly plan is cheaper if you expect ongoing work. Both include bug fixes, feature additions, and OS compatibility updates.</p>
+        <div class="tile-prices">
+          <span class="tile-price-pill">10–25% <span class="tile-price-sub">of original cost, per update</span></span>
+          <span class="tile-price-pill">$50–150 <span class="tile-price-sub">flat monthly plan</span></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Websites -->
+  <div class="showcase reveal">
+    <div class="showcase-header">
+      <div class="showcase-title">Websites That<br><span>Convert</span></div>
+      <div class="showcase-count">03</div>
+    </div>
+    <div class="service-tiles">
+      <div class="service-tile">
+        <div class="tile-tag">Raw Source</div>
+        <div class="tile-name">Website Source Code</div>
+        <p class="tile-desc">Fully custom, handcrafted code — no page builders, no WordPress, no templates. Host it wherever you want, modify it freely. The $800 floor reflects real custom work, not a theme with your logo swapped in.</p>
+        <div class="tile-prices"><span class="tile-price-pill">$800 – $1,500 <span class="tile-price-sub">starting rate</span></span></div>
+      </div>
+      <div class="service-tile">
+        <div class="tile-tag">Commerce</div>
+        <div class="tile-name">Online Shop &amp; Service Sites</div>
+        <p class="tile-desc">Full e-commerce and service platforms built to drive revenue — product listings, checkout, booking, and client management. Price depends on number of products, payment integrations, and custom features required.</p>
+        <div class="tile-prices"><span class="tile-price-pill">$1,500 – $3,000 <span class="tile-price-sub">scope-dependent</span></span></div>
+      </div>
+      <div class="service-tile">
+        <div class="tile-tag">Growth</div>
+        <div class="tile-name">Google Ads Management</div>
+        <p class="tile-desc">Campaign strategy, ad copy, keyword targeting, and monthly performance reporting. You pay Google directly for ad spend — our fee covers management only, no markup on what you're actually spending.</p>
+        <div class="tile-prices">
+          <span class="tile-price-pill">$150–300 <span class="tile-price-sub">/mo management fee</span></span>
+          <span class="tile-price-pill">$30–100 <span class="tile-price-sub">/mo site maintenance</span></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Computers -->
+  <div class="showcase reveal">
+    <div class="showcase-header">
+      <div class="showcase-title">Custom<br><span>Computers</span></div>
+      <div class="showcase-count">04</div>
+    </div>
+    <div class="service-tiles service-tiles-2x2">
+      <div class="service-tile">
+        <div class="tile-tag">Ready Now</div>
+        <div class="tile-name">Prebuilt Systems</div>
+        <p class="tile-desc">Tested, tuned, and ready to ship. Priced based on the components — what you see is what you pay with no assembly fee added on top. Reach out for current availability and configurations.</p>
+        <div class="tile-prices"><span class="tile-price-pill">Listed price <span class="tile-price-sub">no assembly fee</span></span></div>
+      </div>
+      <div class="service-tile">
+        <div class="tile-tag">Standard &amp; Mini Builds</div>
+        <div class="tile-name">Custom Tower &amp; Mini PC</div>
+        <p class="tile-desc">You choose the parts, we build it right. A standard tower adds 10% over parts cost — a compact mini build adds 20% because smaller cases require more precision work and tighter cable routing. Parts sourced at cost, no markup.</p>
+        <div class="tile-prices">
+          <span class="tile-price-pill">Parts + 10% <span class="tile-price-sub">Standard tower</span></span>
+          <span class="tile-price-pill">Parts + 20% <span class="tile-price-sub">Mini build</span></span>
+        </div>
+      </div>
+      <div class="service-tile">
+        <div class="tile-tag">Premium Build</div>
+        <div class="tile-name">Custom Waterloop Build</div>
+        <p class="tile-desc">A full custom liquid cooling loop — reservoir, pump, radiator, tubing, fittings, and CPU/GPU blocks. The most labour-intensive build we offer. The 30–35% premium reflects the complexity, leak-testing, and stress-testing before delivery.</p>
+        <div class="tile-prices">
+          <span class="tile-price-pill">Parts + 30–35% <span class="tile-price-sub">scope-dependent</span></span>
+        </div>
+      </div>
+      <div class="service-tile">
+        <div class="tile-tag">Support</div>
+        <div class="tile-name">Troubleshooting &amp; Repair</div>
+        <p class="tile-desc">A flat $40 diagnostic session pinpoints exactly what's wrong before anything else happens — no guessing, no surprise charges. If a repair is needed, parts are billed at cost and labour reflects the actual complexity of the fix.</p>
+        <div class="tile-prices">
+          <span class="tile-price-pill">$40 <span class="tile-price-sub">flat diagnostic fee</span></span>
+          <span class="tile-price-pill">Parts + $40–120 <span class="tile-price-sub">repair labour</span></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Trust Strip -->
+  <div class="trust-strip reveal">
+    <div class="trust-block">
+      <div class="trust-num">$0</div>
+      <div class="trust-label">Hidden Fees</div>
+    </div>
+    <div class="trust-block">
+      <div class="trust-num">100%</div>
+      <div class="trust-label">You Own It</div>
+    </div>
+    <div class="trust-block">
+      <div class="trust-num">0</div>
+      <div class="trust-label">Middlemen</div>
+    </div>
+    <div class="trust-block">
+      <div class="trust-num">1</div>
+      <div class="trust-label">Person. Direct.</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider-purple"></div>
+
+<!-- HOW IT WORKS -->
+<section>
+  <p class="section-label reveal">How It Works</p>
+  <h2 class="section-title reveal">From Idea to<br><em>Delivered</em></h2>
+
+  <div class="process-steps">
+    <div class="process-step reveal">
+      <div class="step-num">01</div>
+      <div class="step-title">Tell Me What You Need</div>
+      <p class="step-desc">Reach out with your idea — rough or detailed, doesn't matter. I ask the right questions to understand scope, timeline, and what you actually need vs. what sounds good on paper.</p>
+    </div>
+    <div class="process-step reveal">
+      <div class="step-num">02</div>
+      <div class="step-title">Get a Clear Quote</div>
+      <p class="step-desc">You receive a fixed, itemised quote before anything starts. No vague estimates, no "it depends" pricing. If the scope changes, we discuss it — nothing changes without your approval.</p>
+    </div>
+    <div class="process-step reveal">
+      <div class="step-num">03</div>
+      <div class="step-title">Work Gets Done</div>
+      <p class="step-desc">I build it. You can check in at any point. No account managers, no project handoffs, no junior developers touching your work. The person who quoted you is the person who builds it.</p>
+    </div>
+    <div class="process-step reveal">
+      <div class="step-num">04</div>
+      <div class="step-title">You Own Everything</div>
+      <p class="step-desc">Delivery means full ownership transfer. Source code, domains, accounts — all of it is yours. No ongoing dependency on us unless you choose to keep working together.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- FAQ -->
+<section class="faq-section" id="faq">
+  <p class="faq-section-label reveal">Ilitech</p>
+  <h2 class="faq-section-title reveal">Frequently Asked</h2>
+  <div class="faq-grid reveal">
+    <button class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q"><div><span class="faq-tag">Ilitech</span><span class="faq-q-text">Do I own the code, app, or website after delivery?</span></div><div class="faq-icon">+</div></div>
+      <div class="faq-a">Yes — completely. Once paid for, the source code, domain, and all assets belong to you. No licensing fees, no lock-in. You own it outright and can take it anywhere.</div>
+    </button>
+    <button class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q"><div><span class="faq-tag">Ilitech</span><span class="faq-q-text">What's the difference between raw code and a live deployment?</span></div><div class="faq-icon">+</div></div>
+      <div class="faq-a">Raw code means you receive the full source files to deploy yourself. A live deployment means we handle the entire process — App Store submission, domain setup, hosting — so your product goes live without you needing to touch anything.</div>
+    </button>
+    <button class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q"><div><span class="faq-tag">Ilitech</span><span class="faq-q-text">What platforms do you build apps for?</span></div><div class="faq-icon">+</div></div>
+      <div class="faq-a">Primarily iOS and Android, with cross-platform development available. Web apps and desktop applications are also within scope. Describe what you need and which platform your audience uses — we'll recommend the best approach.</div>
+    </button>
+    <button class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q"><div><span class="faq-tag">Ilitech</span><span class="faq-q-text">Can I bring my own parts for a custom PC build?</span></div><div class="faq-icon">+</div></div>
+      <div class="faq-a">Absolutely. Our fee covers assembly, tuning, and testing — we'll build it right regardless of where the parts came from. Reach out first so we can confirm compatibility before you commit to anything.</div>
+    </button>
+    <button class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q"><div><span class="faq-tag">Ilitech</span><span class="faq-q-text">What does a website maintenance subscription cover?</span></div><div class="faq-icon">+</div></div>
+      <div class="faq-a">Content changes, bug fixes, feature additions, and browser compatibility. The subscription ($30–100/mo) is ideal for regular changes — cheaper than per-update fees each time and gives you priority access.</div>
+    </button>
+    <button class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q"><div><span class="faq-tag">Ilitech</span><span class="faq-q-text">What does the $40 diagnostic session include?</span></div><div class="faq-icon">+</div></div>
+      <div class="faq-a">In person or remote — to pinpoint exactly what's wrong before anything else happens. The $40 covers that session entirely with no hidden charges. Any repair needed afterward is quoted separately: parts at cost, labour at $40–120 depending on complexity.</div>
+    </button>
+    <button class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q"><div><span class="faq-tag">Ilitech</span><span class="faq-q-text">What's included in a waterloop custom build?</span></div><div class="faq-icon">+</div></div>
+      <div class="faq-a">A full custom liquid cooling loop — reservoir, pump, radiator, tubing, fittings, and CPU/GPU blocks. The 30–35% labour premium reflects the complexity. Every loop is leak-tested and stress-tested before delivery.</div>
+    </button>
+    <button class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q"><div><span class="faq-tag">Ilitech</span><span class="faq-q-text">What's the difference between a snippet and a full program?</span></div><div class="faq-icon">+</div></div>
+      <div class="faq-a">Snippets are small, self-contained pieces of code — a function, a script, a single-purpose automation. Full programs are complete, multi-feature software built around a specific use case. If you're unsure which yours is, describe it and we'll tell you.</div>
+    </button>
+    <button class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q"><div><span class="faq-tag">Ilitech</span><span class="faq-q-text">Do you build e-commerce sites from scratch or use platforms like Shopify?</span></div><div class="faq-icon">+</div></div>
+      <div class="faq-a">Both. Custom-built stores give complete control with zero platform fees — ideal for unique requirements. Platform-based builds are faster to launch and easier to self-manage. We'll recommend whichever fits your budget and long-term needs better.</div>
+    </button>
+    <button class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q"><div><span class="faq-tag">Ilitech</span><span class="faq-q-text">Can you manage my Google Ads campaign long-term?</span></div><div class="faq-icon">+</div></div>
+      <div class="faq-a">Yes. The $150–300/mo fee covers strategy, ad copy, keyword optimization, and performance reporting. Google's ad spend is billed directly to your account — we never hold your budget. Full transparency every month.</div>
+    </button>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <div class="contact-inner">
+    <div class="contact-info reveal">
+      <div>
+        <p class="section-label">Ilitech</p>
+        <h2 class="contact-big-title">Get a<br><span>Quote.</span></h2>
+        <p class="contact-tagline">Describe what you need — rough or detailed, it doesn't matter. I'll scope it, ask the right questions, and come back with a transparent price. No commitment required to ask.</p>
+      </div>
+      <div class="contact-detail">
+        <div class="contact-detail-item">
+          <div class="contact-detail-icon">
+            <svg width="18" height="18" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="18" height="14" rx="2"/><polyline points="2,4 11,13 20,4"/></svg>
+          </div>
+          <div>
+            <div class="contact-detail-label">Email</div>
+            <div class="contact-detail-value"><a href="mailto:imatom85@gmail.com">&#105;&#109;&#97;&#116;&#111;&#109;&#56;&#53;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;</a></div>
+          </div>
+        </div>
+        <div class="contact-detail-item">
+          <div class="contact-detail-icon">
+            <svg width="18" height="18" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="9"/><polyline points="11,6 11,11 15,13"/></svg>
+          </div>
+          <div>
+            <div class="contact-detail-label">Response Time</div>
+            <div class="contact-detail-value">Within 24 hours</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="contact-form-side reveal">
+      <div class="contact-form-heading">Project Inquiry</div>
+      <form id="contactForm" action="https://formspree.io/f/xzdkdgvg" method="POST" onsubmit="handleContactSubmit(event)">
+        <input type="hidden" name="_subject" value="Ilitech Quote Request">
+        <div class="cf-row">
+          <div class="cf-group">
+            <label class="cf-label" for="cf-name">Name</label>
+            <input class="cf-input" type="text" id="cf-name" name="name" placeholder="Your name" required>
+          </div>
+          <div class="cf-group">
+            <label class="cf-label" for="cf-email">Email</label>
+            <input class="cf-input" type="email" id="cf-email" name="email" placeholder="your@email.com" required>
+          </div>
+        </div>
+        <div class="cf-row">
+          <div class="cf-group">
+            <label class="cf-label" for="cf-type">Project Type</label>
+            <select class="cf-select" id="cf-type" name="project_type" required>
+              <option value="" disabled selected>Select type</option>
+              <option value="App">App (iOS / Android)</option>
+              <option value="Website">Website</option>
+              <option value="Program">Program / Script</option>
+              <option value="Computer">Custom Computer Build</option>
+              <option value="Domain">Domain Setup</option>
+              <option value="Google Ads">Google Ads Management</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+          <div class="cf-group">
+            <label class="cf-label" for="cf-budget">Budget Range</label>
+            <select class="cf-select" id="cf-budget" name="budget" required>
+              <option value="" disabled selected>Select range</option>
+              <option value="Under $100">Under $100</option>
+              <option value="$100–$500">$100 – $500</option>
+              <option value="$500–$1,500">$500 – $1,500</option>
+              <option value="$1,500–$3,000">$1,500 – $3,000</option>
+              <option value="$3,000+">$3,000+</option>
+              <option value="Not sure">Not sure yet</option>
+            </select>
+          </div>
+        </div>
+        <div class="cf-group">
+          <label class="cf-label" for="cf-message">Project Description</label>
+          <textarea class="cf-textarea" id="cf-message" name="message" placeholder="Describe what you need — rough ideas are fine." required></textarea>
+        </div>
+        <input type="text" name="_gotcha" style="display:none">
+        <button type="submit" class="cf-submit" id="cf-submit">Send Inquiry</button>
+      </form>
+      <div class="cf-success" id="formSuccess">
+        <div class="cf-success-mark">✓</div>
+        <h3>Inquiry Sent</h3>
+        <p>I'll review your project and get back to you within 24 hours.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="footer-logo">Ilias Enterprises</div>
+    <div class="footer-copy">© 2025 Ilias Enterprises. All rights reserved.</div>
+  </div>
+  <div class="footer-links">
+    <a href="ilias-enterprises.html">Home</a>
+    <a href="ilitech.html">Ilitech</a>
+    <a href="teach-and-trade.html">Iliteach &amp; Ilitrade</a>
+    <a href="about.html">Our Story</a>
+    <a href="ilias-enterprises.html#contact">Contact</a>
+  </div>
+</footer>
+
+<script>
+  function toggleFaq(btn) {
+    const isOpen = btn.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
+    if (!isOpen) btn.classList.add('open');
+  }
+
+  async function handleContactSubmit(e) {
+    e.preventDefault();
+    const form = document.getElementById('contactForm');
+    const btn  = document.getElementById('cf-submit');
+    btn.disabled = true;
+    btn.textContent = 'Sending…';
+    try {
+      const res = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      });
+      if (res.ok) {
+        form.style.display = 'none';
+        document.getElementById('formSuccess').style.display = 'block';
+      } else {
+        btn.disabled = false;
+        btn.textContent = 'Send Inquiry';
+        alert('Something went wrong — please email directly or try again.');
+      }
+    } catch {
+      btn.disabled = false;
+      btn.textContent = 'Send Inquiry';
+      alert('Could not send — please check your connection and try again.');
+    }
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

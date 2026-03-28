@@ -1,0 +1,1290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Iliteach &amp; Ilitrade — Ilias Enterprises</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0a0a0a;
+    --white: #f5f2ee;
+    --gold: #c9a84c;
+    --gold-light: #e8c97a;
+    --gold-dim: #7a6330;
+    --panel: #111111;
+    --border: rgba(201,168,76,0.18);
+    --text-muted: #888;
+    --navy: #1e3a8a;
+    --navy-light: #60a5fa;
+    --navy-dim: #1e2d6b;
+    --navy-glow: rgba(30,58,138,0.2);
+    --navy-faint: rgba(96,165,250,0.06);
+    --emerald: #059669;
+    --emerald-light: #34d399;
+    --emerald-dim: #064e3b;
+    --emerald-glow: rgba(5,150,105,0.15);
+    --emerald-faint: rgba(52,211,153,0.06);
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* ---- NAV ---- */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 40px;
+    background: rgba(10,10,10,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    z-index: 100;
+  }
+  .nav-logo-wrap {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .nav-logo-img { height: 36px; width: 36px; object-fit: contain; }
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.3rem;
+    letter-spacing: 0.12em;
+    color: var(--white);
+  }
+  .nav-back {
+    font-size: 0.8rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: opacity 0.2s;
+  }
+  .nav-back:hover { opacity: 0.7; }
+
+  /* ---- PAGE HEADER ---- */
+  .page-header {
+    padding: 140px 48px 80px;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  .page-eyebrow {
+    font-size: 0.7rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+  }
+  .page-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3.5rem, 9vw, 7rem);
+    line-height: 0.95;
+    letter-spacing: 0.02em;
+    margin-bottom: 32px;
+  }
+  .page-title .teach { color: var(--navy-light); }
+  .page-title .trade { color: var(--emerald-light); }
+  .page-subtitle {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: rgba(245,242,238,0.7);
+    max-width: 640px;
+  }
+
+  /* ---- DIVIDER ---- */
+  .divider {
+    height: 1px;
+    background: var(--border);
+    margin: 0 48px;
+  }
+
+  /* ---- SECTIONS ---- */
+  section { padding: 80px 48px; }
+  .section-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    letter-spacing: 0.04em;
+    line-height: 1.05;
+    margin-bottom: 32px;
+  }
+
+  /* ---- UNDER CONSTRUCTION BANNER ---- */
+  .under-construction {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--gold);
+    padding: 24px 32px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin: 0 48px 0;
+    flex-wrap: wrap;
+  }
+  .under-construction-icon {
+    font-size: 1.6rem;
+    flex-shrink: 0;
+    line-height: 1;
+  }
+  .under-construction-text h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.2rem;
+    letter-spacing: 0.1em;
+    color: var(--gold);
+    margin-bottom: 4px;
+  }
+  .under-construction-text p {
+    font-size: 0.88rem;
+    color: rgba(245,242,238,0.6);
+    line-height: 1.6;
+  }
+
+  /* ---- DIVISION HERO CARDS ---- */
+  .division-pair {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    margin-top: 0;
+  }
+  .division-card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    padding: 56px 48px;
+    position: relative;
+    overflow: hidden;
+  }
+  .division-card.teach { border-top: 3px solid var(--navy-light); }
+  .division-card.trade { border-top: 3px solid var(--emerald-light); }
+  .division-card.teach::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--navy-faint);
+    pointer-events: none;
+  }
+  .division-card.trade::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--emerald-faint);
+    pointer-events: none;
+  }
+  .division-logo-wrap {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 28px;
+  }
+  .division-logo {
+    height: 340px;
+    width: 340px;
+    object-fit: contain;
+    mix-blend-mode: screen;
+  }
+  .division-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.8rem;
+    letter-spacing: 0.06em;
+    line-height: 1;
+  }
+  .division-card.teach .division-name { color: var(--navy-light); }
+  .division-card.trade .division-name { color: var(--emerald-light); }
+  .division-tag {
+    font-size: 0.7rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 20px;
+  }
+  .division-desc {
+    font-size: 1rem;
+    line-height: 1.75;
+    color: rgba(245,242,238,0.75);
+    margin-bottom: 36px;
+  }
+
+  /* ---- STATUS BADGE ---- */
+  .status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 14px;
+    border-radius: 0;
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 500;
+    border: 1px solid;
+  }
+  .status-badge.building {
+    border-color: var(--gold-dim);
+    color: var(--gold);
+    background: rgba(201,168,76,0.08);
+  }
+  .status-badge .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--gold);
+    animation: pulse 1.8s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.2; }
+  }
+
+  /* ---- SERVICES GRID ---- */
+  .services-section { padding: 80px 48px; }
+  .division-services {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 2px;
+    margin-top: 40px;
+  }
+  .service-card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    padding: 36px 32px;
+    position: relative;
+  }
+  .service-card.teach-card { border-top: 2px solid var(--navy-light); }
+  .service-card.trade-card { border-top: 2px solid var(--emerald-light); }
+  .service-icon {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--border);
+    color: var(--gold);
+    flex-shrink: 0;
+  }
+  .service-card.teach-card .service-icon { color: var(--navy-light); border-color: rgba(96,165,250,0.2); }
+  .service-card.trade-card .service-icon { color: var(--emerald-light); border-color: rgba(52,211,153,0.2); }
+  .service-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.35rem;
+    letter-spacing: 0.08em;
+    margin-bottom: 10px;
+    color: var(--white);
+  }
+  .service-desc {
+    font-size: 0.88rem;
+    line-height: 1.7;
+    color: rgba(245,242,238,0.6);
+    margin-bottom: 16px;
+  }
+  .service-coming-soon {
+    font-size: 0.68rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold-dim);
+    font-weight: 500;
+  }
+
+  /* ---- PROGRESS SECTION ---- */
+  .progress-section { padding: 80px 48px; }
+  .progress-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    margin-top: 48px;
+  }
+  .progress-block {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    padding: 40px 36px;
+  }
+  .progress-block-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 28px;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .progress-division-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.8rem;
+    letter-spacing: 0.08em;
+  }
+  .progress-block.teach .progress-division-name { color: var(--navy-light); }
+  .progress-block.trade .progress-division-name { color: var(--emerald-light); }
+  .milestone-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .milestone-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-size: 0.9rem;
+    color: rgba(245,242,238,0.75);
+  }
+  .milestone-check {
+    width: 20px;
+    height: 20px;
+    border: 1.5px solid;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 0.7rem;
+  }
+  .milestone-item.done .milestone-check {
+    border-color: var(--gold);
+    background: rgba(201,168,76,0.12);
+    color: var(--gold);
+  }
+  .milestone-item.done { color: rgba(245,242,238,0.9); }
+  .milestone-item.pending .milestone-check {
+    border-color: rgba(245,242,238,0.2);
+    color: transparent;
+  }
+  .milestone-item.pending { color: rgba(245,242,238,0.4); }
+  .milestone-item.active .milestone-check {
+    border-color: var(--gold-dim);
+    color: var(--gold-dim);
+  }
+  .milestone-item.active { color: rgba(245,242,238,0.7); }
+
+  /* ---- NOTIFY SECTION ---- */
+  .notify-section {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    padding: 64px 48px;
+    text-align: center;
+  }
+  .notify-eyebrow {
+    font-size: 0.7rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+  .notify-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    letter-spacing: 0.04em;
+    margin-bottom: 16px;
+    line-height: 1.05;
+  }
+  .notify-desc {
+    font-size: 0.95rem;
+    color: rgba(245,242,238,0.6);
+    max-width: 520px;
+    margin: 0 auto 40px;
+    line-height: 1.7;
+  }
+  .notify-form {
+    display: flex;
+    gap: 0;
+    max-width: 480px;
+    margin: 0 auto;
+    border: 1px solid var(--border);
+  }
+  .notify-input {
+    flex: 1;
+    background: var(--black);
+    border: none;
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    padding: 14px 20px;
+    outline: none;
+  }
+  .notify-input::placeholder { color: var(--text-muted); }
+  .notify-input:focus { background: #0e0e0e; }
+  .btn-primary {
+    background: var(--gold);
+    color: #000;
+    border: none;
+    padding: 14px 32px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: background 0.2s;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .btn-primary:hover { background: var(--gold-light); }
+  .btn-outline {
+    background: transparent;
+    color: var(--white);
+    border: 1px solid rgba(245,242,238,0.3);
+    padding: 14px 32px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: border-color 0.2s, color 0.2s, transform 0.2s;
+    white-space: nowrap;
+  }
+  .btn-outline:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
+  .notify-note {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-top: 16px;
+  }
+
+  /* ---- FAQ ---- */
+  .faq-section { padding: 80px 48px; background: var(--black); }
+  .faq-section-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+  .faq-section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2rem, 5vw, 3rem);
+    letter-spacing: 0.04em;
+    margin-bottom: 40px;
+    line-height: 1.05;
+  }
+  .faq-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    margin-bottom: 48px;
+  }
+  .faq-item {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    padding: 0;
+    text-align: left;
+    cursor: pointer;
+    width: 100%;
+    transition: border-color 0.2s;
+  }
+  .faq-q {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 24px;
+    gap: 12px;
+  }
+  .faq-q-text {
+    font-size: 0.88rem;
+    color: var(--white);
+    font-weight: 400;
+    line-height: 1.5;
+  }
+  .faq-tag {
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    margin-right: 10px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .faq-tag.teach { border-color: rgba(96,165,250,0.3); color: var(--navy-light); }
+  .faq-tag.trade { border-color: rgba(52,211,153,0.3); color: var(--emerald-light); }
+  .faq-icon {
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    flex-shrink: 0;
+    transition: transform 0.2s;
+    font-weight: 300;
+  }
+  .faq-item.open .faq-icon { transform: rotate(45deg); color: var(--gold); }
+  .faq-a {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease, padding 0.2s;
+    font-size: 0.88rem;
+    line-height: 1.75;
+    color: rgba(245,242,238,0.65);
+    padding: 0 24px;
+  }
+  .faq-item.open .faq-a {
+    max-height: 400px;
+    padding: 16px 24px 22px;
+    border-top: 1px solid var(--border);
+  }
+  @media (max-width: 768px) {
+    .faq-section { padding: 60px 24px; }
+    .faq-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ---- JOIN / CONTRIBUTE SECTION ---- */
+  .join-section { padding: 80px 48px; background: var(--panel); }
+  .join-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+    margin-top: 48px;
+  }
+  .join-roles { display: flex; flex-direction: column; gap: 2px; }
+  .join-role {
+    border: 1px solid var(--border);
+    padding: 28px 32px;
+    background: var(--black);
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    transition: border-color 0.25s;
+  }
+  .join-role:hover { border-color: var(--gold-dim); }
+  .join-role-icon {
+    width: 38px;
+    height: 38px;
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .join-role.teach-role .join-role-icon { color: var(--navy-light); border-color: rgba(96,165,250,0.25); }
+  .join-role.trade-role .join-role-icon { color: var(--emerald-light); border-color: rgba(52,211,153,0.25); }
+  .join-role-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.2rem;
+    letter-spacing: 0.08em;
+    color: var(--white);
+    margin-bottom: 6px;
+  }
+  .join-role-desc {
+    font-size: 0.86rem;
+    line-height: 1.7;
+    color: rgba(245,242,238,0.55);
+  }
+  .join-role-tag {
+    font-size: 0.62rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .join-role.teach-role .join-role-tag { color: var(--navy-light); }
+  .join-role.trade-role .join-role-tag { color: var(--emerald-light); }
+  /* Join form */
+  .join-form-wrap { position: sticky; top: 84px; }
+  .join-form-heading {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.5rem;
+    letter-spacing: 0.1em;
+    color: var(--white);
+    margin-bottom: 32px;
+  }
+  @media (max-width: 900px) { .join-layout { grid-template-columns: 1fr; gap: 48px; } }
+  @media (max-width: 768px) { .join-section { padding: 60px 24px; } .join-form-wrap { position: static; } }
+
+  /* ---- CONTACT SECTION ---- */
+  .contact-section { background: #0d0d0d; padding: 0; }
+  .contact-inner { display: grid; grid-template-columns: 1fr 1fr; min-height: 520px; }
+  .contact-info {
+    padding: 80px 60px;
+    border-right: 1px solid var(--border);
+    display: flex; flex-direction: column; justify-content: space-between;
+  }
+  .contact-big-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    letter-spacing: 0.02em; line-height: 0.92;
+    color: var(--white); margin-bottom: 24px;
+  }
+  .contact-big-title .teach { color: var(--navy-light); }
+  .contact-big-title .trade { color: var(--emerald-light); }
+  .contact-tagline {
+    font-size: 0.95rem; color: rgba(245,242,238,0.55);
+    line-height: 1.8; max-width: 380px; margin-bottom: 48px;
+  }
+  .contact-detail { display: flex; flex-direction: column; gap: 2px; }
+  .contact-detail-item {
+    display: flex; align-items: center; gap: 16px;
+    background: var(--panel); border: 1px solid var(--border); padding: 18px 22px;
+  }
+  .contact-detail-icon { color: var(--gold); flex-shrink: 0; }
+  .contact-detail-label { font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 3px; }
+  .contact-detail-value { font-size: 0.9rem; color: var(--white); }
+  .contact-detail-value a { color: var(--white); text-decoration: none; transition: color 0.2s; }
+  .contact-detail-value a:hover { color: var(--gold); }
+  .contact-form-side { padding: 80px 60px; background: var(--panel); }
+  .contact-form-heading { font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; letter-spacing: 0.1em; color: var(--white); margin-bottom: 32px; }
+  .cf-row { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .cf-group { display: flex; flex-direction: column; gap: 7px; margin-bottom: 22px; }
+  .cf-label { font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-muted); }
+  .cf-input, .cf-select, .cf-textarea {
+    background: transparent; border: none; border-bottom: 1px solid rgba(245,242,238,0.14);
+    color: var(--white); font-family: 'DM Sans', sans-serif; font-size: 0.9rem; font-weight: 300;
+    padding: 10px 0; outline: none; transition: border-color 0.25s; width: 100%;
+  }
+  .cf-input:focus, .cf-select:focus, .cf-textarea:focus { border-color: var(--gold-dim); }
+  .cf-input::placeholder, .cf-textarea::placeholder { color: #383838; }
+  .cf-select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg width='10' height='6' viewBox='0 0 10 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L5 5L9 1' stroke='%23888' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat; background-position: right 4px center; cursor: pointer;
+  }
+  .cf-select option { background: var(--panel); color: var(--white); }
+  .cf-textarea { resize: none; min-height: 108px; line-height: 1.6; padding-top: 10px; }
+  .cf-submit {
+    width: 100%; background: var(--gold); color: #000; border: none; padding: 16px;
+    font-family: 'DM Sans', sans-serif; font-size: 0.82rem; font-weight: 500;
+    letter-spacing: 0.14em; text-transform: uppercase; cursor: pointer; margin-top: 4px; transition: background 0.2s;
+  }
+  .cf-submit:hover { background: var(--gold-light); }
+  .cf-submit:disabled { opacity: 0.4; cursor: not-allowed; }
+  .cf-success { display: none; text-align: center; padding: 56px 0; }
+  .cf-success-mark {
+    width: 52px; height: 52px; border: 2px solid var(--gold);
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 20px; color: var(--gold); font-size: 1.4rem;
+  }
+  .cf-success h3 { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; letter-spacing: 0.06em; margin-bottom: 8px; }
+  .cf-success p { font-size: 0.88rem; color: var(--text-muted); line-height: 1.7; }
+  @media (max-width: 768px) {
+    .contact-inner { grid-template-columns: 1fr; }
+    .contact-info { padding: 48px 24px; border-right: none; border-bottom: 1px solid var(--border); }
+    .contact-form-side { padding: 48px 24px; }
+    .cf-row { grid-template-columns: 1fr; }
+  }
+
+  /* ---- FOOTER ---- */
+  footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 40px 48px;
+    border-top: 1px solid var(--border);
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+  .footer-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4rem;
+    letter-spacing: 0.14em;
+    color: var(--white);
+  }
+  .footer-copy { font-size: 0.78rem; color: var(--text-muted); margin-top: 8px; }
+  .footer-links { display: flex; gap: 24px; flex-wrap: wrap; align-items: center; }
+  .footer-links a {
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--gold); }
+
+  /* ---- REVEAL ---- */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s cubic-bezier(0.22,1,0.36,1), transform 0.7s cubic-bezier(0.22,1,0.36,1);
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  .section-body { font-size: 1rem; line-height: 1.75; color: rgba(245,242,238,0.65); max-width: 640px; }
+
+  @media (max-width: 900px) {
+    .division-pair { grid-template-columns: 1fr; }
+    .progress-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 768px) {
+    .page-header { padding: 120px 24px 60px; }
+    section, .services-section, .progress-section { padding: 60px 24px; }
+    .divider { margin: 0 24px; }
+    .under-construction { margin: 0 24px; }
+    footer { padding: 32px 24px; flex-direction: column; gap: 24px; }
+    nav { padding: 0 24px; }
+    .division-card { padding: 40px 28px; }
+    .notify-section { padding: 48px 24px; }
+    .notify-form { flex-direction: column; }
+    .notify-input { border-bottom: 1px solid var(--border); }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="ilias-enterprises.html" class="nav-logo-wrap">
+    <img src="images/logo.png" alt="Ilias Enterprises" class="nav-logo-img">
+    <div class="nav-logo">Ilias Enterprises</div>
+  </a>
+  <a href="ilias-enterprises.html" class="nav-back">
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9,2 4,7 9,12"/></svg>
+    Back to Home
+  </a>
+</nav>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <p class="page-eyebrow reveal">Ilias Enterprises — Divisions</p>
+  <h1 class="page-title reveal">
+    <span class="teach">Iliteach</span><br>
+    &amp; <span class="trade">Ilitrade.</span>
+  </h1>
+  <p class="page-subtitle reveal">Two divisions. Two very different missions. Both being built the right way — from the ground up, without shortcuts, without compromise.</p>
+</div>
+
+<!-- UNDER CONSTRUCTION BANNER -->
+<div class="under-construction reveal">
+  <div class="under-construction-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div>
+  <div class="under-construction-text">
+    <h3>Currently Under Active Development</h3>
+    <p>Iliteach and Ilitrade are both being actively built right now. The foundations are set — services, pricing, and platforms are being finalized before launch. This page outlines exactly what's coming and where things stand.</p>
+  </div>
+</div>
+
+<div class="divider" style="margin-top:48px"></div>
+
+<!-- DIVISION OVERVIEW -->
+<section>
+  <p class="section-label reveal">The Two Divisions</p>
+  <h2 class="section-title reveal">What Each One Does</h2>
+
+  <div class="division-pair">
+    <!-- ILITEACH -->
+    <div class="division-card teach reveal">
+      <div class="division-logo-wrap">
+        <img src="images/iliteach.png" alt="Iliteach" class="division-logo">
+        <div class="division-name">Iliteach</div>
+      </div>
+      <div class="division-tag">Education · Tutoring · Resources</div>
+      <p class="division-desc">
+        Iliteach is the education arm of Ilias Enterprises. The goal is simple: give students and self-learners access to real academic support without the price tag of a tutoring center or the noise of a crowded platform.
+        <br><br>
+        Whether you need a focused cheat sheet for an upcoming exam, a one-on-one tutoring session that actually moves at your pace, or access to a library of genuine student work to reference and learn from — Iliteach is being built to cover all of it.
+      </p>
+      <span class="status-badge building">
+        <span class="dot"></span>
+        In Development
+      </span>
+    </div>
+
+    <!-- ILITRADE -->
+    <div class="division-card trade reveal">
+      <div class="division-logo-wrap">
+        <img src="images/ilitrade.png" alt="Ilitrade" class="division-logo">
+        <div class="division-name">Ilitrade</div>
+      </div>
+      <div class="division-tag">Marketplace · Resellers · Advertising</div>
+      <p class="division-desc">
+        Ilitrade is the commerce division — a marketplace built specifically for people who are tired of platform fees eating into their margins. No percentage cuts, no listing taxes, no algorithm-gated visibility.
+        <br><br>
+        The platform is being designed for resellers who need fair listing tools, service providers who want to advertise without inflated rates, and buyers who want a cleaner, more direct experience from real sellers.
+      </p>
+      <span class="status-badge building">
+        <span class="dot"></span>
+        In Development
+      </span>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SERVICES BREAKDOWN -->
+<section class="services-section">
+  <p class="section-label reveal">What's Being Built</p>
+  <h2 class="section-title reveal">Services Coming<br>to Each Division</h2>
+
+  <div class="division-services">
+    <!-- ILITEACH SERVICES -->
+    <div class="service-card teach-card reveal">
+      <div class="service-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div>
+      <div class="service-title">Expert Cheat Sheets</div>
+      <p class="service-desc">Concise, subject-specific reference sheets built for fast recall. Not generic — tailored to actual curricula, exams, and frameworks. Downloadable, printable, yours to keep.</p>
+      <div class="service-coming-soon">— Coming Soon</div>
+    </div>
+    <div class="service-card teach-card reveal">
+      <div class="service-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div>
+      <div class="service-title">One-on-One Tutoring</div>
+      <p class="service-desc">Direct, scheduled sessions at your pace. No rigid curriculum, no classroom pressure. You bring the topic, I bring the knowledge. Priced honestly per session — no subscriptions required.</p>
+      <div class="service-coming-soon">— Coming Soon</div>
+    </div>
+    <div class="service-card teach-card reveal">
+      <div class="service-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div>
+      <div class="service-title">Work Database</div>
+      <p class="service-desc">A searchable library of real academic work — essays, solved problems, annotated examples — contributed by students and organized by subject. A reference point, not a cheat shortcut.</p>
+      <div class="service-coming-soon">— Coming Soon</div>
+    </div>
+
+    <!-- ILITRADE SERVICES -->
+    <div class="service-card trade-card reveal">
+      <div class="service-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+      <div class="service-title">Reseller Listings</div>
+      <p class="service-desc">List your products directly without paying a percentage of every sale. Flat, transparent listing fees — or free at launch tier. You keep what you earn.</p>
+      <div class="service-coming-soon">— Coming Soon</div>
+    </div>
+    <div class="service-card trade-card reveal">
+      <div class="service-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div>
+      <div class="service-title">Service Marketplace</div>
+      <p class="service-desc">A place for independent service providers to list their offerings alongside products. From repairs to freelance work — visible, searchable, and not buried under sponsored results.</p>
+      <div class="service-coming-soon">— Coming Soon</div>
+    </div>
+    <div class="service-card trade-card reveal">
+      <div class="service-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11v2a1 1 0 0 0 1 1h2l3 3V8L6 11H4a1 1 0 0 0-1 1z"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg></div>
+      <div class="service-title">Direct Advertising</div>
+      <p class="service-desc">Advertising slots without auction mechanics or algorithmic gatekeeping. Straight placement for businesses and resellers who want real visibility at a real price.</p>
+      <div class="service-coming-soon">— Coming Soon</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- BUILD PROGRESS -->
+<section class="progress-section">
+  <p class="section-label reveal">Where Things Stand</p>
+  <h2 class="section-title reveal">Build Progress</h2>
+  <p class="reveal section-body">Both divisions are in active development. The milestones below are honest checkpoints — not marketing promises. When something is done, it gets checked off.</p>
+
+  <div class="progress-grid">
+    <!-- ILITEACH PROGRESS -->
+    <div class="progress-block teach reveal">
+      <div class="progress-block-header">
+        <div class="progress-division-name">Iliteach</div>
+        <span class="status-badge building">
+          <span class="dot"></span>
+          Building
+        </span>
+      </div>
+      <ul class="milestone-list">
+        <li class="milestone-item done">
+          <div class="milestone-check">✓</div>
+          Division concept &amp; scope defined
+        </li>
+        <li class="milestone-item done">
+          <div class="milestone-check">✓</div>
+          Branding and visual identity created
+        </li>
+        <li class="milestone-item done">
+          <div class="milestone-check">✓</div>
+          Subject list and service categories mapped
+        </li>
+        <li class="milestone-item active">
+          <div class="milestone-check">→</div>
+          Cheat sheet templates being produced
+        </li>
+        <li class="milestone-item active">
+          <div class="milestone-check">→</div>
+          Tutoring scheduling system in development
+        </li>
+        <li class="milestone-item pending">
+          <div class="milestone-check"></div>
+          Work database platform built
+        </li>
+        <li class="milestone-item pending">
+          <div class="milestone-check"></div>
+          Pricing finalized and published
+        </li>
+        <li class="milestone-item pending">
+          <div class="milestone-check"></div>
+          Public launch
+        </li>
+      </ul>
+    </div>
+
+    <!-- ILITRADE PROGRESS -->
+    <div class="progress-block trade reveal">
+      <div class="progress-block-header">
+        <div class="progress-division-name">Ilitrade</div>
+        <span class="status-badge building">
+          <span class="dot"></span>
+          Building
+        </span>
+      </div>
+      <ul class="milestone-list">
+        <li class="milestone-item done">
+          <div class="milestone-check">✓</div>
+          Division concept &amp; scope defined
+        </li>
+        <li class="milestone-item done">
+          <div class="milestone-check">✓</div>
+          Branding and visual identity created
+        </li>
+        <li class="milestone-item done">
+          <div class="milestone-check">✓</div>
+          Marketplace model and fee structure designed
+        </li>
+        <li class="milestone-item active">
+          <div class="milestone-check">→</div>
+          Platform architecture being built
+        </li>
+        <li class="milestone-item active">
+          <div class="milestone-check">→</div>
+          Seller onboarding flow in progress
+        </li>
+        <li class="milestone-item pending">
+          <div class="milestone-check"></div>
+          Listing and search system completed
+        </li>
+        <li class="milestone-item pending">
+          <div class="milestone-check"></div>
+          Advertising slots configured
+        </li>
+        <li class="milestone-item pending">
+          <div class="milestone-check"></div>
+          Public launch
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- FAQ -->
+<section class="faq-section" id="faq">
+  <p class="faq-section-label reveal">Questions</p>
+  <h2 class="faq-section-title reveal">Frequently Asked</h2>
+
+  <div class="faq-grid reveal">
+    <button class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q"><div><span class="faq-tag teach">Iliteach</span><span class="faq-q-text">What subjects does Iliteach cover?</span></div><div class="faq-icon">+</div></div>
+      <div class="faq-a">The database and cheat sheets span math, science, English, history, and more — growing as the community contributes. Tutoring is more flexible: reach out with your subject and level and we'll let you know upfront if we can help.</div>
+    </button>
+    <button class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q"><div><span class="faq-tag teach">Iliteach</span><span class="faq-q-text">How does the Work Database contributor access work?</span></div><div class="faq-icon">+</div></div>
+      <div class="faq-a">Right now the Work Database is free — contribute 30 completed assignments and you get full access at no cost. This applies to everyone during the platform-building phase. Once the platform has enough users, regular pricing activates: $20/mo standard, or $10/mo if you submit 20+ pieces per month. You'll always be notified well in advance.</div>
+    </button>
+    <button class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q"><div><span class="faq-tag teach">Iliteach</span><span class="faq-q-text">How are tutoring sessions conducted?</span></div><div class="faq-icon">+</div></div>
+      <div class="faq-a">In-person or online via video call. Sessions are typically 1 hour but flexible. No rigid curriculum — every session is shaped around what you actually need that day.</div>
+    </button>
+    <button class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q"><div><span class="faq-tag teach">Iliteach</span><span class="faq-q-text">Are the cheat sheets pre-made or can I request custom ones?</span></div><div class="faq-icon">+</div></div>
+      <div class="faq-a">Both. Pre-made sheets are $5 each. Custom sheets built around your specific exam or curriculum are $10, typically delivered within 48–72 hours.</div>
+    </button>
+    <button class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q"><div><span class="faq-tag teach">Iliteach</span><span class="faq-q-text">Is Iliteach for high school, college, or both?</span></div><div class="faq-icon">+</div></div>
+      <div class="faq-a">Both — and beyond. Content covers middle school through college. Tutoring is available at any level. Adult learners are just as welcome as students cramming for exams.</div>
+    </button>
+    <button class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q"><div><span class="faq-tag trade">Ilitrade</span><span class="faq-q-text">When do Ilitrade accounts start charging?</span></div><div class="faq-icon">+</div></div>
+      <div class="faq-a">All accounts (except Advertising) are free during the market-building phase. Once the marketplace reaches sufficient activity, pricing rolls out — but you'll always get your first paid month free and receive advance notice before any charge begins.</div>
+    </button>
+    <button class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q"><div><span class="faq-tag trade">Ilitrade</span><span class="faq-q-text">Does Ilitrade take a cut of my sales?</span></div><div class="faq-icon">+</div></div>
+      <div class="faq-a">No transaction fees beyond the monthly account cost. The subscription covers your platform access — we don't take a percentage of what you earn. Your sales are your sales.</div>
+    </button>
+    <button class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q"><div><span class="faq-tag trade">Ilitrade</span><span class="faq-q-text">What's the difference between a Reselling and Services account?</span></div><div class="faq-icon">+</div></div>
+      <div class="faq-a">A Reselling account is for listing products you source and sell. A Services account is for listing things you do — skills, labour, time. You can hold both, each billed independently.</div>
+    </button>
+    <button class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q"><div><span class="faq-tag trade">Ilitrade</span><span class="faq-q-text">How does Ilitrade advertising work?</span></div><div class="faq-icon">+</div></div>
+      <div class="faq-a">The $50/mo advertising account places your ads across all Ilias Enterprises properties. Flat-rate — no bidding, no auction volatility. Same price every month, full network reach.</div>
+    </button>
+    <button class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q"><div><span class="faq-tag trade">Ilitrade</span><span class="faq-q-text">Is there a limit to how many products or services I can list?</span></div><div class="faq-icon">+</div></div>
+      <div class="faq-a">No hard cap during the current phase. List as many products or services as you offer. Existing members will be grandfathered in at fair terms when tiers are introduced — we won't penalize early adopters.</div>
+    </button>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- JOIN / CONTRIBUTE -->
+<section class="join-section" id="join">
+  <p class="section-label reveal">Help Build This</p>
+  <h2 class="section-title reveal">We're Looking for<br>People to Help<br>Establish Both Platforms.</h2>
+  <p class="section-body reveal">Neither platform launches strong without the right people behind it from day one. Whether you teach, have completed coursework to share, sell products, or provide services — your involvement now shapes what these platforms become at launch.</p>
+
+  <div class="join-layout">
+
+    <!-- Role cards -->
+    <div class="join-roles">
+
+      <div class="join-role teach-role reveal">
+        <div class="join-role-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <div>
+          <div class="join-role-tag">Iliteach</div>
+          <div class="join-role-title">Tutors</div>
+          <p class="join-role-desc">If you can explain a subject clearly and work at someone else's pace, we want you on the platform. You set your availability — we handle the bookings and the structure around you.</p>
+        </div>
+      </div>
+
+      <div class="join-role teach-role reveal">
+        <div class="join-role-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        </div>
+        <div>
+          <div class="join-role-tag">Iliteach</div>
+          <div class="join-role-title">Students with Completed Work</div>
+          <p class="join-role-desc">Have assignments, worksheets, essays, or solved problems sitting in a folder? Submit them to the Work Database and help build the reference library other students learn from. Contributor access is free.</p>
+        </div>
+      </div>
+
+      <div class="join-role trade-role reveal">
+        <div class="join-role-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        </div>
+        <div>
+          <div class="join-role-tag">Ilitrade</div>
+          <div class="join-role-title">Resellers &amp; Sellers</div>
+          <p class="join-role-desc">List your products on a platform that doesn't take a cut of every sale. Getting in early means being visible from day one when the marketplace opens. Accounts are completely free right now.</p>
+        </div>
+      </div>
+
+      <div class="join-role trade-role reveal">
+        <div class="join-role-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+        </div>
+        <div>
+          <div class="join-role-tag">Ilitrade</div>
+          <div class="join-role-title">Service Providers</div>
+          <p class="join-role-desc">Independent trades, freelancers, and service businesses — list what you offer and be found by buyers looking for exactly that, without paying a percentage of every job you close.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Form -->
+    <div class="join-form-wrap reveal">
+      <div class="join-form-heading">Express Your Interest</div>
+      <form id="joinForm" action="https://formspree.io/f/xkopobkq" method="POST" onsubmit="handleJoinSubmit(event)">
+        <input type="hidden" name="_subject" value="Platform Contributor Interest">
+        <div class="cf-row">
+          <div class="cf-group">
+            <label class="cf-label" for="j-name">Name</label>
+            <input class="cf-input" type="text" id="j-name" name="name" placeholder="Your name" required>
+          </div>
+          <div class="cf-group">
+            <label class="cf-label" for="j-email">Email</label>
+            <input class="cf-input" type="email" id="j-email" name="email" placeholder="your@email.com" required>
+          </div>
+        </div>
+        <div class="cf-group">
+          <label class="cf-label" for="j-role">I Want to Join As</label>
+          <select class="cf-select" id="j-role" name="role" required>
+            <option value="" disabled selected>Select your role</option>
+            <option value="Tutor">Tutor — Iliteach</option>
+            <option value="Student / Work Contributor">Student with Completed Work — Iliteach</option>
+            <option value="Reseller / Seller">Reseller or Seller — Ilitrade</option>
+            <option value="Service Provider">Service Provider — Ilitrade</option>
+            <option value="Multiple roles">Multiple of the above</option>
+          </select>
+        </div>
+        <div class="cf-group">
+          <label class="cf-label" for="j-message">Tell Us More (optional)</label>
+          <textarea class="cf-textarea" id="j-message" name="message" placeholder="What subject do you tutor? What do you sell? Any questions?"></textarea>
+        </div>
+        <input type="text" name="_gotcha" style="display:none">
+        <button type="submit" class="cf-submit" id="join-submit">Submit Interest</button>
+      </form>
+      <div class="cf-success" id="joinSuccess">
+        <div class="cf-success-mark">✓</div>
+        <h3>Interest Received</h3>
+        <p>We'll be in touch as the platform gets closer to launch. Thank you for being part of this from the start.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <div class="contact-inner">
+    <div class="contact-info reveal">
+      <div>
+        <p class="section-label" style="margin-bottom:20px">Stay in the Loop</p>
+        <h2 class="contact-big-title"><span class="teach">Iliteach</span><br>&amp; <span class="trade">Ilitrade.</span><br>Coming Soon.</h2>
+        <p class="contact-tagline">Both divisions are in active development. Drop your details and I'll reach out the moment either one is ready to launch — or answer any questions you have right now.</p>
+      </div>
+      <div class="contact-detail">
+        <div class="contact-detail-item">
+          <div class="contact-detail-icon">
+            <svg width="18" height="18" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="18" height="14" rx="2"/><polyline points="2,4 11,13 20,4"/></svg>
+          </div>
+          <div>
+            <div class="contact-detail-label">Email</div>
+            <div class="contact-detail-value"><a href="mailto:imatom85@gmail.com">&#105;&#109;&#97;&#116;&#111;&#109;&#56;&#53;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;</a></div>
+          </div>
+        </div>
+        <div class="contact-detail-item">
+          <div class="contact-detail-icon">
+            <svg width="18" height="18" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="9"/><polyline points="11,6 11,11 15,13"/></svg>
+          </div>
+          <div>
+            <div class="contact-detail-label">Response Time</div>
+            <div class="contact-detail-value">Within 24 hours</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="contact-form-side reveal">
+      <div class="contact-form-heading">Get Notified / Reach Out</div>
+      <form id="contactForm" action="https://formspree.io/f/xzdkdgvg" method="POST" onsubmit="handleContactSubmit(event)">
+        <input type="hidden" name="_subject" value="Iliteach &amp; Ilitrade Interest">
+        <div class="cf-row">
+          <div class="cf-group">
+            <label class="cf-label" for="cf-name">Name</label>
+            <input class="cf-input" type="text" id="cf-name" name="name" placeholder="Your name" required>
+          </div>
+          <div class="cf-group">
+            <label class="cf-label" for="cf-email">Email</label>
+            <input class="cf-input" type="email" id="cf-email" name="email" placeholder="your@email.com" required>
+          </div>
+        </div>
+        <div class="cf-group">
+          <label class="cf-label" for="cf-interest">I'm Interested In</label>
+          <select class="cf-select" id="cf-interest" name="interest" required>
+            <option value="" disabled selected>Select interest</option>
+            <option value="Iliteach">Iliteach — Education &amp; Tutoring</option>
+            <option value="Ilitrade">Ilitrade — Marketplace &amp; Reselling</option>
+            <option value="Both">Both Divisions</option>
+          </select>
+        </div>
+        <div class="cf-group">
+          <label class="cf-label" for="cf-message">Message (optional)</label>
+          <textarea class="cf-textarea" id="cf-message" name="message" placeholder="Any questions or anything specific you're looking for?"></textarea>
+        </div>
+        <input type="text" name="_gotcha" style="display:none">
+        <button type="submit" class="cf-submit" id="cf-submit">Send</button>
+      </form>
+      <div class="cf-success" id="formSuccess">
+        <div class="cf-success-mark">✓</div>
+        <h3>Got It</h3>
+        <p>You'll hear from me when either division launches — or sooner if you had a question.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="footer-logo">Ilias Enterprises</div>
+    <div class="footer-copy">© 2025 Ilias Enterprises. All rights reserved.</div>
+  </div>
+  <div class="footer-links">
+    <a href="ilias-enterprises.html">Home</a>
+    <a href="ilias-enterprises.html#ilitech">Ilitech</a>
+    <a href="teach-and-trade.html">Iliteach &amp; Ilitrade</a>
+    <a href="about.html">Our Story</a>
+    <a href="ilias-enterprises.html#contact">Contact</a>
+  </div>
+</footer>
+
+<script>
+  function toggleFaq(btn) {
+    const isOpen = btn.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
+    if (!isOpen) btn.classList.add('open');
+  }
+
+  async function handleJoinSubmit(e) {
+    e.preventDefault();
+    const form = document.getElementById('joinForm');
+    const btn  = document.getElementById('join-submit');
+    btn.disabled = true;
+    btn.textContent = 'Sending…';
+    try {
+      const res = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      });
+      if (res.ok) {
+        form.style.display = 'none';
+        document.getElementById('joinSuccess').style.display = 'block';
+      } else {
+        btn.disabled = false;
+        btn.textContent = 'Submit Interest';
+        alert('Something went wrong — please email directly or try again.');
+      }
+    } catch {
+      btn.disabled = false;
+      btn.textContent = 'Submit Interest';
+      alert('Could not send — please check your connection and try again.');
+    }
+  }
+
+  async function handleContactSubmit(e) {
+    e.preventDefault();
+    const form = document.getElementById('contactForm');
+    const btn  = document.getElementById('cf-submit');
+    btn.disabled = true;
+    btn.textContent = 'Sending…';
+    try {
+      const res = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      });
+      if (res.ok) {
+        form.style.display = 'none';
+        document.getElementById('formSuccess').style.display = 'block';
+      } else {
+        btn.disabled = false;
+        btn.textContent = 'Send';
+        alert('Something went wrong — please email directly or try again.');
+      }
+    } catch {
+      btn.disabled = false;
+      btn.textContent = 'Send';
+      alert('Could not send — please check your connection and try again.');
+    }
+  }
+
+  /* Reveal on scroll */
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  /* Notify form */
+  function handleNotify(e) {
+    e.preventDefault();
+    const input = document.getElementById('notifyEmail');
+    const confirm = document.getElementById('notifyConfirm');
+    input.parentElement.style.display = 'none';
+    confirm.style.display = 'block';
+  }
+</script>
+</body>
+</html>
